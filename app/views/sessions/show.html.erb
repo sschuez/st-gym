@@ -1,0 +1,15 @@
+
+<div class="card session-card">
+  <div class="card-body">
+    <%= render @session %>
+  </div>
+</div>
+
+<% if user_signed_in? %>
+  <div>
+    <%= link_to "Edit this session", edit_session_path(@session) %> |
+    <%= link_to "Back to sessions", sessions_path %>
+
+    <%= button_to "Destroy this session", @session, method: :delete %>
+  </div>
+<% end %>
