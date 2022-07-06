@@ -23,3 +23,45 @@
   border: 2px solid $links-dark;
 }
 
+.fas {
+  color: black;
+}
+
+.fas:hover {
+  font-weight: bold !important;
+}
+
+.dark-mode .fas {
+  color: $font-color-dark; 
+}
+
+.handle {
+  position: absolute;
+  top: 12px;
+  right: 24px;
+  .fa-grip-lines {
+    // color: $bright-coral;
+    font-size: 20px;
+  }
+  cursor: grab;
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.handle:hover {
+  // color: $red-very-light;
+}
+
+.fa-trash-alt {
+  font-size: 20px;
+  font-weight: lighter !important;
+}
+
+
+.inline-delete {
+  position: absolute;
+  top: 40px;
+  right: 26px;
+}
+

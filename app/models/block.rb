@@ -1,4 +1,4 @@
-class Session < ApplicationRecord
+class Block < ApplicationRecord
   #Organisation Model (Shortcut: mstr)
   # == Constants ============================================================
   
@@ -7,8 +7,7 @@ class Session < ApplicationRecord
   # == Extensions ===========================================================
   
   # == Relationships ========================================================
-  has_many :blocks, dependent: :destroy
-  accepts_nested_attributes_for :blocks, reject_if: :all_blank, allow_destroy: :true
+  belongs_to :session
   
   # == Validations ==========================================================
   

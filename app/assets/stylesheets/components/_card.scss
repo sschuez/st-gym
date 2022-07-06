@@ -7,3 +7,13 @@
 .dark-mode .session-card {
   background-color: $card-background-dark !important;
 }
+
+.block-card {
+  min-height: 150px;
+  border: 1px grey dashed !important;
+}
+
+.dark-mode .block-card {
+  background-color: $card-background-dark !important;
+  border: 1px $font-color-dark dashed !important;
+}
