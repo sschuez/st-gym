@@ -1,3 +1,5 @@
+@use "config/variables" as *;
+
 .tooltip-parent {
   position: relative;
 }
@@ -5,15 +7,17 @@
 #tooltip {
   background: #333;
   color: white;
-  // font-weight: bold;
+  font-size: 13px;
   padding: 4px 8px;
-  // font-size: 13px;
   border-radius: 4px;
-  display: none;
   position: absolute;
-  top: 12px;
-  left: 12px;
+  bottom: 48px;
+  // left: 12px;
 }
+.dark-mode #tooltip {
+  color: $font-color-dark;
+}
+
 #arrow,
 #arrow::before {
   position: absolute;

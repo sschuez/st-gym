@@ -24,7 +24,9 @@ export default class extends Controller {
       
       var parentNode = event.target.parentNode
       event.target.classList.add("tooltip-parent")
-      parentNode.insertBefore(tooltip, event.target)
+      event.target.appendChild(tooltip)
+      // event.target.insertAdjacentElement("beforbegin", tooltip)
+      // parentNode.insertBefore(tooltip, event.target)
       
       tooltip.setAttribute("data-show", "")
   
