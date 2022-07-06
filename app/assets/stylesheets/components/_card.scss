@@ -3,3 +3,7 @@
 .session-card {
   min-height: 400px;
 }
+
+.dark-mode .session-card {
+  background-color: $card-background-dark !important;
+}

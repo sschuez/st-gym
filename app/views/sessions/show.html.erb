@@ -1,5 +1,11 @@
 
 <div class="card session-card">
+   <div class="card-header bg-transparent small">
+      <%= @session.name %>
+      <% if @session.description %>
+        - <%= @session.description %>
+      <% end %>
+   </div>
   <div class="card-body">
     <%= render @session %>
   </div>

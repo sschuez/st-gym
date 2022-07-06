@@ -7,3 +7,9 @@
   margin: 8px 0 0 6px;
   cursor: pointer;
 }
+
+.dark-mode input {
+  background-color: $card-background-dark !important;
+  color: $font-color-dark !important;
+}
+
