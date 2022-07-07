@@ -23,6 +23,21 @@
   border: 2px solid $links-dark;
 }
 
+.btn-styling {
+  background: none;
+  border: none;
+  padding: 0;
+  .fas {
+    padding-top: 0;
+    font-size: 16px;
+  }
+}
+
+.show-icon {
+  margin: 0 12px 0 12px;
+  padding-top: 12px;
+}
+
 .fas {
   color: black;
 }
@@ -62,6 +77,6 @@
 .inline-delete {
   position: absolute;
   top: 40px;
-  right: 26px;
+  right: 15px;
 }
 

@@ -1,25 +1,9 @@
-<%= simple_form_for(session, data: { turbo: :false }) do |f| %>
+<%= turbo_stream_from session %>
 
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div id="blocks">
+  <%= render session.blocks.order(created_at: :asc) %>
+</div>
 
-  <div data-controller="nested-form drag" data-drag-url="/sessions/<%= session.id %>/blocks/:id/block_position">
-    
-    <template data-nested-form-target="template">
-      <%= f.fields_for :blocks, Block.new, child_index: 'NEW_RECORD' do |block| %>
-        <%= render "sessions/block_fields", form: block %>
-      <% end %>
-    </template>   
+<%= turbo_frame_tag "new_block", src: new_session_block_path(session), target: "_top" %>
 
-    <%= f.fields_for :blocks, session.blocks, include_id: false do |block|%>
-      <%= render "sessions/block_fields", form: block %>
-    <% end %>
-    
-    <div class="add-association" data-nested-form-target="links">
-      <%= link_to "+ Add block", "#", class: "btn btn-primary", data: { action: "click->nested-form#add_association", controller: "tooltip", value: "A block is a set of excercises" } %>
-    </div>
-  </div>
-
-<% end %>
-
-<%= link_to "Add exercise", "#", class: "btn btn-primary", data: { controller: "tooltip", value: "Add directly some exercises outside of a block" } %>
+<%#= link_to "Add exercise", "#", class: "btn btn-primary", data: { controller: "tooltip", value: "Add directly some exercises outside of a block" } %>

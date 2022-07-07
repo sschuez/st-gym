@@ -1,4 +1,6 @@
 class BlocksController < ApplicationController
+  skip_before_action :authenticate_user!#, only: [ :new, :show ]
+  before_action :set_session, only: %i[ new create edit update destroy ]
   before_action :set_block, only: %i[ show edit update destroy ]
 
   # GET /blocks or /blocks.json
@@ -12,37 +14,71 @@ class BlocksController < ApplicationController
 
   # GET /blocks/new
   def new
-    @block = Block.new
+    @block = @session.blocks.new
+    @block.session = @session
   end
 
   # GET /blocks/1/edit
   def edit
+    respond_to do |format|
+      format.turbo_stream do 
+        render turbo_stream: turbo_stream.update(
+          @block,
+          partial: "blocks/form",
+          locals: {block: @block}) 
+      end
+    end
   end
 
   # POST /blocks or /blocks.json
   def create
-    @block = Block.new(block_params)
-
+    @block = @session.blocks.new(block_params)
+    @block.session = @session
     respond_to do |format|
       if @block.save
-        format.html { redirect_to block_url(@block), notice: "Block was successfully created." }
+        # @block.broadcast_prepend_later_to @block.session
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.append(
+            "blocks",
+            partial: "blocks/block",
+            locals: { block: @block })
+        end
+        format.html { redirect_to @block, notice: "Block was successfully created." }
         format.json { render :show, status: :created, location: @block }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @block.errors, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update(
+            'new_block',
+            partial: "blocks/form",
+            locals: {block: @block})
+        end
       end
+      format.html { render :new, status: :unprocessable_entity }
+      format.json { render json: @block.errors, status: :unprocessable_entity }
     end
   end
 
   # PATCH/PUT /blocks/1 or /blocks/1.json
   def update
+    @block.session = @block.session
     respond_to do |format|
       if @block.update(block_params)
-        format.html { redirect_to block_url(@block), notice: "Block was successfully updated." }
-        format.json { render :show, status: :ok, location: @block }
+        format.turbo_stream do 
+          render turbo_stream: [
+            turbo_stream.update(
+              @block,
+              partial: "blocks/block",
+              locals: {block: @block}),
+            turbo_stream.update('notice', "block #{@block.id} updated")
+          ]
+        end
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @block.errors, status: :unprocessable_entity }
+        format.turbo_stream do 
+          render turbo_stream: turbo_stream.update(
+            @block,
+            partial: "blocks/form",
+            locals: {block: @block}) 
+        end   
       end
     end
   end
@@ -52,8 +88,7 @@ class BlocksController < ApplicationController
     @block.destroy
 
     respond_to do |format|
-      format.html { redirect_to blocks_url, notice: "Block was successfully destroyed." }
-      format.json { head :no_content }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@block) }
     end
   end
 
@@ -61,6 +96,10 @@ class BlocksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_block
       @block = Block.find(params[:id])
+    end
+
+    def set_session
+      @session = Session.find(params[:session_id])
     end
 
     # Only allow a list of trusted parameters through.
