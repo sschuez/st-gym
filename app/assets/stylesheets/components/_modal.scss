@@ -1,0 +1,5 @@
+@use "config/variables" as *;
+
+.dark-mode .modal-content {
+  background-color: $card-background-dark !important;
+}

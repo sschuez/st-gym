@@ -17,6 +17,7 @@
     <%= render 'shared/flashes' %>
     <div class="container">
       <%= yield %>
+      <%= turbo_frame_tag "remote_modal" %>
     </div>    
     <%= render 'shared/footer' %>
   </body>
