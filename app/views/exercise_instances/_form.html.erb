@@ -1,0 +1,14 @@
+<%= simple_form_for([@session, @exercise_instance]) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :repetitions %>
+    <%#= f.input :description %>
+    <%#= f.association :category %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Add exercise", class: "btn btn-primary" %>
+  </div>
+<% end %>
