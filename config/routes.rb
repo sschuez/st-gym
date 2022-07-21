@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :sessions do
     resources :blocks
+    resources :exercise_instances
   end
 
 end

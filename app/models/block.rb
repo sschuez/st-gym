@@ -8,8 +8,9 @@ class Block < ApplicationRecord
   
   # == Relationships ========================================================
   belongs_to :session
-
   broadcasts_to :session
+  include Exercisable
+
   # == Validations ==========================================================
   
   # == Scopes ===============================================================
