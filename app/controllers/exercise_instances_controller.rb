@@ -14,6 +14,7 @@ class ExerciseInstancesController < ApplicationController
   def create
     @parent = parent
     @exercise_instance = @parent.exercise_instances.new(exercise_instance_params)
+    # raise
     respond_to do |format|
       if @exercise_instance.save
         # @exercise_instance.broadcast_prepend_later_to @exercise_instance.session

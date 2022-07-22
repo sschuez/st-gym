@@ -22,10 +22,11 @@ class ExercisesController < ApplicationController
 
   # POST /exercises or /exercises.json
   def create
+    # raise
     @exercise = Exercise.new(exercise_params)
 
     if @exercise.save
-      redirect_to @exercise, notice: "Exercise was successfully created."
+      redirect_to request.referrer, notice: "#{@exercise.name} was created. You can now choose and add it to a block."
     else
       render :new, status: :unprocessable_entity
     end

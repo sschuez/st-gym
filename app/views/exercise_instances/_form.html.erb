@@ -10,6 +10,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.submit "Add exercise", class: "btn btn-primary" %>
+    <%= f.submit "Add exercise", class: "btn btn-primary", data: { action: "click->modal#disconnect" } %>
   </div>
 <% end %>
