@@ -1,8 +1,14 @@
 <div id="<%= dom_id block %>" class="card block-card mb-3">
 
-  <div class="new_exercise mt-2 mx-2">
-    <%= link_to "+ Add exercise", new_session_exercise_instance_path(block.session), "data-controller": "turbo", class: "btn btn-primary" %>
+  <div id="exercise_instances">
+    <%= render block.exercise_instances.order(created_at: :asc) %>
   </div>
+
+  <div class="new_exercise mt-2 mx-2">
+    <%= link_to "+ Add exercise", new_session_block_exercise_instance_path(block.session, block), "data-controller": "turbo", class: "btn btn-primary" %>
+  </div>
+  
+  <%#= turbo_frame_tag "new_exercise_instance", src: new_session_exercise_instance_path(block.session), target: "_top" %>
   
   <div class="handle">
     <i class="fas fa-grip-lines"></i>

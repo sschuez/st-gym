@@ -106,4 +106,8 @@ class BlocksController < ApplicationController
     def block_params
       params.require(:block).permit(:session_id)
     end
+
+    def set_exercisable
+      @exercisable = Block.find(param[:id])
+    end
 end
