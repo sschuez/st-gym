@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "new_session_instance", target: "_top" do %>
   <div class="new-session-instance-form">
     
-    <%= simple_form_for([@session, @session-instance]) do |f| %>
+    <%= simple_form_for([@session, @session_instance]) do |f| %>
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
