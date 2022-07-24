@@ -9,7 +9,6 @@ class Session < ApplicationRecord
   # == Relationships ========================================================
   has_many :blocks, dependent: :destroy
   broadcasts
-  include Exercisable
   
   # == Validations ==========================================================
   

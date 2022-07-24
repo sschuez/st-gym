@@ -22,7 +22,6 @@ class ExercisesController < ApplicationController
 
   # POST /exercises or /exercises.json
   def create
-    # raise
     @exercise = Exercise.new(exercise_params)
 
     if @exercise.save

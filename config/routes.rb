@@ -10,9 +10,7 @@ Rails.application.routes.draw do
     resources :blocks do
       resources :exercise_instances
     end
-    
-    # Exercises within session / no blocks
-    resources :exercise_instances
+  
   end
 
 end

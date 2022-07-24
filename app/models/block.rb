@@ -8,8 +8,8 @@ class Block < ApplicationRecord
   
   # == Relationships ========================================================
   belongs_to :session
+  has_many :exercise_instances, dependent: :destroy
   broadcasts_to :session
-  include Exercisable
 
   # == Validations ==========================================================
   

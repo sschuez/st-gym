@@ -28,14 +28,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_000350) do
   end
 
   create_table "exercise_instances", force: :cascade do |t|
-    t.string "exercisable_type"
-    t.bigint "exercisable_id"
+    t.bigint "block_id", null: false
     t.bigint "exercise_id", null: false
     t.integer "repetitions"
     t.integer "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["exercisable_type", "exercisable_id"], name: "index_exercise_instances_on_exercisable"
+    t.index ["block_id"], name: "index_exercise_instances_on_block_id"
     t.index ["exercise_id"], name: "index_exercise_instances_on_exercise_id"
   end
 
@@ -69,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_000350) do
   end
 
   add_foreign_key "blocks", "sessions"
+  add_foreign_key "exercise_instances", "blocks"
   add_foreign_key "exercise_instances", "exercises"
   add_foreign_key "exercises", "categories"
 end

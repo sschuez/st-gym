@@ -1,23 +1,17 @@
 class ExerciseInstancesController < ApplicationController
   skip_before_action :authenticate_user!#, only: [ :new, :show ]
-  before_action :set_session
-  # before_action :set_exercisable
+  before_action :set_session, only: [ :new, :create ]
+  before_action :set_block, only: [ :new, :create ]
 
   def new
-    @exercise_instance = ExerciseInstance.new
-    @exercises = Exercise.all
-    if params[:block_id]
-      @block = Block.find(params[:block_id])
-    end
+    @exercise_instance = @block.exercise_instances.new
+    # @exercises = Exercise.all
   end
   
   def create
-    @parent = parent
-    @exercise_instance = @parent.exercise_instances.new(exercise_instance_params)
-    # raise
+    @exercise_instance = @block.exercise_instances.new(exercise_instance_params)
     respond_to do |format|
       if @exercise_instance.save
-        # @exercise_instance.broadcast_prepend_later_to @exercise_instance.session
         format.turbo_stream do
           render turbo_stream: turbo_stream.append(
             "exercise_instances",
@@ -45,18 +39,11 @@ class ExerciseInstancesController < ApplicationController
     @session = Session.find(params[:session_id])
   end
 
-  def exercise_instance_params
-    params.require(:exercise_instance).permit(:exercise_id, :repetitions, :time, :block_id, :session_id)
-    # params.require(:block).permit(:exercise_id, :session_id, :block_id, :repetitions, :time, :exercisable)
+  def set_block
+    @block = Block.find(params[:block_id])
   end
 
-
-  def parent
-    return Block.find params[:block_id] if params[:block_id]
-    Session.find params[:session_id] if params[:session_id]
- end
-
-#  def comment_params
-#     params.require(:comment).permit(:body).merge(user_id: current_user.id)
-#  end
+  def exercise_instance_params
+    params.require(:exercise_instance).permit(:exercise_id, :repetitions, :time, :block_id, :session_id)
+  end
 end
