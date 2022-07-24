@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
   # GET /sessions/1 or /sessions/1.json
   def show
-    @block = @session.blocks.new
+    # @block = @session.blocks.new
     @exercise_instance = @session.exercise_instances.new
   end
 

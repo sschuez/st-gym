@@ -1,9 +1,9 @@
 <%= turbo_stream_from session %>
 
-<div id="blocks">
-  <%= render session.blocks.order(created_at: :asc) %>
+<div id="session_instances">
+  <%= render session.session_instances.order(created_at: :asc) %>
 </div>
 
-<%= turbo_frame_tag "new_block", src: new_session_block_path(session), target: "_top" %>
+<%= turbo_frame_tag "new_session_instance", src: new_session_session_instance_path(session), target: "_top" %>
 
 <%#= link_to "Add exercise", "#", class: "btn btn-primary", data: { controller: "tooltip", value: "Add directly some exercises outside of a block" } %>

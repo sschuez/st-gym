@@ -54,7 +54,7 @@ class ExerciseInstancesController < ApplicationController
   def parent
     return Block.find params[:block_id] if params[:block_id]
     Session.find params[:session_id] if params[:session_id]
- end
+  end
 
 #  def comment_params
 #     params.require(:comment).permit(:body).merge(user_id: current_user.id)

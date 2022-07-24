@@ -1,0 +1,17 @@
+<%= turbo_frame_tag "new_session_instance", target: "_top" do %>
+  <div class="new-session-instance-form">
+    
+    <%= simple_form_for([@session, @session-instance]) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <%= f.hidden_field :session_instance %>
+
+      <div class="form-actions mb-3">
+        <%= f.button :submit, "+ Add block", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  
+  </div>
+
+<% end %>

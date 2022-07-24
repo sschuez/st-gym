@@ -10,6 +10,7 @@ class Block < ApplicationRecord
   belongs_to :session
   broadcasts_to :session
   include Exercisable
+  include Sessionable
 
   # == Validations ==========================================================
   

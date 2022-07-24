@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_21_000350) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_24_011439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_000350) do
     t.index ["category_id"], name: "index_exercises_on_category_id"
   end
 
+  create_table "session_instances", force: :cascade do |t|
+    t.bigint "session_id", null: false
+    t.string "sessionable_type"
+    t.bigint "sessionable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["session_id"], name: "index_session_instances_on_session_id"
+    t.index ["sessionable_type", "sessionable_id"], name: "index_session_instances_on_sessionable"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -71,4 +81,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_000350) do
   add_foreign_key "blocks", "sessions"
   add_foreign_key "exercise_instances", "exercises"
   add_foreign_key "exercises", "categories"
+  add_foreign_key "session_instances", "sessions"
 end
