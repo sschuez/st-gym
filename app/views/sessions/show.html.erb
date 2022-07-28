@@ -1,17 +1,6 @@
 <%= link_to "Create a new exercise", new_exercise_path, "data-controller": "turbo", class: "btn btn-primary" %>
 <br><br>
 
-<div id="<%= dom_id @session %>" class="card session-card">
-   <div class="card-header bg-transparent small">
-      <%= @session.name %>
-      <% if @session.description %>
-        - <%= @session.description %>
-      <% end %>
-      <%= button_to edit_session_path(@session), method: :post, class: "btn-styling" do %>
-        <i class="show-icon fas fa-edit"></i>
-      <% end %>
-   </div>
-  <div class="card-body">
-    <%= render @session %>
-  </div>
+<div id="<%= dom_id @session %>">
+  <%= render @session %>
 </div>
