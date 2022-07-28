@@ -2,6 +2,13 @@
 
 .session-card {
   min-height: 400px;
+  position: relative;
+}
+
+.btn-styling {
+  position: absolute;
+  top: 6px;
+  right: 6px;
 }
 
 .dark-mode .session-card {

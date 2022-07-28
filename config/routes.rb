@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   
   # Sessions
   resources :sessions do
+    member do
+      post :edit
+    end
     
     # Exercises within block
     resources :blocks do

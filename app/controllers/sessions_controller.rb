@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :new, :show ]
+  skip_before_action :authenticate_user!, only: [ :new, :show, :edit, :update ]
   before_action :set_session, only: %i[ show edit update destroy ]
   
   # GET /sessions or /sessions.json
@@ -28,14 +28,11 @@ class SessionsController < ApplicationController
     end
   end
 
-  # GET /sessions/1/edit
-  def edit
-  end
-
+  
   # POST /sessions or /sessions.json
   def create
     @session = Session.new(session_params)
-
+    
     respond_to do |format|
       if @session.save
         format.html { redirect_to session_url(@session), notice: "Session was successfully created." }
@@ -46,19 +43,55 @@ class SessionsController < ApplicationController
       end
     end
   end
+  
+  # GET /sessions/1/edit
+  def edit
+    # authorize @session
+    respond_to do |format|
+      format.turbo_stream do 
+        render turbo_stream: turbo_stream.update(
+          @session,
+          partial: "sessions/form",
+          locals: {session: @session}) 
+      end
+    end
+  end
 
   # PATCH/PUT /sessions/1 or /sessions/1.json
   def update
     respond_to do |format|
       if @session.update(session_params)
-        format.html { redirect_to session_url(@session), notice: "Session was successfully updated." }
-        format.json { render :show, status: :ok, location: @session }
+        format.turbo_stream do 
+          render turbo_stream: [
+            turbo_stream.update(
+              @session,
+              partial: "sessions/session",
+              locals: {session: @session}),
+            turbo_stream.update('notice', "session #{@session.id} updated")
+          ]
+        end
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @session.errors, status: :unprocessable_entity }
+        format.turbo_stream do 
+          render turbo_stream: turbo_stream.update(
+            @session,
+            partial: "sessions/form",
+            locals: {session: @session}) 
+        end   
       end
     end
   end
+
+  # def update
+  #   respond_to do |format|
+  #     if @session.update(session_params)
+  #       format.html { redirect_to session_url(@session), notice: "Session was successfully updated." }
+  #       format.json { render :show, status: :ok, location: @session }
+  #     else
+  #       format.html { render :edit, status: :unprocessable_entity }
+  #       format.json { render json: @session.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /sessions/1 or /sessions/1.json
   def destroy

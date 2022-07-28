@@ -7,6 +7,9 @@
       <% if @session.description %>
         - <%= @session.description %>
       <% end %>
+      <%= button_to edit_session_path(@session), method: :post, class: "btn-styling" do %>
+        <i class="show-icon fas fa-edit"></i>
+      <% end %>
    </div>
   <div class="card-body">
     <%= render @session %>
