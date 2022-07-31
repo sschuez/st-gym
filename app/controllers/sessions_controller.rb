@@ -9,9 +9,7 @@ class SessionsController < ApplicationController
 
   # GET /sessions/1 or /sessions/1.json
   def show
-    @block = @session.blocks.new
-    # @blocks = @session.blocks.includes(:exercise_instances)#.ordered
-    # @exercise_instance = @session.exercise_instances.new
+    @block = @session.blocks.build
   end
 
   # GET /sessions/new

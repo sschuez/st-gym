@@ -1,11 +1,8 @@
-<%#= turbo_frame_tag block do %>
   <div id="<%= dom_id block %>" class="card block-card my-3 pb-3">
     
-    <%# <div id="exercise_instances"> %>
     <%= turbo_frame_tag "#{dom_id(block)}_exercise_instances" do %>
       <%= render block.exercise_instances, session: session, block: block %>
     <% end %>
-    <%# </div> %>
 
     <div class="new_exercise mt-2 mx-2">
       <%= link_to "+ Add exercise", new_session_block_exercise_instance_path(block.session, block), "data-controller": "turbo", class: "btn btn-primary" %>
@@ -22,4 +19,4 @@
     </div>
 
   </div>
-<%# end %>
+

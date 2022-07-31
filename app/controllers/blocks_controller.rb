@@ -14,9 +14,8 @@ class BlocksController < ApplicationController
 
   # GET /blocks/new
   def new
-    @exercise_instance = @block.exercise_instances.build
-    @block = @session.blocks.build
-    # @block.session = @session
+    @block = @session.blocks.new
+    @block.session = @session
   end
 
   # GET /blocks/1/edit
@@ -95,13 +94,12 @@ class BlocksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_block
+      @block = Block.find(params[:id])
+    end
 
     def set_session
       @session = Session.find(params[:session_id])
-    end
-
-    def set_block
-      @block = @session.blocks.find(params[:block_id])
     end
 
     # Only allow a list of trusted parameters through.
