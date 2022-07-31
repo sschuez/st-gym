@@ -1,22 +1,25 @@
-<div id="<%= dom_id block %>" class="card block-card my-3 pb-3">
-  
-  <div id="exercise_instances">
-    <%= render block.exercise_instances.order(created_at: :asc) %>
-  </div>
+<%#= turbo_frame_tag block do %>
+  <div id="<%= dom_id block %>" class="card block-card my-3 pb-3">
+    
+    <%# <div id="exercise_instances"> %>
+    <%= turbo_frame_tag "#{dom_id(block)}_exercise_instances" do %>
+      <%= render block.exercise_instances, session: session, block: block %>
+    <% end %>
+    <%# </div> %>
 
-  <div class="new_exercise mt-2 mx-2">
-    <%= link_to "+ Add exercise", new_session_block_exercise_instance_path(block.session, block), "data-controller": "turbo", class: "btn btn-primary" %>
-  </div>
-  
-  
-  <div class="block-actions">
-    <div class="handle">
-      <i class="fas fa-grip-lines"></i>
+    <div class="new_exercise mt-2 mx-2">
+      <%= link_to "+ Add exercise", new_session_block_exercise_instance_path(block.session, block), "data-controller": "turbo", class: "btn btn-primary" %>
+    </div>
+    
+    <div class="block-actions">
+      <div class="handle">
+        <i class="fas fa-grip-lines"></i>
+      </div>
+
+      <%= button_to session_block_path(block.session, block), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-styling" do %>
+        <i class="show-icon fas fa-trash-alt inline-delete"></i>
+      <% end %>
     </div>
 
-    <%= button_to session_block_path(block.session, block), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-styling" do %>
-      <i class="show-icon fas fa-trash-alt inline-delete"></i>
-    <% end %>
   </div>
-
-</div>
+<%# end %>
