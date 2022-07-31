@@ -14,7 +14,7 @@ class ExerciseInstancesController < ApplicationController
       if @exercise_instance.save
         format.turbo_stream do
           render turbo_stream: turbo_stream.append(
-            "exercise_instances",
+            "block_#{@block.id}_exercise_instances",
             partial: "exercise_instances/exercise_instance",
             locals: { exercise_instance: @exercise_instance })
         end

@@ -9,6 +9,7 @@ class Block < ApplicationRecord
   # == Relationships ========================================================
   belongs_to :session
   has_many :exercise_instances, dependent: :destroy
+  has_many :exercises, through: :exercise_instances
   broadcasts_to :session
 
   # == Validations ==========================================================
