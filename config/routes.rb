@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     end
     
     # Exercises within block
-    resources :blocks do
-      resources :exercise_instances
+    resources :blocks, except: [:index, :show] do
+      resources :exercise_instances, except: [:index, :show]
     end
   
   end
