@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   resources :exercises
   devise_for :users
   root to: 'pages#home'
-  
+  resources :newsletters
+
   # Sessions
   resources :sessions do
     member do
