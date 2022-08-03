@@ -36,12 +36,12 @@
 
       <div class="col-md-5 offset-md-1 mb-3">
         <%# <form> %>
-            <%= form_tag newsletters_path, method: :post do %>
+            <%= form_tag adduser_path, method: :post do %>
           <h5>Subscribe to our newsletter</h5>
           <p>Monthly digest of what's new and exciting from us.</p>
           <div class="d-flex flex-column flex-sm-row w-100 gap-2">
             <label for="newsletter1" class="visually-hidden">Email address</label>
-              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+              <input id="newsletter1" name="email_address" type="text" class="form-control" placeholder="Email address">
               <input type="submit" value="Subscribe" class="btn btn-primary">
             <%# <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
             <button class="btn btn-primary" type="button">Subscribe</button> %>

@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :new, :show, :edit, :update ]
   before_action :set_session, only: %i[ show edit update destroy ]
-  
+
   # GET /sessions or /sessions.json
   def index
     @sessions = Session.all
@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
 
   # GET /sessions/new
   def new
-    @session = Session.new(name: "Your session on #{Time.now.strftime("%d.%m.%Y at %H:%M")}")
+    weekday = Session::WEEKDAY[Time.new().wday()]
+    @session = Session.new(name: "Happy #{weekday} session!")
     @session.save
     respond_to do |format|
       if @session.save
