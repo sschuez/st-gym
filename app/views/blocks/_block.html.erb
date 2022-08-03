@@ -1,6 +1,6 @@
 <%= content_tag :div, id: dom_id(block), data: { sgid: block.to_sgid_param }, class: "card block-card my-3 pb-3" do %>
   
-<%= turbo_stream_from block, :exercise_instances %>
+  <%= turbo_stream_from block, :exercise_instances %>
 
   <%= turbo_frame_tag "#{dom_id(block)}_exercise_instances" do %>
     <%= render block.exercise_instances, session: session, block: block %>
