@@ -7,7 +7,7 @@ import { put } from "@rails/request.js"
 export default class extends Controller {
   connect() {
     this.sortable = Sortable.create(this.element, {
-      animation: 150,
+      animation: 200,
       handle: ".handle",
       onEnd: this.updatePosition.bind(this)
     })
