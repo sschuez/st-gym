@@ -1,4 +1,4 @@
-<%= content_tag :div, id: "#{dom_id exercise_instance}", data: { sgid: exercise_instance.to_sgid_param }, class: "m-1 px-2" do %>
+<%= content_tag :div, id: dom_id(exercise_instance), data: { sgid: exercise_instance.to_sgid_param }, class: "m-1 px-2" do %>
 
   <p><%= exercise_instance.exercise.name %> => <%= exercise_instance.repetitions %></p>
   <p><%#= exercise_instance.vote_count %></p>
