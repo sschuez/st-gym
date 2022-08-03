@@ -1,28 +1,5 @@
 @use "config/variables" as *;
 
-.btn-ghost {
-  color: $links;
-  border: 1px solid $links;
-  padding: 8px 24px;
-  border-radius: 50px;
-  transition: opacity 0.3s ease;
-}
-
-.dark-mode .btn-ghost {
-  color: $links-dark;
-  border: 1px solid $links-dark;
-}
-
-.btn-ghost:hover {
-  opacity: 1;
-  font-weight: bold;
-  border: 2px solid $links;
-}
-
-.dark-mode .btn-ghost:hover {
-  border: 2px solid $links-dark;
-}
-
 .btn-styling {
   background: none;
   border: none;
@@ -31,11 +8,6 @@
     padding-top: 0;
     font-size: 16px;
   }
-}
-
-.show-icon {
-  margin: 0 12px 0 12px;
-  padding-top: 12px;
 }
 
 .fas {
@@ -53,27 +25,26 @@
 
 .session-edit {
   position: absolute;
-  top: 12px;
-  right: 6px;
+  top: 6px;
+  right: 8px;
   font-weight: lighter !important;
 }
 
 .handle {
-  position: absolute;
-  top: 12px;
-  right: 24px;
-  .fa-grip-lines {
+  // .fa-grip-lines {
     // color: $bright-coral;
-    font-size: 20px;
-  }
+    // font-size: 20px;
+  // }
   cursor: grab;
   &:active {
     cursor: grabbing;
   }
 }
 
-.handle:hover {
-  // color: $red-very-light;
+.block-actions {
+  position: absolute;
+  top: 6px;
+  right: 10px;
 }
 
 .fa-trash-alt {
@@ -81,10 +52,17 @@
   font-weight: lighter !important;
 }
 
-
 .inline-delete {
   position: absolute;
   top: 50px;
   right: 13px;
 }
+
+.emoji {
+  font-size: 20px;
+}
+
+// .emoji:hover {
+//   font-size: 22px;
+// }
 

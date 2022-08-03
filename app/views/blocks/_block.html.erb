@@ -10,11 +10,13 @@
     
     <div class="block-actions">
       <div class="handle">
-        <i class="fas fa-grip-lines"></i>
+        <span class="emoji">👋</span>
+        <%# <i class="fas fa-grip-lines"></i> %>
       </div>
 
       <%= button_to session_block_path(block.session, block), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-styling" do %>
-        <i class="show-icon fas fa-trash-alt inline-delete"></i>
+       <span class="emoji">🗑</span> 
+        <%# <i class="show-icon fas fa-trash-alt inline-delete"></i> %>
       <% end %>
     </div>
 

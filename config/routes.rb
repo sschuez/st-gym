@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   
+  post '/adduser', to: 'newsletters#addUser'
+  put '/removeuser', to: 'newsletters#removeUser'
+
   # Sessions
   resources :sessions do
     member do

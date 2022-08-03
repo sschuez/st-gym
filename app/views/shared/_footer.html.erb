@@ -35,21 +35,21 @@
       </div> %>
 
       <div class="col-md-5 offset-md-1 mb-3">
-        <form>
-          <h5>Subscribe to my newsletter</h5>
-          <p>Monthly digest of what's new and exciting to keep you fit and healthy.</p>
+        <%= form_tag adduser_path, method: :post, data: { turbo: false } do %>
+          <h5>Subscribe to our newsletter</h5>
+          <p>Monthly digest of what's new and exciting from us.</p>
           <div class="d-flex flex-column flex-sm-row w-100 gap-2">
             <label for="newsletter1" class="visually-hidden">Email address</label>
-            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-            <button class="btn btn-primary" type="button">Subscribe</button>
+              <input id="newsletter1" name="email_address" type="text" class="form-control" placeholder="Email address">
+              <input type="submit" value="Subscribe" class="btn btn-primary">
           </div>
-        </form>
+        <% end %>
       </div>
     </div>
 
     <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
       <p class="copyright"> 
-        Made with <i class="fas fa-heart"></i> by &copy; <a href="https://www.margareti.com" target="_blank">Margareti</a>
+        Made with ♥️ by &copy; <a href="https://www.margareti.com" target="_blank">Margareti</a>
       </p>
       <ul class="list-unstyled d-flex">
         <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>

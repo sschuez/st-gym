@@ -1,6 +1,7 @@
 class Session < ApplicationRecord
   #Organisation Model (Shortcut: mstr)
   # == Constants ============================================================
+  WEEKDAY = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
   
   # == Attributes ===========================================================
   
