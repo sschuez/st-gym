@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   
   post '/adduser', to: 'newsletters#addUser'
+  put '/removeuser', to: 'newsletters#removeUser'
 
   # Sessions
   resources :sessions do
