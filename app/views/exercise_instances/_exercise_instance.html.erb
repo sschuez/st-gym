@@ -2,11 +2,11 @@
 
   <p><%= exercise_instance.exercise.name %> => <%= exercise_instance.repetitions %></p>
   <p><%#= exercise_instance.reps_count %></p>
-  <%= link_to "Increase", session_block_exercise_instance_path(@block.session, @block, exercise_instance, 
+  <%#= link_to "Increase", session_block_exercise_instance_path(@block.session, @block, exercise_instance, 
       choice: :more, 
       format: :turbo_stream
     ), class: "card-link" %>
-  <%= link_to "Decrease", session_block_exercise_instance_path(session, block, exercise_instance, 
+  <%#= link_to "Decrease", session_block_exercise_instance_path(session, block, exercise_instance, 
     choice: :less, 
     format: :turbo_stream
   ), class: "card-link" %>
