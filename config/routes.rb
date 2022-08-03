@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   
+  # Mailchimp integration
   post '/adduser', to: 'newsletters#addUser'
   put '/removeuser', to: 'newsletters#removeUser'
 
@@ -19,4 +20,7 @@ Rails.application.routes.draw do
   
   end
 
+  # Drag to new position for block
+  resource :block_position, only: [:update]
+  
 end

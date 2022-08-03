@@ -11,6 +11,8 @@ class Block < ApplicationRecord
   has_many :exercise_instances, dependent: :destroy
   has_many :exercises, through: :exercise_instances
   broadcasts_to :session
+  
+  acts_as_list scope: :session
 
   # == Validations ==========================================================
   
