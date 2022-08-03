@@ -1,3 +1,16 @@
-<div id="<%= dom_id exercise_instance %>" class="m-1 px-2">
+<%= content_tag :div, id: "#{dom_id exercise_instance}", data: { sgid: exercise_instance.to_sgid_param }, class: "m-1 px-2" do %>
+
   <p><%= exercise_instance.exercise.name %> => <%= exercise_instance.repetitions %></p>
-</div>
+  <p><%#= exercise_instance.vote_count %></p>
+  <%#= link_to "Up Vote", exercise_instance_votes_path(
+      exercise_instance, 
+      choice: :up_vote, 
+      format: :turbo_stream
+    ), class: "card-link" %>
+  <%#= link_to "Down Vote", exercise_instance_votes_path(
+      exercise_instance, 
+      choice: :down_vote, 
+      format: :turbo_stream
+    ), class: "card-link" %>
+
+<% end %>
