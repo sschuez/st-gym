@@ -36,19 +36,22 @@ class NewslettersController < ApplicationController
     response_body = JSON.parse(response.body)
 
     # Check if the subscription is successful
-    if response.status == 200
-      render json: {
-        status: response.status,
-        message: "#{user_details[:email_address]} has been added to the mailing list"
-      }
-    else
-      render json: {
-        status: response.status,
-        message: response_body["detail"]
-      }
+    respond_to do |format|
+      if response.status == 200
+        
+        format.json { render json: { status: response.status, message: "#{user_details[:email_address]} has been added to the mailing list" } }
+        format.turbo_stream { flash.now[:notice] = "#{user_details[:email_address]} has been added to the mailing list" }
+        format.html { redirect_to request.referrer, notice: "#{user_details[:email_address]} has been added to the mailing list" }
+      else
+        format.json { render json: { status: response.status, message: response_body["detail"] } }
+        format.turbo_stream { flash.now[:alert] = response_body["detail"] }
+        format.html { redirect_to request.referrer, alert: response_body["detail"] }
+      end
     end
+    
   end
 
+  # Currently inactive
   def removeUser
     # get the user's email address
     user_email = params[:email_address]
