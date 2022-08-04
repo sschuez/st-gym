@@ -1,17 +1,11 @@
-<%= content_tag :div, id: dom_id(exercise_instance), data: { sgid: exercise_instance.to_sgid_param }, class: "exercise-instance border-bottom m-1 px-2" do %>
+<%= content_tag :div, id: dom_id(exercise_instance), data: { controller: "repetitions", sgid: exercise_instance.to_sgid_param }, class: "exercise-instance border-bottom m-1 px-2" do %>
 
-  <p class="py-2"><%= exercise_instance.exercise.name %></p>
+  <p class="py-2">Instance: <%= exercise_instance.id %></p>
   <p class="py-2 mx-2"><%= exercise_instance.repetitions %></p>
-  <div class="exercise-instance-actions">
-    <%= link_to "🔼", session_block_exercise_instance_path(exercise_instance.block.session, exercise_instance.block, exercise_instance, 
-        choice: :more, 
-        format: :turbo_stream
-      ), class: "" %>
-    <%= link_to "🔽", session_block_exercise_instance_path(exercise_instance.block.session, exercise_instance.block, exercise_instance, 
-      choice: :less, 
-      format: :turbo_stream
-    ), class: "" %>
-  </div>
   
+  <div class="exercise-instance-actions">
+    <%= link_to "🔼", "#", "data-action": "click->repetitions#more", format: :turbo_stream %>
+    <%= link_to "🔽", "#", "data-action": "click->repetitions#less", format: :turbo_stream %>
+  </div>
 
 <% end %>

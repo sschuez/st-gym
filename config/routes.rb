@@ -22,5 +22,8 @@ Rails.application.routes.draw do
 
   # Drag to new position for block
   resource :block_position, only: [:update]
+
+  # Update repetitions
+  resource :repetitions, only: [:update]
   
 end
