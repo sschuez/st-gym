@@ -1,15 +1,17 @@
-<%= content_tag :div, id: dom_id(exercise_instance), data: { sgid: exercise_instance.to_sgid_param }, class: "m-1 px-2" do %>
+<%= content_tag :div, id: dom_id(exercise_instance), data: { sgid: exercise_instance.to_sgid_param }, class: "exercise-instance border-bottom m-1 px-2" do %>
 
-  <p><%= exercise_instance.exercise.name %> => <%= exercise_instance.repetitions %></p>
-  <p><%#= exercise_instance.reps_count %></p>
-  <%#= link_to "Increase", session_block_exercise_instance_path(@block.session, @block, exercise_instance, 
-      choice: :more, 
+  <p class="py-2"><%= exercise_instance.exercise.name %></p>
+  <p class="py-2 mx-2"><%= exercise_instance.repetitions %></p>
+  <div class="exercise-instance-actions">
+    <%= link_to "🔼", session_block_exercise_instance_path(exercise_instance.block.session, exercise_instance.block, exercise_instance, 
+        choice: :more, 
+        format: :turbo_stream
+      ), class: "" %>
+    <%= link_to "🔽", session_block_exercise_instance_path(exercise_instance.block.session, exercise_instance.block, exercise_instance, 
+      choice: :less, 
       format: :turbo_stream
-    ), class: "card-link" %>
-  <%#= link_to "Decrease", session_block_exercise_instance_path(session, block, exercise_instance, 
-    choice: :less, 
-    format: :turbo_stream
-  ), class: "card-link" %>
+    ), class: "" %>
+  </div>
   
 
 <% end %>

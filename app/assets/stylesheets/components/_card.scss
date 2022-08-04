@@ -10,8 +10,9 @@
 }
 
 .block-card {
-  min-height: 150px;
+  min-height: 120px;
   border: 1px grey dashed !important;
+  padding-right: 40px !important;
 }
 
 .dark-mode .block-card {

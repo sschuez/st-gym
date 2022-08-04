@@ -31,8 +31,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_200051) do
   create_table "exercise_instances", force: :cascade do |t|
     t.bigint "block_id", null: false
     t.bigint "exercise_id", null: false
-    t.integer "repetitions"
-    t.integer "time"
+    t.integer "repetitions", default: 10
+    t.integer "time", default: 30
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["block_id"], name: "index_exercise_instances_on_block_id"

@@ -3,13 +3,11 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%#= f.hidden_field :block %>
     <%= f.association :exercise %>
     <%= f.input :repetitions %>
-    <%#= f.association :category %>
   </div>
 
   <div class="form-actions">
-    <%= f.submit "Add exercise", class: "btn btn-primary", data: { action: "click->modal#disconnect" } %>
+    <%= f.submit "Add exercise", class: "btn btn-primary", data: { action: "type=submit click->modal#disconnect" } %>
   </div>
 <% end %>

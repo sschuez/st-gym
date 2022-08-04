@@ -1,0 +1,19 @@
+@use "config/variables" as *;
+
+.exercise-instance {
+  display: flex;
+
+  p {
+    margin-bottom: 0px !important;
+  }
+}
+
+.exercise-instance-actions {
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+
+  a {
+    text-decoration: none;
+  }
+}
