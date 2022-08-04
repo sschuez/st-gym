@@ -19,7 +19,14 @@ class Block < ApplicationRecord
   # == Scopes ===============================================================
   
   # == Callbacks ============================================================
-  
+  after_update_commit do
+    broadcast_replace_to :session, 
+      # target: "exercise_instance_#{self.id}", 
+      # partial: "exercise_instances/exercise_instance",
+      locals: { block: self }
+  end
+
+
   # == Class Methods ========================================================
   
   # == Instance Methods =====================================================
