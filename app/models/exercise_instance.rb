@@ -14,10 +14,10 @@ class ExerciseInstance < ApplicationRecord
   end
 
   after_update_commit do
-    broadcast_replace_to :exercise_instance, 
-    target: "exercise_instance_#{self.id}", 
-    partial: "exercise_instances/exercise_instance",
-    locals: { exercise_instance: self }
+    broadcast_replace_to block, :exercise_instances, 
+      target: "exercise_instance_#{self.id}", 
+      partial: "exercise_instances/exercise_instance",
+      locals: { exercise_instance: self }
   end
   
 end
