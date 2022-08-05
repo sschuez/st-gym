@@ -3,7 +3,9 @@
   <%= turbo_stream_from block, :exercise_instances %>
 
   <%= turbo_frame_tag "#{dom_id(block)}_exercise_instances" do %>
-    <%= render block.exercise_instances.order(id: :asc), session: session, block: block %>
+    <div data-controller="exercise-instance-position">
+      <%= render block.exercise_instances.order(position: :asc), session: session, block: block %>
+    </div>
   <% end %>
 
   <div class="new_exercise mt-2 mx-2">
@@ -11,9 +13,9 @@
   </div>
   
   <div class="block-actions">
-    <div class="handle">
+    <div class="handle handle-block">
       <%# <span class="emoji">👋</span> %>
-      <i class="bi bi-grip-horizontal handle-block"></i>
+      <i class="bi bi-grip-horizontal"></i>
       <%# <i class="fas fa-grip-lines"></i> %>
     </div>
 

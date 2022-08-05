@@ -14,7 +14,7 @@
   </div>
 
   <div class="card-body">
-    <div id="blocks" data-controller="position">
+    <div id="blocks" data-controller="block-position">
       <%= render session.blocks.order(position: :asc) %>
     </div>
     <%= turbo_frame_tag "new_block", src: new_session_block_path(session), target: "_top" %>

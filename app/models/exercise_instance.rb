@@ -3,6 +3,8 @@ class ExerciseInstance < ApplicationRecord
   belongs_to :block
 
   delegate :session, to: :block
+
+  acts_as_list scope: :block
   
   validates :repetitions, :time, numericality: { bigger_or_equal_to: 0 }
 
