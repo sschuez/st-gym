@@ -8,13 +8,13 @@ export default class extends Controller {
   connect() {
     this.sortable = Sortable.create(this.element, {
       animation: 200,
-      handle: ".handle",
+      handle: ".handle-exercise-instance",
       onEnd: this.updatePosition.bind(this)
     })
   }
 
   async updatePosition(event) {
-    const response = await put('/block_position', {
+    const response = await put('/exercise_instance_position', {
       responseKind: "turbo-stream",
       body: JSON.stringify({
         sgid: event.item.dataset.sgid,
