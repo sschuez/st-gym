@@ -70,6 +70,8 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# Added
 gem "devise"
 gem "pundit"
 gem "dartsass-rails"
