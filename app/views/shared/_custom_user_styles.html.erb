@@ -1,0 +1,17 @@
+<% cache current_user do %>
+  <%# Source: https://discuss.hotwired.dev/t/how-to-pass-current-user-id-to-a-controller/287/3 %>
+  <style>
+    <%# ['Admin', 'User', 'Source', 'NilClass'].each do |role| %>
+      
+      <%# if !current_user&.admin || (@session&.user != current_user) %>
+        /* .data-visible-to-users-and-admins { */
+          /* display: none !important; */
+        /* } */
+      <% if !current_user&.admin %>
+        .data-visible-to-admins {
+          display: none !important;
+        }
+      <% end %>
+    <%# end %>
+  </style>
+<% end %>

@@ -17,7 +17,7 @@
     <div id="blocks" data-controller="block-position">
       <%= render session.blocks.order(position: :asc) %>
     </div>
-    <%= turbo_frame_tag "new_block", src: new_session_block_path(session), target: "_top" %>
+    <%= turbo_frame_tag "new_block", src: new_session_block_path(session), target: "_top", class: "data-visible-to-admins" %>
     
     <%#= link_to "Add exercise", "#", class: "btn btn-primary", data: { controller: "tooltip", value: "Add directly some exercises outside of a block" } %>
   </div>
