@@ -204,6 +204,7 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
+    ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sassc (2.4.0)
@@ -281,6 +282,7 @@ DEPENDENCIES
   rails (~> 7.0.3)
   redis (~> 4.0)
   requestjs-rails
+  ruby-progressbar
   selenium-webdriver
   simple_form
   sprockets-rails
