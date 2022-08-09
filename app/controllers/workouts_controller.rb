@@ -19,7 +19,7 @@ class WorkoutsController < ApplicationController
     @workout.save
     respond_to do |format|
       if @workout.save
-        format.html { redirect_to workout_url(@workout), notice: "workout was successfully created." }
+        format.html { redirect_to workout_url(@workout), notice: "Workout was successfully created." }
         format.json { render :show, status: :created, location: @workout }
       else
         format.html { render :new, status: :unprocessable_entity }

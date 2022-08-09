@@ -15,11 +15,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_010226) do
   enable_extension "plpgsql"
 
   create_table "blocks", force: :cascade do |t|
-    t.bigint "session_id", null: false
+    t.bigint "workout_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
-    t.index ["session_id"], name: "index_blocks_on_session_id"
+    t.index ["workout_id"], name: "index_blocks_on_workout_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_010226) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "blocks", "workouts", column: "session_id"
+  add_foreign_key "blocks", "workouts"
   add_foreign_key "exercise_instances", "blocks"
   add_foreign_key "exercise_instances", "exercises"
   add_foreign_key "exercises", "categories"

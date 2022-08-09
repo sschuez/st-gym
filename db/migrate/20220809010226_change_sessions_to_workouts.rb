@@ -1,9 +1,6 @@
 class ChangeSessionsToWorkouts < ActiveRecord::Migration[7.0]
-  def self.up
+  def change
     rename_table :sessions, :workouts
-  end
-
-  def self.down
-    rename_table :workouts, :sessions
+    rename_column :blocks, :session_id, :workout_id
   end
 end

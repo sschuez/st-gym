@@ -1,43 +1,43 @@
 require "application_system_test_case"
 
-class SessionsTest < ApplicationSystemTestCase
+class WorkoutsTest < ApplicationSystemTestCase
   setup do
-    @session = sessions(:one)
+    @workout = workouts(:one)
   end
 
   test "visiting the index" do
-    visit sessions_url
-    assert_selector "h1", text: "Sessions"
+    visit workouts_url
+    assert_selector "h1", text: "workouts"
   end
 
-  test "should create session" do
-    visit sessions_url
-    click_on "New session"
+  test "should create workout" do
+    visit workouts_url
+    click_on "New Workout"
 
-    fill_in "Description", with: @session.description
-    fill_in "Name", with: @session.name
-    click_on "Create Session"
+    fill_in "Description", with: @workout.description
+    fill_in "Name", with: @workout.name
+    click_on "Create Workout"
 
-    assert_text "Session was successfully created"
+    assert_text "workout was successfully created"
     click_on "Back"
   end
 
-  test "should update Session" do
-    visit session_url(@session)
-    click_on "Edit this session", match: :first
+  test "should update workout" do
+    visit workout_url(@workout)
+    click_on "Edit this workout", match: :first
 
-    fill_in "Description", with: @session.description
-    fill_in "Name", with: @session.name
-    click_on "Update Session"
+    fill_in "Description", with: @workout.description
+    fill_in "Name", with: @workout.name
+    click_on "Update Workout"
 
-    assert_text "Session was successfully updated"
+    assert_text "workout was successfully updated"
     click_on "Back"
   end
 
-  test "should destroy Session" do
-    visit session_url(@session)
-    click_on "Destroy this session", match: :first
+  test "should destroy workout" do
+    visit workout_url(@workout)
+    click_on "Destroy this workout", match: :first
 
-    assert_text "Session was successfully destroyed"
+    assert_text "workout was successfully destroyed"
   end
 end

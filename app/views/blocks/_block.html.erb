@@ -4,7 +4,7 @@
 
   <%= turbo_frame_tag "#{dom_id(block)}_exercise_instances" do %>
     <div data-controller="exercise-instance-position">
-      <%= render block.exercise_instances.order(position: :asc), workout: workout, block: block %>
+      <%= render block.exercise_instances.order(position: :asc), workout: @workout, block: block %>
     </div>
   <% end %>
 

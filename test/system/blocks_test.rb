@@ -14,7 +14,7 @@ class BlocksTest < ApplicationSystemTestCase
     visit blocks_url
     click_on "New block"
 
-    fill_in "Session", with: @block.session_id
+    fill_in "Workout", with: @block.workout_id
     click_on "Create Block"
 
     assert_text "Block was successfully created"
@@ -25,7 +25,7 @@ class BlocksTest < ApplicationSystemTestCase
     visit block_url(@block)
     click_on "Edit this block", match: :first
 
-    fill_in "Session", with: @block.session_id
+    fill_in "Workout", with: @block.workout_id
     click_on "Update Block"
 
     assert_text "Block was successfully updated"
