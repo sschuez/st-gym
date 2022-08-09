@@ -2,7 +2,7 @@ class ExerciseInstance < ApplicationRecord
   belongs_to :exercise
   belongs_to :block
 
-  delegate :session, to: :block
+  delegate :workout, to: :block
 
   acts_as_list scope: :block
   

@@ -1,6 +1,6 @@
 class ExerciseInstancesController < ApplicationController
   skip_before_action :authenticate_user!#, only: [ :new, :show ]
-  before_action :set_session, only: [ :new, :create ]
+  before_action :set_workout, only: [ :new, :create ]
   before_action :set_block, only: [ :new, :create ]
 
   def new
@@ -18,7 +18,7 @@ class ExerciseInstancesController < ApplicationController
             partial: "exercise_instances/exercise_instance",
             locals: { exercise_instance: @exercise_instance })
         end
-        format.html { redirect_to @session, notice: "Exercise instance was successfully created." }
+        format.html { redirect_to @workout, notice: "Exercise instance was successfully created." }
         format.json { render :show, status: :created, location: @exercise_instance }
       else
         format.turbo_stream do
@@ -35,8 +35,8 @@ class ExerciseInstancesController < ApplicationController
 
   private
 
-  def set_session
-    @session = Session.find(params[:session_id])
+  def set_workout
+    @workout = Workout.find(params[:workout_id])
   end
 
   def set_block
@@ -44,6 +44,6 @@ class ExerciseInstancesController < ApplicationController
   end
 
   def exercise_instance_params
-    params.require(:exercise_instance).permit(:exercise_id, :repetitions, :time, :block_id, :session_id)
+    params.require(:exercise_instance).permit(:exercise_id, :repetitions, :time, :block_id, :workout_id)
   end
 end

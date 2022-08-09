@@ -1,4 +1,4 @@
-<%= simple_form_for(session) do |f| %>
+<%= simple_form_for(workout) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -9,6 +9,6 @@
 
   <div class="form-actions">
     <%= f.button :submit, class: "btn btn-primary" %>
-    <%= link_to "Cancel", session_path(session), class: "btn btn-secondary" %>
+    <%= link_to "Cancel", workout_path(workout), class: "btn btn-secondary" %>
   </div>
 <% end %>
