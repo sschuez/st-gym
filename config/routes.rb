@@ -2,12 +2,7 @@ Rails.application.routes.draw do
   resources :exercises
   devise_for :users
 
-  devise_scope :user do 
-    root to: 'pages#home'
-    match '/workouts/user', to: 'devise/sessions#create', via: :post
-  end
-
-  # root to: 'pages#home'
+  root to: 'pages#home'
   
   # Mailchimp integration
   post '/adduser', to: 'newsletters#addUser'
