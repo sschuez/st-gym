@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   resources :exercises
   devise_for :users
 
-  devise_scope :user do 
-    root to: 'pages#home'
-    match '/sessions/user', to: 'devise/sessions#create', via: :post
-  end
+  # devise_scope :user do 
+  #   root to: 'pages#home'
+  #   match '/sessions/user', to: 'devise/sessions#create', via: :post
+  # end
 
   # root to: 'pages#home'
   
@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   post '/adduser', to: 'newsletters#addUser'
   put '/removeuser', to: 'newsletters#removeUser'
 
-  # Sessions
-  resources :sessions do
+  # Workouts
+  resources :workouts do
     member do
       post :edit
     end

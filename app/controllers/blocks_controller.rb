@@ -1,6 +1,6 @@
 class BlocksController < ApplicationController
   skip_before_action :authenticate_user!#, only: [ :new, :show ]
-  before_action :set_session, only: %i[ new create edit update destroy ]
+  before_action :set_workout, only: %i[ new create edit update destroy ]
   before_action :set_block, only: %i[ show edit update destroy ]
 
   # GET /blocks or /blocks.json
@@ -14,8 +14,8 @@ class BlocksController < ApplicationController
 
   # GET /blocks/new
   def new
-    @block = @session.blocks.new
-    @block.session = @session
+    @block = @workout.blocks.new
+    @block.workout = @workout
   end
 
   # GET /blocks/1/edit
@@ -32,11 +32,11 @@ class BlocksController < ApplicationController
 
   # POST /blocks or /blocks.json
   def create
-    @block = @session.blocks.new(block_params)
-    @block.session = @session
+    @block = @workout.blocks.new(block_params)
+    @block.workout = @workout
     respond_to do |format|
       if @block.save
-        # @block.broadcast_prepend_later_to @block.session
+        # @block.broadcast_prepend_later_to @block.workout
         format.turbo_stream do
           render turbo_stream: turbo_stream.append(
             "blocks",
@@ -60,7 +60,7 @@ class BlocksController < ApplicationController
 
   # PATCH/PUT /blocks/1 or /blocks/1.json
   def update
-    @block.session = @block.session
+    @block.workout = @block.workout
     respond_to do |format|
       if @block.update(block_params)
         format.turbo_stream do 
@@ -98,12 +98,12 @@ class BlocksController < ApplicationController
       @block = Block.find(params[:id])
     end
 
-    def set_session
-      @session = Session.find(params[:session_id])
+    def set_workout
+      @workout = Workout.find(params[:workout_id])
     end
 
     # Only allow a list of trusted parameters through.
     def block_params
-      params.require(:block).permit(:session_id)
+      params.require(:block).permit(:workout_id)
     end
 end

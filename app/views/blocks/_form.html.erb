@@ -1,11 +1,11 @@
 <%= turbo_frame_tag "new_block", target: "_top" do %>
   <div class="new-block-form">
     
-    <%= simple_form_for([@session, @block]) do |f| %>
+    <%= simple_form_for([@workout, @block]) do |f| %>
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-      <%= f.hidden_field :session %>
+      <%= f.hidden_field :workout %>
 
       <div class="form-actions mb-3">
         <%= f.button :submit, "+ Add block", class: "btn btn-primary" %>

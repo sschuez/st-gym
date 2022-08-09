@@ -1,81 +1,81 @@
-class SessionsController < ApplicationController
+class WorkoutsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :new, :show, :edit, :update ]
-  before_action :set_session, only: %i[ show edit update destroy ]
+  before_action :set_workout, only: %i[ show edit update destroy ]
 
-  # GET /sessions or /sessions.json
+  # GET /workouts or /workouts.json
   def index
-    @sessions = Session.all
+    @workouts = Workout.all
   end
 
-  # GET /sessions/1 or /sessions/1.json
+  # GET /workouts/1 or /workouts/1.json
   def show
-    @block = @session.blocks.new
+    @block = @workout.blocks.new
   end
 
-  # GET /sessions/new
+  # GET /workouts/new
   def new
-    weekday = Session::WEEKDAY[Time.new().wday()]
-    @session = Session.new(name: "Happy #{weekday} session!")
-    @session.save
+    weekday = Workout::WEEKDAY[Time.new().wday()]
+    @workout = Workout.new(name: "Happy #{weekday} workout!")
+    @workout.save
     respond_to do |format|
-      if @session.save
-        format.html { redirect_to session_url(@session), notice: "Session was successfully created." }
-        format.json { render :show, status: :created, location: @session }
+      if @workout.save
+        format.html { redirect_to workout_url(@workout), notice: "workout was successfully created." }
+        format.json { render :show, status: :created, location: @workout }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @session.errors, status: :unprocessable_entity }
+        format.json { render json: @workout.errors, status: :unprocessable_entity }
       end
     end
   end
 
   
-  # POST /sessions or /sessions.json
+  # POST /workouts or /workouts.json
   def create
-    @session = Session.new(session_params)
+    @workout = Workout.new(workout_params)
     
     respond_to do |format|
-      if @session.save
-        format.html { redirect_to session_url(@session), notice: "Session was successfully created." }
-        format.json { render :show, status: :created, location: @session }
+      if @workout.save
+        format.html { redirect_to workout_url(@workout), notice: "workout was successfully created." }
+        format.json { render :show, status: :created, location: @workout }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @session.errors, status: :unprocessable_entity }
+        format.json { render json: @workout.errors, status: :unprocessable_entity }
       end
     end
   end
   
-  # GET /sessions/1/edit
+  # GET /workouts/1/edit
   def edit
-    # authorize @session
+    # authorize @workout
     respond_to do |format|
       format.turbo_stream do 
         render turbo_stream: turbo_stream.update(
-          @session,
-          partial: "sessions/form",
-          locals: {session: @session}) 
+          @workout,
+          partial: "workouts/form",
+          locals: {workout: @workout}) 
       end
     end
   end
 
-  # PATCH/PUT /sessions/1 or /sessions/1.json
+  # PATCH/PUT /workouts/1 or /workouts/1.json
   def update
     respond_to do |format|
-      if @session.update(session_params)
+      if @workout.update(workout_params)
         format.turbo_stream do 
           render turbo_stream: [
             turbo_stream.update(
-              @session,
-              partial: "sessions/session",
-              locals: {session: @session}),
-            turbo_stream.update('notice', "session #{@session.id} updated")
+              @workout,
+              partial: "workouts/workout",
+              locals: {workout: @workout}),
+            turbo_stream.update('notice', "workout #{@workout.id} updated")
           ]
         end
       else
         format.turbo_stream do 
           render turbo_stream: turbo_stream.update(
-            @session,
-            partial: "sessions/form",
-            locals: {session: @session}) 
+            @workout,
+            partial: "workouts/form",
+            locals: {workout: @workout}) 
         end   
       end
     end
@@ -83,34 +83,34 @@ class SessionsController < ApplicationController
 
   # def update
   #   respond_to do |format|
-  #     if @session.update(session_params)
-  #       format.html { redirect_to session_url(@session), notice: "Session was successfully updated." }
-  #       format.json { render :show, status: :ok, location: @session }
+  #     if @workout.update(workout_params)
+  #       format.html { redirect_to workout_url(@workout), notice: "workout was successfully updated." }
+  #       format.json { render :show, status: :ok, location: @workout }
   #     else
   #       format.html { render :edit, status: :unprocessable_entity }
-  #       format.json { render json: @session.errors, status: :unprocessable_entity }
+  #       format.json { render json: @workout.errors, status: :unprocessable_entity }
   #     end
   #   end
   # end
 
-  # DELETE /sessions/1 or /sessions/1.json
+  # DELETE /workouts/1 or /workouts/1.json
   def destroy
-    @session.destroy
+    @workout.destroy
 
     respond_to do |format|
-      format.html { redirect_to sessions_url, notice: "Session was successfully destroyed." }
+      format.html { redirect_to workouts_url, notice: "workout was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_session
-      @session = Session.find(params[:id])
+    def set_workout
+      @workout = Workout.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def session_params
-      params.require(:session).permit(:name, :description, blocks_attributes: [:id])
+    def workout_params
+      params.require(:workout).permit(:name, :description, blocks_attributes: [:id])
     end
 end

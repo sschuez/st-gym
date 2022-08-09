@@ -1,6 +1,6 @@
 <%= link_to "Create a new exercise", new_exercise_path, "data-controller": "turbo", class: "btn btn-primary" %>
 <br><br>
 
-<div id="<%= dom_id @session %>">
-  <%= render @session %>
+<div id="<%= dom_id @workout %>">
+  <%= render @workout %>
 </div>
