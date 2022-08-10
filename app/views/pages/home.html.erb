@@ -1,2 +1,17 @@
 <h1>Hey, ready to work out?</h1>
-<%= link_to "Let's go!", new_workout_path, class: "btn btn-primary mt-3" %>
+<%= link_to "Create a workout", new_workout_path, class: "btn btn-primary mt-3" %>
+<br><br><br>
+<h2>Selected workouts</h2>
+<p>Chose what you want to work on</p>
+<%# <br> %>
+<div class="container">
+  <div class="row workout-cards">
+    
+    <%= render "pages/page_elements/workout_card", category: "Legs", workout: Workout.find(2) %>
+
+    <%= render "pages/page_elements/workout_card", category: "Push", workout: Workout.find(6) %>
+
+    <%= render "pages/page_elements/workout_card", category: "Pull", workout: Workout.find(7) %>
+
+  </div>
+</div>

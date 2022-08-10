@@ -8,7 +8,8 @@
     </div>
   <% end %>
 
-  <div class="new_exercise mt-2 mx-2 data-visible-to-admins">
+  <%# <div class="new_exercise mt-2 mx-2 data-visible-to-admins"> %>
+  <div class="new_exercise mt-2 mx-2">
     <%= link_to "+ Add exercise", new_workout_block_exercise_instance_path(block.workout, block), "data-controller": "turbo", class: "btn btn-primary" %>
   </div>
   
