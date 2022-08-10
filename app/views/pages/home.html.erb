@@ -3,16 +3,16 @@
 <br><br><br>
 <h2>Selected workouts</h2>
 <p>Chose what you want to work on</p>
-<%# <br> %>
-<div class="container">
-  <div class="row workout-cards">
-    
+<div class="workout-cards">
+  <div class="row">
     <%= render "pages/page_elements/workout_card", category: "Legs", workout: Workout.find(2) %>
-
     <%= render "pages/page_elements/workout_card", category: "Push", workout: Workout.find(6) %>
-
     <%= render "pages/page_elements/workout_card", category: "Pull", workout: Workout.find(7) %>
-    
-
+  </div>
+  
+  <div class="row">
+    <%= render "pages/page_elements/workout_card", category: "Push", workout: Workout.find(6) %>
+    <%= render "pages/page_elements/workout_card", category: "Push", workout: Workout.find(6) %>
+    <%= render "pages/page_elements/workout_card", category: "Push", workout: Workout.find(6) %>
   </div>
 </div>
