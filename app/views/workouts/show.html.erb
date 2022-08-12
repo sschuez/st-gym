@@ -1,6 +1,16 @@
+<%= render 'custom_user_styles' %>
 <%= link_to "Create a new exercise", new_exercise_path, "data-controller": "turbo", class: "btn btn-primary" %>
 <br><br>
 
 <div id="<%= dom_id @workout %>">
   <%= render @workout %>
 </div>
+
+<br>
+<div class="d-flex flex-row-reverse">
+  <% if !user_signed_in? %>
+    <%= link_to "Sign in to save this workout", new_user_session_path(:workout => @workout), class: "btn btn-secondary" %>
+  <% else %>
+    <%= link_to "Save this exercise", "#", class: "btn btn-secondary" %>
+  <% end %>
+</div> 

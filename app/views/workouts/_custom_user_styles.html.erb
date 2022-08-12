@@ -1,0 +1,26 @@
+<%# Source: https://discuss.hotwired.dev/t/how-to-pass-current-user-id-to-a-controller/287/3 %>
+<% cache current_user do %>
+  <style>
+    /* Only Admins */
+    <% if !current_user&.admin %>
+      .visible-if-admin {
+        display: none !important;
+      }
+    <% end %>
+
+    /* Only Admin and Record users */
+    <% if !current_user&.admin || (@workout&.user != current_user) %>
+      .visible-if-admin-user {
+        display: none !important;
+      }
+    <% end %>
+
+    /* Public record */
+    <% if !@workout&.public && (!current_user&.admin || (@workout&.user != current_user)) %>
+      .visible-if-public-admin-user {
+        display: none !important;
+      }
+    <% end %>
+
+  </style>
+<% end %>

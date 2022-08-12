@@ -10,7 +10,16 @@ class Block < ApplicationRecord
   belongs_to :workout
   has_many :exercise_instances, dependent: :destroy
   has_many :exercises, through: :exercise_instances
-  broadcasts_to :workout
+  
+  # broadcasts_to :workout
+  after_create_commit do
+    # broadcast_append_to(workout, locals: { user: Current.user })
+    broadcast_append_to(workout)
+  end
+
+  after_destroy_commit do
+    broadcast_remove_to(workout)
+  end
   
   acts_as_list scope: :workout
 

@@ -5,14 +5,21 @@
 <p>Chose what you want to work on</p>
 <div class="workout-cards">
   <div class="row">
-    <%= render "pages/page_elements/workout_card", category: "Legs", workout: Workout.find(2) %>
-    <%= render "pages/page_elements/workout_card", category: "Push", workout: Workout.find(6) %>
-    <%= render "pages/page_elements/workout_card", category: "Pull", workout: Workout.find(7) %>
+    <%= render "pages/page_elements/workout_card", category: "Pull", workout: Workout.find(1) %>
+    <%= render "pages/page_elements/workout_card", category: "Push", workout: Workout.find(2) %>
+    <%= render "pages/page_elements/workout_card", category: "Cardio", workout: Workout.find(3) %>
   </div>
   
   <div class="row">
-    <%= render "pages/page_elements/workout_card", category: "Push", workout: Workout.find(6) %>
-    <%= render "pages/page_elements/workout_card", category: "Push", workout: Workout.find(6) %>
-    <%= render "pages/page_elements/workout_card", category: "Push", workout: Workout.find(6) %>
+    <%= render "pages/page_elements/workout_card", category: "Back", workout: Workout.find(4) %>
+    <%= render "pages/page_elements/workout_card", category: "Legs", workout: Workout.find(5) %>
+    <%= render "pages/page_elements/workout_card", category: "Chest", workout: Workout.find(6) %>
   </div>
+
+  <div class="row">
+    <%= render "pages/page_elements/workout_card", category: "Belly", workout: Workout.find(7) %>
+    <%= render "pages/page_elements/workout_card", category: "Arms", workout: Workout.find(8) %>
+    <%= render "pages/page_elements/workout_card", category: "Shoulders", workout: Workout.find(9) %>
+  </div>
+    
 </div>

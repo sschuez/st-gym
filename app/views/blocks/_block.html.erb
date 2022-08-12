@@ -9,10 +9,10 @@
   <% end %>
 
   <%# <div class="new_exercise mt-2 mx-2 data-visible-to-admins"> %>
-  <div class="new_exercise mt-2 mx-2">
+  <div class="new_exercise mt-2 mx-2 visible-if-public-admin-user">
     <%= link_to "+ Add exercise", new_workout_block_exercise_instance_path(block.workout, block), "data-controller": "turbo", class: "btn btn-primary" %>
   </div>
-  
+
   <div class="block-actions">
     <div class="handle handle-block">
       <%# <span class="emoji">👋</span> %>
@@ -20,7 +20,7 @@
       <%# <i class="fas fa-grip-lines"></i> %>
     </div>
 
-    <%= button_to workout_block_path(block.workout, block), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-styling data-visible-to-admins" do %>
+    <%= button_to workout_block_path(block.workout, block), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-styling visible-if-public-admin-user" do %>
     <span class="emoji">🗑</span> 
       <%# <i class="show-icon fas fa-trash-alt inline-delete"></i> %>
     <% end %>

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :workouts do
     member do
       post :edit
+      put :toggle_public
     end
     
     # Exercises within block
