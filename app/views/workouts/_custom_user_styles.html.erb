@@ -6,17 +6,17 @@
       .visible-if-admin {
         display: none !important;
       }
-    <% end %>
 
     /* Only Admin and Record users */
-    <% if !current_user&.admin || (@workout&.user != current_user) %>
+    <% elsif !current_user&.admin || (@workout&.user != current_user) %>
+
       .visible-if-admin-user {
         display: none !important;
       }
-    <% end %>
 
     /* Public record */
-    <% if !@workout&.public && (!current_user&.admin || (@workout&.user != current_user)) %>
+    <% elsif !@workout&.public && (!current_user&.admin || (@workout&.user != current_user)) %>
+    
       .visible-if-public-admin-user {
         display: none !important;
       }
