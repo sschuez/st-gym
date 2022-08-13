@@ -1,16 +1,7 @@
 class BlocksController < ApplicationController
   skip_before_action :authenticate_user!#, only: [ :new, :show ]
   before_action :set_workout, only: %i[ new create edit update destroy ]
-  before_action :set_block, only: %i[ show edit update destroy ]
-
-  # GET /blocks or /blocks.json
-  def index
-    @blocks = Block.all
-  end
-
-  # GET /blocks/1 or /blocks/1.json
-  def show
-  end
+  before_action :set_block, only: %i[ edit update destroy ]
 
   # GET /blocks/new
   def new

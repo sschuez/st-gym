@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   resources :exercises
   devise_for :users
-
+  
+  # Public pages
   root to: 'pages#home'
+  get '/about', to: 'pages#about'
   
   # Mailchimp integration
   post '/adduser', to: 'newsletters#addUser'
