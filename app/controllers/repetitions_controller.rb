@@ -3,8 +3,14 @@ class RepetitionsController < ApplicationController
   
   def update
     @exercise_instance = GlobalID::Locator.locate_signed(params[:sgid])
-    new_repetitions = @exercise_instance.repetitions += params[:change_repetitions]
-    @exercise_instance.update(repetitions: new_repetitions)
+    
+    if params[:kind] == "repetitions"
+      new_repetitions = @exercise_instance.repetitions += params[:increment]
+      @exercise_instance.update(repetitions: new_repetitions)
+    else
+      new_time = @exercise_instance.time += params[:increment]
+      @exercise_instance.update(time: new_time)
+    end
     head :ok
   end
   

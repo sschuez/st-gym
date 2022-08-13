@@ -2,11 +2,23 @@
   <p class="py-2"><%= exercise_instance.exercise.name %> </p>
   
   <div class="exercise-quantity">
-    <p class="py-2 mx-2"><%= exercise_instance.repetitions %> <span>✖️</span> </p>
-    <div class="exercise-instance-actions">
-      <%= link_to "🔼", "#", "data-action": "click->repetitions#more", format: :turbo_stream %>
-      <%= link_to "🔽", "#", "data-action": "click->repetitions#less", format: :turbo_stream %>
+
+    <div data-repetitions-target="repetitions">
+      <p class="py-2 mx-2"><%= exercise_instance.repetitions %> <span>✖️</span> </p>
+      <div class="exercise-instance-actions">
+        <%= link_to "🔼", "#", data: { action: "click->repetitions#more", kind: "repetitions", increment: 2 }, format: :turbo_stream %>
+        <%= link_to "🔽", "#", data: { action: "click->repetitions#less", kind: "repetitions", increment: 2 }, format: :turbo_stream %>
+      </div>
     </div>
+
+    <div data-repetitions-target="time">
+      <p class="py-2 mx-2"><%= exercise_instance.time %> <span>s</span> </p>
+      <div class="exercise-instance-actions">
+        <%= link_to "🔼", "#", data: { action: "click->repetitions#more", kind: "time", increment: 10 }, format: :turbo_stream %>
+        <%= link_to "🔽", "#", data: { action: "click->repetitions#less", kind: "time", increment: 10 }, format: :turbo_stream %>
+      </div>
+    </div>
+
   </div>
 
   <div class="handle handle-exercise-instance">
