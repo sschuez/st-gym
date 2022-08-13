@@ -6,7 +6,7 @@ class ExerciseInstance < ApplicationRecord
 
   acts_as_list scope: :block
   
-  validates :repetitions, :time, numericality: { bigger_or_equal_to: 0 }
+  # validates :repetitions, :time, numericality: { bigger_or_equal_to: 0 }
 
   after_create_commit do
     broadcast_append_to block, :exercise_instances, 
