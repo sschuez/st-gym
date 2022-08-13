@@ -8,6 +8,19 @@ export default class extends Controller {
   connect() {   
   }
 
+  async updateQuantity(e) {
+    const response = await put('/repetitions', {
+      responseKind: "turbo-stream",
+      body: JSON.stringify({
+        sgid: this.element.dataset.sgid,
+        request_type: "update_quantity"
+      })
+    })
+    if (response.ok) {
+      console.log("Updated quantity type")
+    }
+  }
+
   async more(e) {
     console.log(e.target.dataset.kind)
     const response = await put('/repetitions', {

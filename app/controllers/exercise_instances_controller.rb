@@ -44,6 +44,6 @@ class ExerciseInstancesController < ApplicationController
   end
 
   def exercise_instance_params
-    params.require(:exercise_instance).permit(:exercise_id, :repetitions, :time, :block_id, :workout_id)
+    params.require(:exercise_instance).permit(:exercise_id, :repetitions, :time, :tabata, :block_id, :workout_id)
   end
 end

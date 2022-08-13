@@ -3,23 +3,25 @@
   
   <div class="exercise-quantities">
 
-    <span class="emoji" data-repetitions-target="toggle" data-balloon-length="medium" aria-label="Press this button to switch between time and repetitions" data-balloon-pos="up-left">⏱</span>
+    <div class="emoji quantity-toggle" data-repetitions-target="toggle" data-action="click->repetitions#updateQuantity" data-balloon-length="medium" aria-label="Press this button to switch between time and repetitions" data-balloon-pos="up-left"><%= exercise_instance.tabata ? "⏱" : "🔁" %></div>
 
-    <div class="exercise-quantity" data-repetitions-target="repetitions">
-      <p class="py-2 mx-2"><%= exercise_instance.repetitions %> <span>✖️</span> </p>
-      <div class="exercise-instance-actions">
-        <%= link_to "🔼", "#", data: { action: "click->repetitions#more", kind: "repetitions", increment: 2 }, format: :turbo_stream %>
-        <%= link_to "🔽", "#", data: { action: "click->repetitions#less", kind: "repetitions", increment: 2 }, format: :turbo_stream %>
+    <% if exercise_instance.tabata %>
+      <div class="exercise-quantity">
+        <p class="py-2 mx-2"><%= exercise_instance.time %> <span>s</span> </p>
+        <div class="exercise-instance-actions">
+          <%= link_to "🔼", "#", data: { action: "click->repetitions#more", kind: "time", increment: 10 }, format: :turbo_stream %>
+          <%= link_to "🔽", "#", data: { action: "click->repetitions#less", kind: "time", increment: 10 }, format: :turbo_stream %>
+        </div>
       </div>
-    </div>
-
-    <div class="exercise-quantity hidden" data-repetitions-target="time">
-      <p class="py-2 mx-2"><%= exercise_instance.time %> <span>s</span> </p>
-      <div class="exercise-instance-actions">
-        <%= link_to "🔼", "#", data: { action: "click->repetitions#more", kind: "time", increment: 10 }, format: :turbo_stream %>
-        <%= link_to "🔽", "#", data: { action: "click->repetitions#less", kind: "time", increment: 10 }, format: :turbo_stream %>
+    <% else %>
+      <div class="exercise-quantity">
+        <p class="py-2 mx-2"><%= exercise_instance.repetitions %> <span>✖️</span> </p>
+        <div class="exercise-instance-actions">
+          <%= link_to "🔼", "#", data: { action: "click->repetitions#more", kind: "repetitions", increment: 2 }, format: :turbo_stream %>
+          <%= link_to "🔽", "#", data: { action: "click->repetitions#less", kind: "repetitions", increment: 2 }, format: :turbo_stream %>
+        </div>
       </div>
-    </div>
+    <% end %>
 
   </div>
 

@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_13_163357) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
-    t.string "quantity"
+    t.boolean "tabata", default: false
     t.index ["block_id"], name: "index_exercise_instances_on_block_id"
     t.index ["exercise_id"], name: "index_exercise_instances_on_exercise_id"
   end

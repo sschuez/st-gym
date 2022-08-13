@@ -4,7 +4,9 @@ class RepetitionsController < ApplicationController
   def update
     @exercise_instance = GlobalID::Locator.locate_signed(params[:sgid])
     
-    if params[:kind] == "repetitions"
+    if params[:request_type] == "update_quantity"
+      @exercise_instance.toggle! :tabata
+    elsif params[:kind] == "repetitions"
       new_repetitions = @exercise_instance.repetitions += params[:increment]
       @exercise_instance.update(repetitions: new_repetitions)
     else
