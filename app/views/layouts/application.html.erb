@@ -7,14 +7,15 @@
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= render 'shared/custom_user_workout_styles' %>
+    <%#= render 'shared/custom_user_workout_styles' %>
     <%= render 'shared/current_person' %>
+    <%= render 'shared/current_record' %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="<%= cookies[:theme] %>">  
+  <body data-controller="meta" class="<%= cookies[:theme] %>">  
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <div class="container">

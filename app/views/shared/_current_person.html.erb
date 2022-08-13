@@ -1,2 +1,3 @@
 <meta name="current-person-id" content="<%= current_user ? current_user.id : nil %>">
 <meta name="current-person-admin" content="<%= current_user ? current_user.admin : nil %>">
+<meta name="current-person-user" content="<%= @workout&.user == current_user ? true : nil %>">
