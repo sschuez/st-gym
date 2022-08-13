@@ -3,7 +3,7 @@ import { put } from "@rails/request.js"
 
 // Connects to data-controller="repetitions"
 export default class extends Controller {
-  static targets = [ "repetitions", "time" ] 
+  static targets = [ "repetitions", "time", "toggle" ] 
 
   connect() {   
   }
