@@ -73,15 +73,16 @@ test:
 # the values provided in this file. Alternatively, you can specify a connection
 # URL environment variable explicitly:
 #
-production:
-  adapter: postgresql
-  url: <%= ENV['DATABASE_URL'] %>
+# production:
+  # <<: *default
+  # database: st_gym_prodction
+  # url: <%= ENV['DATABASE_URL'] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-# production:
-#   <<: *default
-#   database: real_gym_production
-#   username: real_gym
-#   password: <%= ENV["REAL_GYM_DATABASE_PASSWORD"] %>
+production:
+  <<: *default
+  database: st_gym_production
+  username: st_gym
+  password: <%= ENV["ST_GYM_DATABASE_PASSWORD"] %>
