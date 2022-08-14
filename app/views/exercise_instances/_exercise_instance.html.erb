@@ -7,7 +7,7 @@
 
     <% if exercise_instance.tabata %>
       <div class="exercise-quantity">
-        <p class="py-2 mx-2"><%= exercise_instance.time %> <span>s</span> </p>
+        <p class="py-2 mx-2"><%= exercise_instance.time %>s </p>
         <div class="exercise-instance-quantities">
           <%= link_to "🔼", "#", data: { action: "click->repetitions#more", kind: "time", increment: 10 }, format: :turbo_stream %>
           <%= link_to "🔽", "#", data: { action: "click->repetitions#less", kind: "time", increment: 10 }, format: :turbo_stream %>
@@ -15,7 +15,7 @@
       </div>
     <% else %>
       <div class="exercise-quantity">
-        <p class="py-2 mx-2"><%= exercise_instance.repetitions %> <span>✖️</span> </p>
+        <p class="py-2 mx-2"><%= exercise_instance.repetitions %>x</p>
         <div class="exercise-instance-quantities">
           <%= link_to "🔼", "#", data: { action: "click->repetitions#more", kind: "repetitions", increment: 2 }, format: :turbo_stream %>
           <%= link_to "🔽", "#", data: { action: "click->repetitions#less", kind: "repetitions", increment: 2 }, format: :turbo_stream %>
