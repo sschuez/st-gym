@@ -3,6 +3,7 @@
 .exercise-instance {
   display: flex;
   justify-content: space-between;
+  padding: 3px;
 
   p {
     margin-bottom: 0px !important;
@@ -22,12 +23,49 @@
   }
 }
 
-.exercise-instance-actions {
+.exercise-instance-quantities {
   display: flex;
   flex-direction: column;
   margin-left: 12px;
-
+  margin-right: 12px;
+  
   a {
     text-decoration: none;
+  }
+}
+
+.handle-exercise-instance {
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.exercise-instance-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.exercise-instance-actions .emoji {
+  font-size: 14px;
+}
+
+/* RESPONSIVE */
+
+/* Smallest device */
+@media (min-width: 100px) and (max-width: 575px) {
+  .exercise-instance-actions {
+    margin-top: -6px;
+    margin-bottom: 3px;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .exercise-instance-actions {
+    // flex-direction: row;
+    flex-direction: row-reverse;
+    margin-top: 8px;
+  }
+  .exercise-instance-actions .emoji {
+    margin-right: 18px;
   }
 }

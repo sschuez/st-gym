@@ -8,7 +8,7 @@
     <% if exercise_instance.tabata %>
       <div class="exercise-quantity">
         <p class="py-2 mx-2"><%= exercise_instance.time %> <span>s</span> </p>
-        <div class="exercise-instance-actions">
+        <div class="exercise-instance-quantities">
           <%= link_to "🔼", "#", data: { action: "click->repetitions#more", kind: "time", increment: 10 }, format: :turbo_stream %>
           <%= link_to "🔽", "#", data: { action: "click->repetitions#less", kind: "time", increment: 10 }, format: :turbo_stream %>
         </div>
@@ -16,7 +16,7 @@
     <% else %>
       <div class="exercise-quantity">
         <p class="py-2 mx-2"><%= exercise_instance.repetitions %> <span>✖️</span> </p>
-        <div class="exercise-instance-actions">
+        <div class="exercise-instance-quantities">
           <%= link_to "🔼", "#", data: { action: "click->repetitions#more", kind: "repetitions", increment: 2 }, format: :turbo_stream %>
           <%= link_to "🔽", "#", data: { action: "click->repetitions#less", kind: "repetitions", increment: 2 }, format: :turbo_stream %>
         </div>
@@ -24,9 +24,14 @@
     <% end %>
 
   </div>
-
-  <div class="handle handle-exercise-instance">
-    <i class="bi bi-grip-horizontal"></i>
+  
+  <div class="exercise-instance-actions">
+    <div class="handle handle-exercise-instance">
+      <i class="bi bi-grip-horizontal"></i>
+    </div>
+    <%= button_to workout_block_exercise_instance_path(exercise_instance.block.workout, exercise_instance.block, exercise_instance), method: :delete, data: { target: "meta.published" }, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-styling" do %>
+    <span class="emoji">🗑</span> 
+    <% end %>
   </div>
 
 <% end %>
