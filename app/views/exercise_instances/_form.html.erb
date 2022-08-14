@@ -2,12 +2,18 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.association :exercise %>
+  <%# <div class="form-inputs"> %>
+    <%#= f.association :exercise %>
     <%# <p>Choose if you want to use a tabata timer or repetitions <span class="text-secondary small">You can also do this later</span></p> %>
     <%#= f.input :repetitions %>
     <%#= f.input :time %>
-  </div>
+  <%# </div> %>
+
+  <%= f.association :exercise,
+    label: "Exercises",
+    as: :check_boxes,
+    input_html: { class: "tag-selector" },
+    item_wrapper_class: 'tag-item' %>
 
   <div class="form-actions">
     <%= f.submit "Add exercise", class: "btn btn-primary", data: { action: "type=submit click->modal#disconnect" } %>
