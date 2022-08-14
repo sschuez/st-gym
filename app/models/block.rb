@@ -14,7 +14,7 @@ class Block < ApplicationRecord
   # broadcasts_to :workout
   after_create_commit do
     # broadcast_append_to(workout, locals: { user: Current.user })
-    broadcast_append_to(workout)
+    broadcast_append_later_to(workout)
   end
 
   after_destroy_commit do
