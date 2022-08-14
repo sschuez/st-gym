@@ -9,28 +9,33 @@ class ExerciseInstancesController < ApplicationController
   end
   
   def create
-    @exercise_instance = @block.exercise_instances.new(exercise_instance_params)
-    respond_to do |format|
-      if @exercise_instance.save
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.append(
-            "block_#{@block.id}_exercise_instances",
-            partial: "exercise_instances/exercise_instance",
-            locals: { exercise_instance: @exercise_instance })
-        end
-        format.html { redirect_to @workout, notice: "Exercise instance was successfully created." }
-        format.json { render :show, status: :created, location: @exercise_instance }
-      else
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.update(
-            'new_exercise_instance',
-            partial: "exercise_instances/form_modal",
-            locals: {exercise_instance: @exercise_instance})
+    exercises = params[:exercise_instance][:exercise_id]
+    exercises.reject { |e| e.empty? }.each do |exercise|
+      @exercise_instance = @block.exercise_instances.new(
+        exercise: Exercise.find(exercise.to_i)
+      )
+      respond_to do |format|
+        if @exercise_instance.save
+          format.turbo_stream { flash.now[:notice] = "Exercise instance was successfully created." }
+          # format.html { redirect_to @workout, notice: "Exercise instance was successfully created." }
+          # format.json { render :show, status: :created, location: @exercise_instance }
+        else
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.update(
+              'new_exercise_instance',
+              partial: "exercise_instances/form_modal",
+              locals: {exercise_instance: @exercise_instance})
+          end
+          # format.html { render :new, status: :unprocessable_entity }
+          # format.json { render json: @exercise_instance.errors, status: :unprocessable_entity }
         end
       end
-      format.html { render :new, status: :unprocessable_entity }
-      format.json { render json: @exercise_instance.errors, status: :unprocessable_entity }
     end
+  end
+
+  def destroy
+    @exercise_instance = ExerciseInstance.find(params[:id])
+    @exercise_instance.destroy
   end
 
   private
@@ -44,6 +49,6 @@ class ExerciseInstancesController < ApplicationController
   end
 
   def exercise_instance_params
-    params.require(:exercise_instance).permit(:exercise_id, :repetitions, :time, :tabata, :block_id, :workout_id)
+    params.require(:exercise_instance).permit(:exercise_id[], :repetitions, :time, :tabata, :block_id, :workout_id)
   end
 end
