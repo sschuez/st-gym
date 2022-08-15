@@ -52,10 +52,14 @@
   position: relative;
 }
 
+.exercise-instance-name p {
+  margin-left: 8px;
+}
+
 .exercise-instance-name .emoji-info {
   position: absolute;
-  top: 0px;
-  right: -20px;
+  top: -6px;
+  left: -8px;
 }
 
 /* RESPONSIVE */
