@@ -1,8 +1,13 @@
 class ExerciseInstancesController < ApplicationController
   skip_before_action :authenticate_user!#, only: [ :new, :show ]
   before_action :set_workout, only: [ :new, :create ]
-  before_action :set_block, only: [ :new, :create ]
+  before_action :set_block, only: [ :show, :new, :create ]
 
+  def show
+    @exercise_instance = @block.exercise_instances.find(params[:id])
+    @exercise = @exercise_instance.exercise
+  end
+  
   def new
     @exercise_instance = @block.exercise_instances.new
     # @exercises = Exercise.all

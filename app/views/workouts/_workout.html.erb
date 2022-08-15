@@ -15,7 +15,7 @@
         <%# <i class="show-icon fas fa-edit workout-edit"></i> %>
       <% end %>
 
-      <%= button_to toggle_public_workout_path(workout), method: :put, class: "btn-styling mt-3" do %>
+      <%= button_to toggle_public_workout_path(workout), method: :put, class: "btn-styling workout-toggle-public" do %>
         <span class="emoji" data-balloon-length="medium" aria-label="If set to public, everyone can do with this exercise what they wish. Set to private to limit others' ability to change things " data-balloon-pos="left"><%= workout.public ? "🔓" : "🔐" %></span>
         <%# <i class="show-icon fas fa-edit workout-edit"></i> %>
       <% end %>    

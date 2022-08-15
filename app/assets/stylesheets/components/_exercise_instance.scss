@@ -48,6 +48,16 @@
   font-size: 14px;
 }
 
+.exercise-instance-name {
+  position: relative;
+}
+
+.exercise-instance-name .emoji-info {
+  position: absolute;
+  top: 0px;
+  right: -20px;
+}
+
 /* RESPONSIVE */
 
 /* Smallest device */
