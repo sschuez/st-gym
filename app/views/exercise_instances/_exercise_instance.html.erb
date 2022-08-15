@@ -2,8 +2,10 @@
 
   <div class="exercise-instance-name">
     <p class="py-2"><%= exercise_instance.exercise.name %></p>
-    <%= link_to "ℹ", workout_block_exercise_instance_path(exercise_instance.block.workout, exercise_instance.block, exercise_instance), method: :get, data: { controller: "turbo" }, class: "emoji-info" %>
-    <%# <div class="emoji-info">ℹ</div> %>
+    <%= link_to workout_block_exercise_instance_path(exercise_instance.block.workout, exercise_instance.block, exercise_instance), method: :get, data: { controller: "turbo" } do %>
+      <i class="bi bi-info-circle emoji-info"></i>
+    <% end %>
+    
   </div>
   
   <div class="exercise-quantities">
