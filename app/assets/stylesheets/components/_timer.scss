@@ -1,56 +1,63 @@
 .stopwatch {
-  display: grid;
-  justify-items: center;
-  grid-row-gap: 23px;
-  width: 100%;
-  padding-top: 25px;
-  }
-  
-  .circle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  height: 270px;
-  width: 270px;
-  
-  border: 2px solid;
-  border-radius: 50%;
-  }
-  
-  .time {
-  font-family: "Roboto Mono", monospace;
-  font-weight: 300;
-  font-size: 48px;
-  }
-  
-  .gold {
-  font-weight: 900;
-  
-  color: #f2c94c;
-  text-shadow: 0 0 0px #fff, 0 0 50px #f2c94c;
-  }
-  
-  .controls {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  padding-top: 3px;
+  padding-bottom: 6px;
+  }
   
-  width: 187px;
+//   .circle {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+  
+//   height: 100px;
+//   width: 100px;
+  
+//   // border-radius: 50%;
+// }
+
+.time {
+  font-family: "Roboto Mono", monospace;
+  font-size: 25px;
+  margin-left: 12px;
+  // margin-right: 20px;
+  // border: 2px solid;
+  // border-radius: 4px;
+  // padding: 3px;
+  }
+  
+  // .gold {
+  // font-weight: 900;
+  
+  // color: #f2c94c;
+  // text-shadow: 0 0 0px #fff, 0 0 50px #f2c94c;
+  // }
+  
+  .controls {
+    margin-right: 18px;
+    display: flex;
+    justify-content: space-between;
+    width: 80px;
+  }
+
+  .controls img {
+    width: 30px;
   }
   
   .stopwatch button {
-  cursor: pointer;
-  background: transparent;
-  padding: 0;
-  border: none;
-  margin: 0;
-  outline: none;
+    cursor: pointer;
+    background: transparent;
+    padding: 0;
+    border: none;
+    margin: 0;
+    outline: none;
   }
   
   #playButton {
-  display: block;
+    display: block;
   }
   
   #pauseButton {
-  display: none;
+    display: none;
   }
