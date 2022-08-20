@@ -1,5 +1,7 @@
 <%= content_tag :div, id: dom_id(block), data: { sgid: block.to_sgid_param }, class: "card block-card my-3 pb-3" do %>
-  
+
+  <%= render 'shared/stopwatch' %>
+
   <%= turbo_stream_from block, :exercise_instances %>
 
   <%= turbo_frame_tag "#{dom_id(block)}_exercise_instances", data: { controller: "exercise-instance-position" } do %>
