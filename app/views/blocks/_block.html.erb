@@ -1,9 +1,42 @@
 <%= content_tag :div, id: dom_id(block), data: { sgid: block.to_sgid_param } do %>
 
   <div class="block-header">
-    <h1>Block <%= block.position %></h1>
-  </div>
+    <h1><%= block.title %></h1>
+    
+    <div data-controller="repetitions" data-sgid="<%= block.to_sgid_param %>" class="exercise-quantities">
+
+      <div class="emoji quantity-toggle" data-repetitions-target="toggle" data-action="click->repetitions#updateQuantity" data-balloon-length="medium" aria-label="Press this button to switch between time and repetitions" data-balloon-pos="up-left"><%= block.tabata ? "⏱" : "🔁" %></div>
+
+      <% if block.tabata %>
+        <div class="exercise-quantity">
+          <p class="py-2 mx-2"><%= block.time %>s </p>
+          <div class="exercise-instance-quantities">
+            <%= link_to "#" do %>
+              <i data-action="click->repetitions#more" data-kind="time" data-increment="30" class="bi bi-arrow-up-circle" format="turbo_stream"></i>
+            <% end %>
+            <%= link_to "#", format: :turbo_stream do %>
+              <i data-action="click->repetitions#less" data-kind="time" data-increment="30" class="bi bi-arrow-down-circle" format="turbo_stream"></i>
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+        <div class="exercise-quantity">
+          <p class="py-2 mx-2"><%= block.repetitions %>x</p>
+          <div class="exercise-instance-quantities">
+            <%= link_to "#" do %>
+              <i data-action="click->repetitions#more" data-kind="repetitions" data-increment="1" class="bi bi-arrow-up-circle" format="turbo_stream"></i>
+            <% end %>
+            <%= link_to "#" do %>
+              <i data-action="click->repetitions#less" data-kind="repetitions" data-increment="1" class="bi bi-arrow-down-circle" format="turbo_stream"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
   
+  </div>
+
   <div class="card block-card pb-3">
     <%= render 'shared/stopwatch' %>
 

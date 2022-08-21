@@ -24,20 +24,28 @@
   min-height: 120px;
   // border: 1px grey dashed !important;
   padding-right: 40px !important;
+  margin-bottom: 12px;
 }
 
 .block-header {
-  margin-top: 18px;
-  margin-bottom: 6px;
+  margin-top: 24px;
+  margin-bottom: -4px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .block-header h1 {
   font-weight: 600;
   font-size: 24px;
+  padding-top: 10px;
     
   color: #f2c94c;
   text-shadow: 0 0 0px #fff, 0 0 50px #f2c94c;
   margin-bottom: 0px;
+}
+
+.block-header .exercise-quantities {
+  padding-top: 6px;
 }
 
 .dark-mode .block-card {

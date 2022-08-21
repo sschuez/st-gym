@@ -25,6 +25,9 @@ class BlocksController < ApplicationController
   def create
     @block = @workout.blocks.new(block_params)
     @block.workout = @workout
+    next_block_nr = @workout.blocks.count + 1
+    @block.title = "Block #{next_block_nr}"
+    
     respond_to do |format|
       if @block.save
         # @block.broadcast_prepend_later_to @block.workout
@@ -95,6 +98,6 @@ class BlocksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def block_params
-      params.require(:block).permit(:workout_id)
+      params.require(:block).permit(:workout_id, :title, :repetitions, :time)
     end
 end
