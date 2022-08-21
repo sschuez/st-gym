@@ -9,7 +9,7 @@
     <% end %>
     <span class="text-secondary small grey"><%= workout.public ? "Public workout" : "Private workout" %></span>
 
-    <div class="workout-edit hidden" data-meta-target="user">
+    <div class="workout-edit" data-meta-target="user">
       <%= button_to edit_workout_path(workout), method: :post, class: "btn-styling" do %>
         <span class="emoji">✍️</span>
         <%# <i class="show-icon fas fa-edit workout-edit"></i> %>
