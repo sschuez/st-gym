@@ -20,10 +20,10 @@ export default class extends Controller {
     function checkAuthorisation(elements, subject) {
       elements.forEach((element) => {
         if (subject === "true" || admin === "true") {
-          element.classList.remove("hidden")
-        } else {
           // Do nothing
-          // element.classList.add("hidden")
+          // element.classList.remove("hidden")
+        } else {
+          element.classList.add("hidden")
         }
       })
     }
@@ -32,10 +32,10 @@ export default class extends Controller {
     function checkAuthorisationPublished(elements, subject) {
       elements.forEach((element) => {
         if (subject === "true" || admin === "true" || published === "true") {
-          element.classList.remove("hidden")
-        } else {
           // Do nothing
-          // element.classList.add("hidden")
+          // element.classList.remove("hidden")
+        } else {
+          element.classList.add("hidden")
         }
       })
     }

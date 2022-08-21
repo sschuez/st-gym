@@ -35,14 +35,15 @@
   // }
   
   .controls {
-    margin-right: 18px;
+    margin-right: 22px;
     display: flex;
     justify-content: space-between;
-    width: 80px;
+    width: 70px;
   }
 
-  .controls img {
-    width: 30px;
+  .controls i {
+    font-size: 25px;
+    font-weight: lighter;
   }
   
   .stopwatch button {
