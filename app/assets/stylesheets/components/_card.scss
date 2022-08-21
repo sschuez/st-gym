@@ -20,6 +20,10 @@
   border: 1px $font-color-dark solid !important;
 }
 
+.workout-card .card-body {
+  padding-top: 0px;
+}
+
 .block-card {
   min-height: 120px;
   // border: 1px grey dashed !important;
