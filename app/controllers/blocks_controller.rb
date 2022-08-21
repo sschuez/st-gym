@@ -1,7 +1,7 @@
 class BlocksController < ApplicationController
   skip_before_action :authenticate_user!#, only: [ :new, :show ]
   before_action :set_workout, only: %i[ new create edit update destroy ]
-  before_action :set_block, only: %i[ edit update destroy ]
+  before_action :set_block, only: %i[ edit edit_title update destroy ]
 
   # GET /blocks/new
   def new
@@ -15,7 +15,18 @@ class BlocksController < ApplicationController
       format.turbo_stream do 
         render turbo_stream: turbo_stream.update(
           @block,
-          partial: "blocks/form",
+          partial: "blocks/title_form",
+          locals: {block: @block}) 
+      end
+    end
+  end
+
+  def edit_title
+    respond_to do |format|
+      format.turbo_stream do 
+        render turbo_stream: turbo_stream.update(
+          "block_#{@block.id}_title",
+          partial: "blocks/title_form",
           locals: {block: @block}) 
       end
     end
@@ -57,20 +68,22 @@ class BlocksController < ApplicationController
     @block.workout = @block.workout
     respond_to do |format|
       if @block.update(block_params)
+        
         format.turbo_stream do 
           render turbo_stream: [
             turbo_stream.update(
-              @block,
-              partial: "blocks/block",
+              "block_#{@block.id}_title",
+              partial: "blocks/block_header_title",
               locals: {block: @block}),
             turbo_stream.update('notice', "block #{@block.id} updated")
           ]
+          
         end
       else
         format.turbo_stream do 
           render turbo_stream: turbo_stream.update(
-            @block,
-            partial: "blocks/form",
+            "block_#{@block.id}_title",
+            partial: "blocks/title_form",
             locals: {block: @block}) 
         end   
       end

@@ -1,0 +1,20 @@
+<%= turbo_frame_tag "#{dom_id(block)}_title", target: "_top" do %>
+  <div class="edit-block-title">
+    
+    <%= simple_form_for([@block.workout, @block]) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+        <div class="title-form">
+          <%= f.input :title,
+                      label: false
+          %>
+
+          <div class="form-actions mb-3">
+            <%= f.button :submit, "Save", class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+
+  </div>
+<% end %>

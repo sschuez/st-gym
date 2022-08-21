@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "#{dom_id(block)}_title" do %>
+  <div class="block-title">
+    <h1><%= block.title %></h1>
+    <%= button_to "✍️", edit_title_workout_block_path(block.workout, block), method: :post, class: "btn-styling" %>
+  </div>
+<% end %> 

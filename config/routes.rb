@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     
     # Exercises within block
     resources :blocks, except: [:index, :show] do
+      member do
+        post :edit
+        post :edit_title
+      end
       resources :exercise_instances, except: [:index]# do
         # member do
         #   get :exercise_info
