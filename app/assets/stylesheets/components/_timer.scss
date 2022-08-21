@@ -1,3 +1,6 @@
+// @import "https://fonts.googleapis.com/css2?family=Orbitron&display=swap";
+// $font-family-clock: 'Orbitron', sans-serif;
+
 .stopwatch {
   display: flex;
   justify-content: space-between;
@@ -18,8 +21,9 @@
 // }
 
 .time {
-  font-family: "Roboto Mono", monospace;
-  font-size: 25px;
+  // font-family: "Roboto Mono", monospace;
+  font-weight: 350;
+  font-size: 20px;
   margin-left: 12px;
   // margin-right: 20px;
   // border: 2px solid;
