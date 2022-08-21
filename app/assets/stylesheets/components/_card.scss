@@ -26,6 +26,20 @@
   padding-right: 40px !important;
 }
 
+.block-header {
+  margin-top: 18px;
+  margin-bottom: 6px;
+}
+
+.block-header h1 {
+  font-weight: 600;
+  font-size: 24px;
+    
+  color: #f2c94c;
+  text-shadow: 0 0 0px #fff, 0 0 50px #f2c94c;
+  margin-bottom: 0px;
+}
+
 .dark-mode .block-card {
   background-color: $card-background-dark !important;
   // border: 1px $font-color-dark dashed !important;
