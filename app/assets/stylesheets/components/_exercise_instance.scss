@@ -23,6 +23,10 @@
   }
 }
 
+.exercise-quantity i {
+  font-size: 17px;
+}
+
 .exercise-instance-quantities {
   display: flex;
   flex-direction: column;
@@ -61,6 +65,7 @@
   top: -4px;
   left: -8px;
 }
+
 
 /* RESPONSIVE */
 

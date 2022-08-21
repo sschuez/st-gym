@@ -16,16 +16,24 @@
       <div class="exercise-quantity">
         <p class="py-2 mx-2"><%= exercise_instance.time %>s </p>
         <div class="exercise-instance-quantities">
-          <%= link_to "🔼", "#", data: { action: "click->repetitions#more", kind: "time", increment: 10 }, format: :turbo_stream %>
-          <%= link_to "🔽", "#", data: { action: "click->repetitions#less", kind: "time", increment: 10 }, format: :turbo_stream %>
+          <%= link_to "#" do %>
+            <i data-action="click->repetitions#more" data-kind="time" data-increment="10" class="bi bi-arrow-up-circle" format="turbo_stream"></i>
+          <% end %>
+          <%= link_to "#", format: :turbo_stream do %>
+            <i data-action="click->repetitions#less" data-kind="time" data-increment="10" class="bi bi-arrow-down-circle" format="turbo_stream"></i>
+          <% end %>
         </div>
       </div>
     <% else %>
       <div class="exercise-quantity">
         <p class="py-2 mx-2"><%= exercise_instance.repetitions %>x</p>
         <div class="exercise-instance-quantities">
-          <%= link_to "🔼", "#", data: { action: "click->repetitions#more", kind: "repetitions", increment: 2 }, format: :turbo_stream %>
-          <%= link_to "🔽", "#", data: { action: "click->repetitions#less", kind: "repetitions", increment: 2 }, format: :turbo_stream %>
+          <%= link_to "#" do %>
+            <i data-action="click->repetitions#more" data-kind="repetitions" data-increment="2" class="bi bi-arrow-up-circle" format="turbo_stream"></i>
+          <% end %>
+          <%= link_to "#" do %>
+            <i data-action="click->repetitions#less" data-kind="repetitions" data-increment="2" class="bi bi-arrow-down-circle" format="turbo_stream"></i>
+          <% end %>
         </div>
       </div>
     <% end %>
