@@ -57,8 +57,14 @@
   
   #playButton {
     display: block;
+    color: var(--bs-primary);
   }
   
   #pauseButton {
     display: none;
+    color: var(--bs-warning);
+  }
+
+  #resetButton {
+    color: var(--bs-danger);
   }
