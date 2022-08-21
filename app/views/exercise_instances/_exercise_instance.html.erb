@@ -36,7 +36,7 @@
     <div class="handle handle-exercise-instance">
       <i class="bi bi-grip-horizontal"></i>
     </div>
-    <%= button_to workout_block_exercise_instance_path(exercise_instance.block.workout, exercise_instance.block, exercise_instance), method: :delete, data: { target: "meta.published" }, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-styling" do %>
+    <%= button_to workout_block_exercise_instance_path(exercise_instance.block.workout, exercise_instance.block, exercise_instance), method: :delete, data: { target: "meta.published" }, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-styling hidden" do %>
     <span class="emoji">🗑</span> 
     <% end %>
   </div>

@@ -8,7 +8,7 @@
     <%= render block.exercise_instances.order(position: :asc), workout: @workout, block: block %>
   <% end %>
 
-  <div data-meta-target="published" class="new_exercise mt-2 mx-2">
+  <div data-meta-target="published" class="new_exercise mt-2 mx-2 hidden">
     <%= link_to "⚡️ Add exercises", new_workout_block_exercise_instance_path(block.workout, block), data: { controller: "turbo" }, class: "btn btn-primary" %>
   </div>
 
@@ -19,7 +19,7 @@
       <%# <i class="fas fa-grip-lines"></i> %>
     </div>
 
-    <%= button_to workout_block_path(block.workout, block), method: :delete, data: { target: "meta.published" }, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-styling" do %>
+    <%= button_to workout_block_path(block.workout, block), method: :delete, data: { target: "meta.published" }, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-styling hidden" do %>
     <span class="emoji">🗑</span> 
       <%# <i class="show-icon fas fa-trash-alt inline-delete"></i> %>
     <% end %>
