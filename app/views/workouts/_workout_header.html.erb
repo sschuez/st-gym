@@ -1,28 +1,30 @@
-<div class="card-header bg-transparent small">
-  
-  <% if action_name == "index" %>
-    <%= link_to workout_path(workout) do %>
+<%= turbo_frame_tag "#{dom_id(workout)}_header" do %>
+  <div class="card-header bg-transparent small">
+    
+    <% if action_name == "index" %>
+      <%= link_to workout_path(workout) do %>
+        <h4><%= workout.name %></h4>
+        <% if workout.description %>
+          <%= workout.description %>
+        <% end %>
+        <span class="text-secondary small grey"><%= workout.public ? "Public workout" : "Private workout" %></span>
+      <% end %>
+    <% else %>
       <h4><%= workout.name %></h4>
       <% if workout.description %>
         <%= workout.description %>
       <% end %>
       <span class="text-secondary small grey"><%= workout.public ? "Public workout" : "Private workout" %></span>
     <% end %>
-  <% else %>
-    <h4><%= workout.name %></h4>
-    <% if workout.description %>
-      <%= workout.description %>
-    <% end %>
-    <span class="text-secondary small grey"><%= workout.public ? "Public workout" : "Private workout" %></span>
-  <% end %>
 
-  <div class="workout-edit" data-meta-target="user">
-    <%= button_to edit_workout_path(workout), method: :post, class: "btn-styling" do %>
-      <span class="emoji">✍️</span>
-    <% end %>
+    <div class="workout-edit" data-meta-target="user">
+      <%= button_to edit_workout_path(workout), method: :post, class: "btn-styling" do %>
+        <span class="emoji">✍️</span>
+      <% end %>
 
-    <%= button_to toggle_public_workout_path(workout), method: :put, class: "btn-styling workout-toggle-public" do %>
-      <span class="emoji" data-balloon-length="medium" aria-label="If set to public, everyone can do with this exercise what they wish. Set to private to limit others' ability to change things " data-balloon-pos="left"><%= workout.public ? "🔓" : "🔐" %></span>
-    <% end %>    
+      <%= button_to toggle_public_workout_path(workout), method: :put, class: "btn-styling workout-toggle-public" do %>
+        <span class="emoji" data-balloon-length="medium" aria-label="If set to public, everyone can do with this exercise what they wish. Set to private to limit others' ability to change things " data-balloon-pos="left"><%= workout.public ? "🔓" : "🔐" %></span>
+      <% end %>    
+    </div>
   </div>
-</div>
+<% end %>

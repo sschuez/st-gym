@@ -11,6 +11,13 @@ class Block < ApplicationRecord
   has_many :exercise_instances, dependent: :destroy
   has_many :exercises, through: :exercise_instances
   
+  acts_as_list scope: :workout
+
+  # == Validations ==========================================================
+  
+  # == Scopes ===============================================================
+  
+  # == Callbacks ============================================================
   # broadcasts_to :workout
   after_create_commit do
     # broadcast_append_to(workout, locals: { user: Current.user })
@@ -26,20 +33,6 @@ class Block < ApplicationRecord
 
   after_destroy_commit do
     broadcast_remove_to(workout)
-  end
-  
-  acts_as_list scope: :workout
-
-  # == Validations ==========================================================
-  
-  # == Scopes ===============================================================
-  
-  # == Callbacks ============================================================
-  after_update_commit do
-    broadcast_replace_to :workout, 
-      # target: "exercise_instance_#{self.id}", 
-      # partial: "exercise_instances/exercise_instance",
-      locals: { block: self }
   end
 
 

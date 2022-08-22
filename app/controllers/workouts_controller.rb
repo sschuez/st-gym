@@ -50,7 +50,7 @@ class WorkoutsController < ApplicationController
     respond_to do |format|
       format.turbo_stream do 
         render turbo_stream: turbo_stream.update(
-          @workout,
+          "workout_#{@workout.id}_header",
           partial: "workouts/form",
           locals: {workout: @workout}) 
       end

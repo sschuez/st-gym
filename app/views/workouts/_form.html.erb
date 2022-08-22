@@ -2,12 +2,12 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
+  <div class="form-inputs px-3">
     <%= f.input :name %>
     <%= f.input :description %>
   </div>
 
-  <div class="form-actions">
+  <div class="form-actions px-3">
     <%= f.button :submit, class: "btn btn-primary" %>
     <%= link_to "Cancel", workout_path(workout), class: "btn btn-secondary" %>
   </div>

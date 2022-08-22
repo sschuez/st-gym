@@ -3,7 +3,7 @@
 <div data-controller="stopwatch" class="card workout-card">
   
   <%= render "workout_header", workout: workout %>
-
+  
   <div class="card-body workout-body">
     <div id="blocks" data-controller="block-position">
       <%= render workout.blocks.order(position: :asc) %>

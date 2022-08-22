@@ -10,8 +10,7 @@ class Workout < ApplicationRecord
   # == Relationships ========================================================
   has_many :blocks, dependent: :destroy
   belongs_to :user, optional: true
-  broadcasts
-  
+    
   # == Validations ==========================================================
   
   # == Scopes ===============================================================
@@ -19,7 +18,15 @@ class Workout < ApplicationRecord
 
 
   # == Callbacks ============================================================
+  broadcasts
   
+  after_update_commit do
+    broadcast_replace_later_to self,
+      target: "workout_#{self.id}_header", 
+      partial: "workouts/workout_header",
+      locals: { block: self }
+  end
+
   # == Class Methods ========================================================
   
   # == Instance Methods =====================================================
