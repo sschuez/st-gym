@@ -74,11 +74,10 @@ class BlocksController < ApplicationController
             turbo_stream.update(
               "block_#{@block.id}_title",
               partial: "blocks/block_header_title",
-              locals: {block: @block}),
-            turbo_stream.update('notice', "block #{@block.id} updated")
+              locals: {block: @block})
           ]
-          
         end
+        
       else
         format.turbo_stream do 
           render turbo_stream: turbo_stream.update(

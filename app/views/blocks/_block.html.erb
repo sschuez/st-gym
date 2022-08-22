@@ -1,6 +1,8 @@
 <%= content_tag :div, id: dom_id(block), data: { sgid: block.to_sgid_param } do %>
 
-  <%= render 'blocks/block_header', block: block %>
+  <%= turbo_frame_tag "#{dom_id(block)}_header" do %>
+    <%= render 'blocks/block_header', block: block %>
+  <% end %>
 
   <div class="card block-card pb-3">
     <%= render 'shared/stopwatch' %>

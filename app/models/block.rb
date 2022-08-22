@@ -19,8 +19,8 @@ class Block < ApplicationRecord
 
   after_update_commit do
     broadcast_replace_later_to :block,
-      target: "block_#{self.id}_title", 
-      partial: "blocks/block_header_title",
+      target: "block_#{self.id}_header", 
+      partial: "blocks/block_header",
       locals: { block: self }
   end
 
