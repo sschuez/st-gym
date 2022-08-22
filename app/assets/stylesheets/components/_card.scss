@@ -20,8 +20,26 @@
   border: 1px $font-color-dark solid !important;
 }
 
-.workout-card .card-body {
+.workout-card .workout-body {
   padding-top: 0px;
+}
+
+.dark-mode .workout-index-card {
+  background-color: $card-background-dark !important;
+  border: 1px $font-color-dark solid !important;
+}
+
+.workout-index-card {
+  margin-bottom: 12px;
+}
+
+.workout-index-card .card-header {
+  border: none;
+}
+
+#workouts a {
+  // text-decoration: none;
+  color: inherit;
 }
 
 .block-card {

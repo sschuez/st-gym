@@ -4,11 +4,14 @@
 
 <div id="workouts">
   <% @workouts.each do |workout| %>
-    <%= render workout %>
-    <p>
-      <%= link_to "Show this workout", workout %>
-    </p>
+    
+      <%= turbo_stream_from workout %>
+
+      <div class="card workout-index-card"> 
+        <%= render "workout_header", workout: workout %>
+      </div>
+    
   <% end %>
 </div>
 
-<%= link_to "New workout", new_workout_path %>
+<%= link_to "+ New workout", new_workout_path, class: "my-3 btn btn-primary" %>

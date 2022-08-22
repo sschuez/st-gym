@@ -18,10 +18,10 @@ class Block < ApplicationRecord
   end
 
   after_update_commit do
-    broadcast_replace_later_to :block,
-      target: "block_#{self.id}_header", 
-      partial: "blocks/block_header",
-      locals: { block: self }
+    broadcast_replace_later_to(workout)# self,
+      # target: "block_#{self.id}_header", 
+      # partial: "blocks/block_header",
+      # locals: { block: self }
   end
 
   after_destroy_commit do
