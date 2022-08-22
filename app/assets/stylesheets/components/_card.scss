@@ -20,10 +20,46 @@
   border: 1px $font-color-dark solid !important;
 }
 
+.workout-card .card-body {
+  padding-top: 0px;
+}
+
 .block-card {
   min-height: 120px;
   // border: 1px grey dashed !important;
   padding-right: 40px !important;
+  margin-bottom: 12px;
+}
+
+.block-header {
+  margin-top: 24px;
+  margin-bottom: -4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.block-title h1 {
+  font-weight: 600;
+  font-size: 24px;
+  padding-top: 10px;
+    
+  color: #f2c94c;
+  text-shadow: 0 0 0px #fff, 0 0 50px #f2c94c;
+  margin-bottom: 0px; 
+}
+
+.block-title {
+  position: relative;
+}
+
+.block-title form {
+  position: absolute;
+  top: -4px;
+  right: -24px;
+}
+
+.block-header .exercise-quantities {
+  padding-top: 6px;
 }
 
 .dark-mode .block-card {

@@ -1,0 +1,11 @@
+<div class="block-header">
+  
+  <%= turbo_frame_tag "#{dom_id(block)}_title" do %>
+    <%= render "blocks/block_header_title", block: block %>
+  <% end %> 
+    
+  <%= turbo_frame_tag "#{dom_id(block)}_repetitions" do %>
+    <%= render "blocks/block_repetitions", block: block %>
+  <% end %>
+  
+</div>
