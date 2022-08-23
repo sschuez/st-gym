@@ -14,25 +14,12 @@
                       } %>
     <% end %>
     
-  <fieldset class="form-group check_boxes optional exercise_instance_exercises my-3">
+    <fieldset class="form-group check_boxes optional exercise_instance_exercises my-3">
+      
+      <%= render "exercise_instances/list", exercises: @exercises %>
     
-    <div data-refresh-list-target="list">
-      <% @exercises.each do |exercise| %>
-        <%# <legend class="col-form-label pt-0">Tags</legend> %>
-        
-        <input type="hidden" name="exercise_instance[exercise_id][]" value="">
-        <div class="tag-item">
-          <input class="form-check-input check_boxes optional tag-selector" type="checkbox" value="<%= exercise.id %>" name="exercise_instance[exercise_id][]" id="exercise_instance_exercise_id_<%= exercise.id %>">
-          <label class="form-check-label collection_check_boxes" for="exercise_instance_exercise_id_<%= exercise.id %>"><%= exercise.name %></label>
-        </div>
-      <% end %>
-    </div>
-  
+    </fieldset>
   </div>
-
-
-  </fieldset>
-
 
   <%#= f.association :exercise,
     collection: Exercise.order(name: :asc),
