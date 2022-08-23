@@ -2,14 +2,39 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <%# <div class="form-inputs"> %>
-    <%#= f.association :exercise %>
-    <%# <p>Choose if you want to use a tabata timer or repetitions <span class="text-secondary small">You can also do this later</span></p> %>
-    <%#= f.input :repetitions %>
-    <%#= f.input :time %>
-  <%# </div> %>
+  <div data-controller="refresh-list">
+    <%= form_with url: new_workout_block_exercise_instance_path(@workout, @block, @exercise_instance), method: :get, html: { class: 'mb-3', data: { refresh_list_target: 'form' } }, data: { turbo: :false } do |f| %>
+      <%= f.text_field :query,
+                       class: "form-control",
+                       placeholder: 'Type an exercise name..',
+                       value: params[:query],
+                       data: {
+                        refresh_list_target: 'searchInput',
+                        action: "keyup->refresh-list#update"
+                      } %>
+    <% end %>
+    
+  <fieldset class="form-group check_boxes optional exercise_instance_exercises my-3">
+    
+    <div data-refresh-list-target="list">
+      <% @exercises.each do |exercise| %>
+        <%# <legend class="col-form-label pt-0">Tags</legend> %>
+        
+        <input type="hidden" name="exercise_instance[exercise_id][]" value="">
+        <div class="tag-item">
+          <input class="form-check-input check_boxes optional tag-selector" type="checkbox" value="<%= exercise.id %>" name="exercise_instance[exercise_id][]" id="exercise_instance_exercise_id_<%= exercise.id %>">
+          <label class="form-check-label collection_check_boxes" for="exercise_instance_exercise_id_<%= exercise.id %>"><%= exercise.name %></label>
+        </div>
+      <% end %>
+    </div>
+  
+  </div>
 
-  <%= f.association :exercise,
+
+  </fieldset>
+
+
+  <%#= f.association :exercise,
     collection: Exercise.order(name: :asc),
     legend_tag: false,
     as: :check_boxes,

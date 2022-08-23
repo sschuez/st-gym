@@ -10,6 +10,18 @@ class ExerciseInstancesController < ApplicationController
   
   def new
     @exercise_instance = @block.exercise_instances.new
+    # @exercises = Exercise.order(name: :desc)
+    @exercises = Exercise.order(name: :asc)
+
+    if params[:query].present?
+      @exercises = @exercises.where('name ILIKE ?', "%#{params[:query]}%")
+    end
+  
+    # respond_to do |format|
+      # format.html # Follow regular flow of Rails
+      # format.text { render partial: 'list.html', locals: { exercises: @exercises } }
+      # format.turbo_stream { render template: 'exercise_instances/list.html', locals: { exercises: @exercises } }
+    # end
     # @exercises = Exercise.all
   end
   
