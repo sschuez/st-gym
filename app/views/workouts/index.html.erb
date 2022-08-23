@@ -1,15 +1,11 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Workouts</h1>
 
 <div id="workouts">
   <% @workouts.each do |workout| %>
+  
+    <%= turbo_stream_from workout %>
     
-      <%= turbo_stream_from workout %>
-
-      <div class="card workout-index-card"> 
-        <%= render "workout_header", workout: workout %>
-      </div>
+    <%= render "workout_index_card", workout: workout %>
     
   <% end %>
 </div>

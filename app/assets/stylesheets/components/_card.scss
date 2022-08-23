@@ -37,6 +37,11 @@
   border: none;
 }
 
+.workout-index-card h1 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
 #workouts a {
   // text-decoration: none;
   color: inherit;
@@ -64,6 +69,15 @@
   color: #f2c94c;
   text-shadow: 0 0 0px #fff, 0 0 50px #f2c94c;
   margin-bottom: 0px; 
+}
+
+.workout-title h1 {
+  font-weight: 600;
+  font-size: 28px;
+  margin-bottom: 8px; 
+    
+  color: #7E73FF;
+  text-shadow: 0 0 0px #fff, 0 0 50px #7E73FF;
 }
 
 .block-title {

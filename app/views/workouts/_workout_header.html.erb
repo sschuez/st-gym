@@ -3,14 +3,18 @@
     
     <% if action_name == "index" %>
       <%= link_to workout_path(workout) do %>
-        <h4><%= workout.name %></h4>
+        <div class="workout-title">
+          <h1><%= workout.name %></h1>
+        </div>
         <% if workout.description %>
           <%= workout.description %>
         <% end %>
         <span class="text-secondary small grey"><%= workout.public ? "Public workout" : "Private workout" %></span>
       <% end %>
     <% else %>
-      <h4><%= workout.name %></h4>
+      <div class="workout-title">
+        <h1><%= workout.name %></h1>
+      </div>
       <% if workout.description %>
         <%= workout.description %>
       <% end %>
