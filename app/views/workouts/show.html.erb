@@ -1,3 +1,7 @@
+<% content_for :meta_title, "#{@workout.name} on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @workout.description %>
+<%# content_for :meta_image, cl_image_path(@workout.photo.path) %>
+
 <%= link_to "Create a new exercise", new_exercise_path, "data-controller": "turbo", class: "btn btn-primary" %>
 <br><br>
 

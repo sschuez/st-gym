@@ -3,7 +3,7 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div data-controller="refresh-list">
-    <%= form_with url: new_workout_block_exercise_instance_path(@workout, @block, @exercise_instance), method: :get, html: { class: 'mb-3', data: { refresh_list_target: 'form' } }, data: { turbo: :false } do |f| %>
+    <%= form_with url: new_workout_block_exercise_instance_path(@workout, @block, @exercise_instance), method: :get, html: { class: 'mb-3', data: { refresh_list_target: 'form' } } do |f| %>
       <%= f.text_field :query,
                        class: "form-control",
                        placeholder: 'Type an exercise name..',

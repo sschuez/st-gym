@@ -3,7 +3,7 @@
     <input type="hidden" name="exercise_instance[exercise_id][]" value="">
     <div class="tag-item">
       <input class="form-check-input check_boxes optional tag-selector" type="checkbox" value="<%= exercise.id %>" name="exercise_instance[exercise_id][]" id="exercise_instance_exercise_id_<%= exercise.id %>">
-      <label class="form-check-label collection_check_boxes" for="exercise_instance_exercise_id_<%= exercise.id %>"><%= exercise.name %></label>
+      <label class="form-check-label collection_check_boxes" for="exercise_instance_exercise_id_<%= exercise.id %>"><%= highlight(exercise.name, query_array) %></label>
     </div>
   <% end %>
 </div>
