@@ -1,25 +1,13 @@
 <%= turbo_frame_tag "#{dom_id(workout)}_header" do %>
   <div class="card-header bg-transparent small">
-    
-    <% if action_name == "index" %>
-      <%= link_to workout_path(workout) do %>
-        <div class="workout-title">
-          <h1><%= workout.name %></h1>
-        </div>
-        <% if workout.description %>
-          <%= workout.description %>
-        <% end %>
-        <span class="text-secondary small grey"><%= workout.public ? "Public workout" : "Private workout" %></span>
-      <% end %>
-    <% else %>
-      <div class="workout-title">
-        <h1><%= workout.name %></h1>
-      </div>
-      <% if workout.description %>
-        <%= workout.description %>
-      <% end %>
-      <span class="text-secondary small grey"><%= workout.public ? "Public workout" : "Private workout" %></span>
+
+    <div class="workout-title">
+      <h1><%= workout.name %></h1>
+    </div>
+    <% if workout.description %>
+      <%= workout.description %>
     <% end %>
+    <span class="text-secondary small grey"><%= workout.public ? "Public workout" : "Private workout" %></span>
 
     <div class="workout-edit" data-meta-target="user">
       <%= button_to edit_workout_path(workout), method: :post, class: "btn-styling" do %>
