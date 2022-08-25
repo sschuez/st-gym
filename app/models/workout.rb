@@ -24,7 +24,7 @@ class Workout < ApplicationRecord
     broadcast_replace_later_to self,
       target: "workout_#{self.id}_header", 
       partial: "workouts/workout_header",
-      locals: { block: self }
+      locals: { workout: self }
   end
 
   # == Class Methods ========================================================
