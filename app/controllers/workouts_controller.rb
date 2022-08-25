@@ -35,7 +35,7 @@ class WorkoutsController < ApplicationController
     @workout = Workout.new(workout_params)  
     respond_to do |format|
       if @workout.save
-        format.html { redirect_to workout_url(@workout), notice: "workout was successfully created." }
+        format.html { redirect_to workout_path(@workout), notice: "workout was successfully created." }
         format.json { render :show, status: :created, location: @workout }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -86,7 +86,7 @@ class WorkoutsController < ApplicationController
     @workout.destroy
 
     respond_to do |format|
-      format.html { redirect_to workouts_url, notice: "Workout was successfully destroyed." }
+      format.html { redirect_to workouts_path, notice: "Workout was successfully destroyed." }
       format.json { head :no_content }
     end
   end
