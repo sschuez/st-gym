@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :exercises
-  devise_for :users
   
+  # Users
+  devise_for :users
+  resources :users, only: [:index, :show]
+    
   # Public pages
   root to: 'pages#home'
   get '/about', to: 'pages#about'

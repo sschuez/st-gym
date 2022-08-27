@@ -4,8 +4,10 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts or /workouts.json
   def index
-    @workouts = Workout.all.order(created_at: :desc)
-    @public_workouts = Workout.all.published.order(created_at: :desc)
+    @workouts = policy_scope(Workout).order(created_at: :desc)
+    # @workouts = Workout.all.order(created_at: :desc)
+    # @public_workouts = Workout.all.published.order(created_at: :desc)
+    # authorize @workouts
   end
 
   # GET /workouts/1 or /workouts/1.json
@@ -18,7 +20,9 @@ class WorkoutsController < ApplicationController
     weekday = Workout::WEEKDAY[Time.new().wday()]
     @workout = Workout.new(name: "Happy #{weekday} workout!")
     @workout.user = current_user if user_signed_in? 
+    authorize @workout
     @workout.save
+    
     respond_to do |format|
       if @workout.save
         format.html { redirect_to workout_path(@workout), notice: "Workout was successfully created." }
@@ -32,7 +36,7 @@ class WorkoutsController < ApplicationController
 
   # POST /workouts or /workouts.json
   def create
-    @workout = Workout.new(workout_params)  
+    @workout = Workout.new(workout_params)
     respond_to do |format|
 
       if @workout.save
@@ -120,6 +124,7 @@ class WorkoutsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_workout
       @workout = Workout.find(params[:id])
+      authorize @workout
     end
 
     # Only allow a list of trusted parameters through.
