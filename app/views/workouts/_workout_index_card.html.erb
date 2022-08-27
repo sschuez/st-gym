@@ -1,4 +1,6 @@
-  <div class="card workout-index-card">
+  <%= turbo_stream_from workout %>
+
+  <%= content_tag :div, id: dom_id(workout), class: "card workout-index-card" do %>
 
     <%= link_to workout_path(workout) do %>
       <div class="card-header bg-transparent small">  
@@ -21,4 +23,4 @@
       <% end %>
     </div>
 
-  </div>
+  <% end %>

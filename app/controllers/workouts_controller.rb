@@ -34,6 +34,7 @@ class WorkoutsController < ApplicationController
   def create
     @workout = Workout.new(workout_params)  
     respond_to do |format|
+
       if @workout.save
         format.html { redirect_to workout_path(@workout), notice: "workout was successfully created." }
         format.json { render :show, status: :created, location: @workout }
@@ -86,6 +87,7 @@ class WorkoutsController < ApplicationController
     @workout.destroy
 
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@workout) }
       format.html { redirect_to workouts_path, notice: "Workout was successfully destroyed." }
       format.json { head :no_content }
     end

@@ -2,8 +2,6 @@
 
 <div id="workouts">
   <% @workouts.each do |workout| %>
-  
-    <%= turbo_stream_from workout %>
     
     <%= render "workout_index_card", workout: workout %>
     

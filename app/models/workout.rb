@@ -26,6 +26,10 @@ class Workout < ApplicationRecord
       partial: "workouts/workout_header",
       locals: { workout: self }
   end
+  
+  after_destroy_commit do
+    broadcast_remove_to(self)
+  end
 
   # == Class Methods ========================================================
   
