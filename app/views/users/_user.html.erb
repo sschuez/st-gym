@@ -18,7 +18,7 @@
       <% end %>
       <div class="active-icon">
         <%#= link_to edit_user_path(user) do %>
-          <i class="fas fa-check-circle"></i>
+        <i class="bi bi-check-circle-fill"></i>
         <%# end %>
       </div>
     </div>
@@ -37,14 +37,16 @@
     <div class="flex-col">
     </div>
 
-    <!-- empty placeholder -->
+    <!-- ID -->
     <div class="flex-col">
       <p><strong>Id:</strong> <%= user.id %></p>
     </div>
 
     <!-- empty placeholder -->
     <div class="flex-col">
-      <p>placeholder</p>
+      <%= link_to user_workouts_path(:user => user.id) do %>
+        <p>Workouts</p>
+      <% end %>
     </div>
 
     <!-- empty placeholder -->

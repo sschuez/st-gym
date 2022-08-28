@@ -1,1 +1,1 @@
-<%= render "workouts/index_template", header: "Your workouts", workouts: @workouts %>
+<%= render "workouts/index_template", header: (@header ? "#{@header}'s workouts" : "Your workouts"), workouts: @workouts %>

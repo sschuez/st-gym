@@ -12,7 +12,13 @@ class WorkoutsController < ApplicationController
 
   def user_workouts
     skip_authorization
-    @workouts = Workout.where(user: current_user).order(updated_at: :desc)
+    if params[:user] && current_user.admin?
+      user = User.find(params[:user])
+      @header = user.email
+      @workouts = Workout.where(user: user).order(updated_at: :desc)
+    else
+      @workouts = Workout.where(user: current_user).order(updated_at: :desc)
+    end
   end
 
   def public_workouts

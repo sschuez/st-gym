@@ -33,6 +33,10 @@ class WorkoutPolicy < ApplicationPolicy
   def toggle_public?
     destroy?
   end
+
+  def user_workouts?
+    user == User.find(params[:user]) || user.admin?
+  end
   
   def destroy?
     user_is_owner_of_record?
