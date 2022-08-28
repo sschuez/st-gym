@@ -98,7 +98,7 @@ class WorkoutsController < ApplicationController
 
   def toggle_public
     @workout = Workout.find(params[:id])
-    authorize @workout, :create? 
+    authorize @workout
     respond_to do |format|
       if @workout.toggle! :public
         format.turbo_stream do 

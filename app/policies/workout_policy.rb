@@ -30,6 +30,10 @@ class WorkoutPolicy < ApplicationPolicy
     create?
   end
 
+  def toggle_public?
+    user_is_owner_of_record?
+  end
+
   private
   
   def user_is_owner_of_record?

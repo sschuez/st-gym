@@ -5,11 +5,13 @@ class ExerciseInstancesController < ApplicationController
 
   def show
     @exercise_instance = @block.exercise_instances.find(params[:id])
+    authorize @exercise_instance
     @exercise = @exercise_instance.exercise
   end
   
   def new
     @exercise_instance = @block.exercise_instances.new
+    authorize @exercise_instance
     
     @exercises = Exercise.order(name: :asc)
     query_and_respond(@exercises)
@@ -21,6 +23,7 @@ class ExerciseInstancesController < ApplicationController
       @exercise_instance = @block.exercise_instances.new(
         exercise: Exercise.find(exercise.to_i)
       )
+      authorize @exercise_instance
       respond_to do |format|
         if @exercise_instance.save
           format.turbo_stream { flash.now[:notice] = "Exercise instance was successfully created." }
@@ -42,6 +45,7 @@ class ExerciseInstancesController < ApplicationController
 
   def destroy
     @exercise_instance = ExerciseInstance.find(params[:id])
+    authorize @exercise_instance
     @exercise_instance.destroy
   end
 
