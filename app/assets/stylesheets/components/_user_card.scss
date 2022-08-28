@@ -1,0 +1,184 @@
+@use "config/variables" as *;
+
+.item1{
+  position: relative;
+}
+
+.active-icon{
+  position: absolute;
+}
+
+.index-card{
+  margin-bottom: 12px;
+}
+
+.index-card .bi-envelope {
+  margin-left: 6px;
+}
+
+.flex-grid{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 0px;
+  height: 80px;
+}
+
+.flex-col{
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  p{
+    margin: 0;
+  }
+  h5{
+    margin: 0;
+    font-weight: bold;
+  }
+  .flex-col{
+    #weight{
+      margin-left: 29px;
+    }
+  }
+  a{
+    color: inherit;
+  }
+  a:hover {
+    color: inherit;
+  }
+}
+
+.flex-col:nth-child(2){
+  justify-content: left;
+}
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .flex-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 125px;
+    margin-left: 3px;
+    margin-right: 3px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  .flex-col:nth-child(1) { grid-column: 1 / 1; grid-row: 1; }
+  .flex-col:nth-child(2) { grid-column: 2 / 4; grid-row: 1; z-index: 1; padding-left: 18px; }
+  .flex-col:nth-child(3) { grid-column: 1 / 2; grid-row: 2; z-index: -1; }
+  .flex-col:nth-child(4) { grid-column: 1 / 2; grid-row: 2; }
+  .flex-col:nth-child(5) { grid-column: 2 / 3; grid-row: 2; }
+
+  p{
+    font-size: 12px;
+  }
+
+  .active-icon{
+    left: 6px;
+    top: -3px;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .flex-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 125px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  .flex-col:nth-child(1) { grid-column: 1 / 1; grid-row: 1; }
+  .flex-col:nth-child(2) { grid-column: 2 / 4; grid-row: 1; z-index: 1; padding-left: 48px; }
+  .flex-col:nth-child(3) { grid-column: 1 / 2; grid-row: 2; z-index: -1; }
+  .flex-col:nth-child(4) { grid-column: 1 / 2; grid-row: 2; }
+  .flex-col:nth-child(5) { grid-column: 2 / 3; grid-row: 2; }
+
+  p{
+    font-size: 14px;
+  }
+
+  .active-icon{
+    left: 6px;
+    top: -3px;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .flex-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: 80px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .flex-col:nth-child(1) { grid-column: 1 / 2; grid-row: 1; }
+  .flex-col:nth-child(2) { grid-column: 2 / 4; grid-row: 1; z-index: 1; padding-left: 24px; }
+  .flex-col:nth-child(3) { grid-column: 3 / 4; grid-row: 1; z-index: -1; }
+  .flex-col:nth-child(4) { grid-column: 4 / 5; grid-row: 1; }
+  .flex-col:nth-child(5) { grid-column: 5 / 6; grid-row: 1; z-index: 1; }
+
+  p{
+    font-size: 16px;
+  }
+
+  .active-icon{
+    left: 6px;
+    top: 3px;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .flex-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: 80px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .flex-col:nth-child(1) { grid-column: 1 / 2; grid-row: 1; }
+  .flex-col:nth-child(2) { grid-column: 2 / 4; grid-row: 1; z-index: 1; padding-left: 24px; }
+  .flex-col:nth-child(3) { grid-column: 3 / 4; grid-row: 1; z-index: -1; }
+  .flex-col:nth-child(4) { grid-column: 4 / 5; grid-row: 1; }
+  .flex-col:nth-child(5) { grid-column: 5 / 6; grid-row: 1; z-index: 1; }
+
+  p{
+    font-size: 16px;
+  }
+
+  .active-icon{
+    left: 6px;
+    top: 3px;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .flex-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: 80px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .flex-col:nth-child(1) { grid-column: 1 / 2; grid-row: 1; }
+  .flex-col:nth-child(2) { grid-column: 2 / 4; grid-row: 1; z-index: 1; padding-left: 24px; }
+  .flex-col:nth-child(3) { grid-column: 3 / 4; grid-row: 1; z-index: -1; }
+  .flex-col:nth-child(4) { grid-column: 4 / 5; grid-row: 1; }
+  .flex-col:nth-child(5) { grid-column: 5 / 6; grid-row: 1; z-index: 1; }
+
+  p{
+    font-size: 16px;
+  }
+
+  .active-icon{
+    left: 6px;
+    top: 3px;
+  }
+}
+
+
+
+
+
+
