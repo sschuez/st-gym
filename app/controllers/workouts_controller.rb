@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :new, :show, :edit, :update ]
+  skip_before_action :authenticate_user!, only: [ :public_workouts, :new, :show, :edit, :update ]
   before_action :set_workout, only: %i[ show edit update destroy ]
 
   # GET /workouts or /workouts.json
