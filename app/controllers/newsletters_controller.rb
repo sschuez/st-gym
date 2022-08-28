@@ -1,10 +1,10 @@
 class NewslettersController < ApplicationController
   require 'digest'
-
   skip_before_action :authenticate_user!#, only: [ :new, :show ]
   
   # require 'MailchimpMarketing'
   def addUser
+    skip_authorization
     dc = Rails.application.credentials.dig(:mailchimp, :server)
     audience_id = Rails.application.credentials.dig(:mailchimp, :audience_id)
     url = "https://#{dc}.api.mailchimp.com/3.0/lists/#{audience_id}/members"
@@ -53,6 +53,7 @@ class NewslettersController < ApplicationController
 
   # Currently inactive
   def removeUser
+    skip_authorization
     # get the user's email address
     user_email = params[:email_address]
 
@@ -93,7 +94,9 @@ class NewslettersController < ApplicationController
       }
     end
   end
-
+  
+  private
+  
   # Accept parameters into your API
   def mailing_list_params
     params.permit(:fname, :lname, :phone, :company, :email_address)

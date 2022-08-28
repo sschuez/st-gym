@@ -1,6 +1,6 @@
 class WorkoutsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :new, :show, :edit, :update ]
-  before_action :set_workout, only: %i[ show edit update destroy toggle_public ]
+  before_action :set_workout, only: %i[ show edit update destroy ]
 
   # GET /workouts or /workouts.json
   def index
@@ -51,7 +51,6 @@ class WorkoutsController < ApplicationController
   
   # GET /workouts/1/edit
   def edit
-    # authorize @workout
     respond_to do |format|
       format.turbo_stream do 
         render turbo_stream: turbo_stream.update(
@@ -98,6 +97,8 @@ class WorkoutsController < ApplicationController
   end
 
   def toggle_public
+    @workout = Workout.find(params[:id])
+    authorize @workout, :create? 
     respond_to do |format|
       if @workout.toggle! :public
         format.turbo_stream do 

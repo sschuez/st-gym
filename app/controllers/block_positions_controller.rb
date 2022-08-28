@@ -3,6 +3,7 @@ class BlockPositionsController < ApplicationController
 
   def update
     @block = GlobalID::Locator.locate_signed(params[:sgid])
+    authorize @block
     @block.insert_at(params[:position])
     head :ok
   end
