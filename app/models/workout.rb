@@ -20,11 +20,19 @@ class Workout < ApplicationRecord
   # == Callbacks ============================================================
   broadcasts
   
+  after_create_commit do
+    broadcast_append_later_to(self)
+  end
+
   after_update_commit do
     broadcast_replace_later_to self,
       target: "workout_#{self.id}_header", 
       partial: "workouts/workout_header",
       locals: { workout: self }
+  end
+  
+  after_destroy_commit do
+    broadcast_remove_to(self)
   end
 
   # == Class Methods ========================================================

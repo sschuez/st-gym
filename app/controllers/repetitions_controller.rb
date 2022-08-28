@@ -3,6 +3,7 @@ class RepetitionsController < ApplicationController
   
   def update
     @exercise_instance_or_block = GlobalID::Locator.locate_signed(params[:sgid])
+    authorize @exercise_instance_or_block
     
     if params[:request_type] == "update_quantity"
       @exercise_instance_or_block.toggle! :tabata

@@ -1,11 +1,13 @@
 class WorkoutsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :new, :show, :edit, :update ]
-  before_action :set_workout, only: %i[ show edit update destroy toggle_public ]
+  before_action :set_workout, only: %i[ show edit update destroy ]
 
   # GET /workouts or /workouts.json
   def index
-    @workouts = Workout.all.order(created_at: :desc)
-    @public_workouts = Workout.all.published.order(created_at: :desc)
+    @workouts = policy_scope(Workout).order(created_at: :desc)
+    # @workouts = Workout.all.order(created_at: :desc)
+    # @public_workouts = Workout.all.published.order(created_at: :desc)
+    # authorize @workouts
   end
 
   # GET /workouts/1 or /workouts/1.json
@@ -18,7 +20,9 @@ class WorkoutsController < ApplicationController
     weekday = Workout::WEEKDAY[Time.new().wday()]
     @workout = Workout.new(name: "Happy #{weekday} workout!")
     @workout.user = current_user if user_signed_in? 
+    authorize @workout
     @workout.save
+    
     respond_to do |format|
       if @workout.save
         format.html { redirect_to workout_path(@workout), notice: "Workout was successfully created." }
@@ -32,10 +36,11 @@ class WorkoutsController < ApplicationController
 
   # POST /workouts or /workouts.json
   def create
-    @workout = Workout.new(workout_params)  
+    @workout = Workout.new(workout_params)
     respond_to do |format|
+
       if @workout.save
-        format.html { redirect_to workout_url(@workout), notice: "workout was successfully created." }
+        format.html { redirect_to workout_path(@workout), notice: "workout was successfully created." }
         format.json { render :show, status: :created, location: @workout }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -46,7 +51,6 @@ class WorkoutsController < ApplicationController
   
   # GET /workouts/1/edit
   def edit
-    # authorize @workout
     respond_to do |format|
       format.turbo_stream do 
         render turbo_stream: turbo_stream.update(
@@ -86,12 +90,15 @@ class WorkoutsController < ApplicationController
     @workout.destroy
 
     respond_to do |format|
-      format.html { redirect_to workouts_url, notice: "Workout was successfully destroyed." }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@workout) }
+      format.html { redirect_to workouts_path, notice: "Workout was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   def toggle_public
+    @workout = Workout.find(params[:id])
+    authorize @workout
     respond_to do |format|
       if @workout.toggle! :public
         format.turbo_stream do 
@@ -118,6 +125,7 @@ class WorkoutsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_workout
       @workout = Workout.find(params[:id])
+      authorize @workout
     end
 
     # Only allow a list of trusted parameters through.

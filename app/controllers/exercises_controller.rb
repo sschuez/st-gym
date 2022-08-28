@@ -14,6 +14,8 @@ class ExercisesController < ApplicationController
   # GET /exercises/new
   def new
     @exercise = Exercise.new
+    # authorize @exercise
+    authorize @exercise
   end
 
   # GET /exercises/1/edit
@@ -23,6 +25,7 @@ class ExercisesController < ApplicationController
   # POST /exercises or /exercises.json
   def create
     @exercise = Exercise.new(exercise_params)
+    authorize @exercise
 
     if @exercise.save
       redirect_to request.referrer, notice: "#{@exercise.name} was created. You can now choose and add it to a block."

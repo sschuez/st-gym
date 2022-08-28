@@ -1,0 +1,57 @@
+<div id="<%= dom_id user %>" class="index-card card">
+  <div class="flex-grid">
+
+    <!-- Avatar -->
+    <div class="flex-col item1">
+      <%= link_to user_path(user) do %>
+        <%# if user.avatar.attached? %>
+            <%#= cl_image_tag user.avatar.key, :transformation=>[
+              {:width=>200, :height=>200, :gravity=>"face", :radius=>"max", :crop=>"thumb"},
+              {:width=>200, :crop=>"scale"}
+              ], 
+              class: "user-avatar", alt: "user-avatar" %>
+        <%# else %>
+          <div class="default-avatar">
+            <%= image_tag "default_avatar_square.png", class: "user-avatar", alt: "user-avatar" %>
+          </div>
+        <%# end %>
+      <% end %>
+      <div class="active-icon">
+        <%#= link_to edit_user_path(user) do %>
+          <i class="fas fa-check-circle"></i>
+        <%# end %>
+      </div>
+    </div>
+    
+    <!-- Name -->
+    <div class="flex-col">
+      <%= link_to user_path(user) do %>
+        <h5><%= highlight(user.email, query_array) %> <%#= highlight(user.last_name, query_array) %></h5>
+        <%= mail_to user.email, class: "" do %>
+          <i class="bi bi-envelope"></i>
+        <% end %>
+      <% end %>
+    </div>
+
+    <!-- empty placeholder (needs to be emtpy) -->
+    <div class="flex-col">
+    </div>
+
+    <!-- empty placeholder -->
+    <div class="flex-col">
+      <p><strong>Id:</strong> <%= user.id %></p>
+    </div>
+
+    <!-- empty placeholder -->
+    <div class="flex-col">
+      <p>placeholder</p>
+    </div>
+
+    <!-- empty placeholder -->
+    <div class="flex-col">
+      <p>placeholder</p>
+    </div>
+  
+  </div>	
+</div>
+

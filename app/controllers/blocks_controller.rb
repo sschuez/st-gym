@@ -1,12 +1,14 @@
 class BlocksController < ApplicationController
   skip_before_action :authenticate_user!#, only: [ :new, :show ]
   before_action :set_workout, only: %i[ new create edit update destroy ]
-  before_action :set_block, only: %i[ edit edit_title update destroy ]
+  before_action :set_block, only: %i[ edit update destroy ]
 
   # GET /blocks/new
   def new
     @block = @workout.blocks.new
     @block.workout = @workout
+    # authorize(@block, policy_class: WorkoutPolicy)
+    authorize @block
   end
 
   # GET /blocks/1/edit
@@ -22,6 +24,8 @@ class BlocksController < ApplicationController
   end
 
   def edit_title
+    @block = Block.find(params[:id])
+    authorize @block, :edit?
     respond_to do |format|
       format.turbo_stream do 
         render turbo_stream: turbo_stream.update(
@@ -35,6 +39,7 @@ class BlocksController < ApplicationController
   # POST /blocks or /blocks.json
   def create
     @block = @workout.blocks.new(block_params)
+    authorize @block
     @block.workout = @workout
     next_block_nr = @workout.blocks.count + 1
     @block.title = "Block #{next_block_nr}"
@@ -102,6 +107,7 @@ class BlocksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_block
       @block = Block.find(params[:id])
+      authorize @block
     end
 
     def set_workout
