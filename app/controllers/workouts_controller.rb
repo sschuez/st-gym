@@ -10,6 +10,16 @@ class WorkoutsController < ApplicationController
     # authorize @workouts
   end
 
+  def user_workouts
+    skip_authorization
+    @workouts = Workout.where(user: current_user).order(updated_at: :desc)
+  end
+
+  def public_workouts
+    skip_authorization
+    @workouts = Workout.published.order(updated_at: :desc)
+  end
+
   # GET /workouts/1 or /workouts/1.json
   def show
     @block = @workout.blocks.new

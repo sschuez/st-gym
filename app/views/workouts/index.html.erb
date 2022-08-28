@@ -1,11 +1,1 @@
-<h1>Workouts</h1>
-
-<div id="workouts">
-  <% @workouts.each do |workout| %>
-    
-    <%= render "workout_index_card", workout: workout %>
-    
-  <% end %>
-</div>
-
-<%= link_to "+ New workout", new_workout_path, class: "my-3 btn btn-primary" %>
+<%= render "workouts/index_template", header: "All workouts", workouts: @workouts %>

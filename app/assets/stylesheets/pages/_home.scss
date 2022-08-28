@@ -15,6 +15,13 @@ body {
   
 }
 
+.dark-mode p {
+  color: $font-color-dark;
+}
+
+.dark-mode p:hover {
+  color: $font-color-dark;
+}
 
 a {
   text-decoration: none !important;

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   put '/removeuser', to: 'newsletters#removeUser'
 
   # Workouts
+  get 'my_workouts' => 'workouts#user_workouts', as: :user_workouts
+  get 'public_workouts' => 'workouts#public_workouts', as: :public_workouts
   resources :workouts do
     member do
       post :edit
