@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     
   # Public pages
   root to: 'pages#home'
+  get '/home_modal', to: 'pages#home_modal'
   get '/about', to: 'pages#about'
   
   # Mailchimp integration
