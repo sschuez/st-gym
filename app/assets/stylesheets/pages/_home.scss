@@ -12,16 +12,18 @@ body {
   a {
     color: $links-dark !important;
   }
-  
+  p {
+    color: $font-color-dark;
+  }
+  p:hover {
+    color: $font-color-dark;
+  }
 }
 
-.dark-mode p {
-  color: $font-color-dark;
+.dark-mode .text-link {
+  color: var(--bs-info) !important;
 }
 
-.dark-mode p:hover {
-  color: $font-color-dark;
-}
 
 a {
   text-decoration: none !important;

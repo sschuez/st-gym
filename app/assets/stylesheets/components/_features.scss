@@ -1,3 +1,5 @@
+@use "config/variables" as *;
+
 .feature-icon {
   display: inline-flex;
   align-items: center;
@@ -45,6 +47,32 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+}
+
+.bi {
+  vertical-align: -.125em;
+  fill: currentColor;
+}
+
+.hero-img {
+  border-radius: 5px !important;
+}
+
+#features, #selected-workouts {
+  border-radius: 5px;
+  background-color: $footer-background;
+}
+
+.dark-mode #features {
+  background-color: $card-background-dark !important;
+}
+
+.dark-mode #selected-workouts {
+  background-color: $card-background-dark !important;
+}
+
+.selected-workout {
+  border: none !important;
 }
 
 @media (min-width: 992px) {

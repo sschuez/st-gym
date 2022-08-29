@@ -1,9 +1,24 @@
-<h1>About St Gym</h1>
-<p>The idea for this app was born in Santa Teresa (St), Costa Rica.</p> 
-<p>There, I would visit an amzing gym (Real Training) that offered functional training sessions. I was immediatley hooked by this kind of workout, since it mainly uses your own weight and it trains your whole body. It was the perfect training to support my surfing.</p>
-<p>What I also really enjoyed was the incredible energy I felt during those sessions. One part was, of course, the great coach, who was really good at motivating everyone. But the other part was the fact that everybody was working out together. This comradery created a unique atmosphere, helping me push my limites everytime I went there.</p>
-<p>So I thought, why not try to replicate this energy online, so that there is always somewhere a group of people working out together. Obvisouly the energy will not be the same as in-person group sessions. But maybe something else can emerge from this.</p> 
-<p>Maybe a bunch of like-minded people can come together to improve their fitness and wellbeing, while being part of a community that helps achieve this goal! That's what St Gym is all about.</p>
-<p>So go ahead, <%= link_to "create your own workout", new_workout_path, class: "link-info" %> or <%= link_to "join an existing one", workout_path(Workout.first(9).sample), class: "link-info" %></p>
-<p>Happy workout!</p>
-<br>
+<div class="narrow-container">
+  <h1 class="display-5 fw-bold lh-1 mb-3">About St Gym</h1>
+  
+    <p class="lead">It's the usual grind: You start a new workout routine, keep up the good work during the first two month and then...</p> 
+    <p class="lead">... it fizzles out 😔</p>
+
+    <h2 class="fw-bold">Keep the momentum going</h2>
+    <p class="lead">For a lot of people, it's just very hard to stick to new routines. For new routines to really stick, they need to be repeated a lot, over a sustained period of time. What could help this persistency?</p>
+
+    <h2 class="fw-bold">The community</h2>
+    <p class="lead">Why is it so much easier to stick to a routine when you're part of a club?</p>
+    
+    <p class="lead">If you've ever been part of a communiyt you know the incredible energy you get from the others. Working out together creates a unique atmosphere, helping you push your limits. This sense of comradery, shared accomplishemnet, as well as suffering 😅, is what keeps you coming back.</p>
+
+    <h2 class="fw-bold">Variety is the soul of pleasure</h2>
+    <p class="lead">At StGym we strive to provide you with new, challenging and fun workouts. Keep the momentum by exploring new techniques and exercises that help you achieve your goals!</p>
+    
+    <h2 class="fw-bold">What is StGym</h2>
+    <p class="lead">StGym tries to create the energy you get from a being part of a club, without having to be at a particular place. Maybe a bunch of like-minded people can come together to improve their fitness and wellbeing, while being part of a community that helps achieve this goal! That's what St Gym is all about.</p>
+    <p class="lead">So go ahead, <%= link_to "create your own workout", new_workout_path, class: "text-link link-info" %> or <%= link_to "join an existing one", workout_path(Workout.first(9).sample), class: "link-info" %></p>
+    <h2 class="fw-bold">Happy workout 🚀</h2>
+    <br>
+  </div>
+</div>

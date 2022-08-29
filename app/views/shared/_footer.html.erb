@@ -5,7 +5,9 @@
         <h5>St Gym</h5>
         <ul class="nav flex-column">
           <li class="nav-item mb-2"><%= link_to "Home", root_path, class: "nav-link p-0 text-muted" %></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+          <li class="nav-item mb-2">
+          <%= link_to "Features", root_path(:anchor => "features"), class: "nav-link p-0 text-muted" %></li>
+          <%# <a href="#" class="nav-link p-0 text-muted">Features</a> %>
           <%# <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li> %>
           <%# <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li> %>
           <li class="nav-item mb-2"><%= link_to "About", about_path, class: "nav-link p-0 text-muted" %></li>
@@ -39,8 +41,8 @@
 
       <div class="col-md-5 offset-md-1 mb-3">
         <%= form_tag adduser_path, method: :post, data: { turbo: false } do %>
-          <h5>Subscribe to our newsletter</h5>
-          <p>Monthly digest of what's new and exciting from us.</p>
+          <h5>Subscribe to the newsletter</h5>
+          <p>Digest of what's new and exciting.</p>
           <div class="d-flex flex-column flex-sm-row w-100 gap-2">
             <label for="newsletter1" class="visually-hidden">Email address</label>
               <input id="newsletter1" name="email_address" type="text" class="form-control" placeholder="Email address">

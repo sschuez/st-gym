@@ -1,12 +1,12 @@
 @use "config/variables" as *;
 
 .footer {
-  background: #F4F4F4;
+  background: $footer-background;
   margin-top: 48px;
 }
 
 .dark-mode .footer {
-  background-color: $footer-dark;
+  background-color: $footer-background-dark;
 }
 
 .copyright a {

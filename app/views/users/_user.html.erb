@@ -45,7 +45,7 @@
     <!-- empty placeholder -->
     <div class="flex-col">
       <%= link_to user_workouts_path(:user => user.id) do %>
-        <p>Workouts</p>
+        <p>Workouts (<%= Workout.where(user: user).count %>)</p>
       <% end %>
     </div>
 

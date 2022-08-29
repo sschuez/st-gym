@@ -19,7 +19,7 @@
   <body data-controller="meta" class="<%= cookies[:theme] %>">  
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <div class="<%= "narrow-container" unless controller_name == "pages" %>">
+    <div class="container <%= "narrow-container" unless controller_name == "pages" %>">
       <%= yield %>
       <%= turbo_frame_tag "remote_modal" %>
     </div>    
