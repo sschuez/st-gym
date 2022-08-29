@@ -5,14 +5,43 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    @workout_to_save = params[:workout]
+    build_resource
+    yield resource if block_given?
+    respond_with resource
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    build_resource(sign_up_params)
+    @workout_to_save = params[:workout]
+
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        if @workout_to_save
+          sign_up(resource_name, resource)
+          saved_workout = helpers.save_workout_for(resource, @workout_to_save)
+          flash[:notice] = "Exercise #{saved_workout.name} was saved to your profile"
+          respond_with resource, location: workout_path(saved_workout)
+        else
+          set_flash_message! :notice, :signed_up
+          sign_up(resource_name, resource)
+          respond_with resource, location: after_sign_up_path_for(resource)
+        end
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
+    end
+  end
 
   # GET /resource/edit
   # def edit
