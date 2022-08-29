@@ -78,6 +78,10 @@
     margin-top: -6px;
     margin-bottom: 3px;
   }
+
+  .exercise-quantity p {
+    font-size: 16px !important;
+  }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -89,5 +93,9 @@
   }
   .exercise-instance-actions .emoji {
     margin-right: 18px;
+  }
+
+  .exercise-quantity p {
+    font-size: 16px !important;
   }
 }
