@@ -2,11 +2,15 @@ Rails.application.routes.draw do
   resources :exercises
   
   # Users
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }  
   resources :users, only: [:index, :show]
     
   # Public pages
   root to: 'pages#home'
+  get '/home_modal', to: 'pages#home_modal'
   get '/about', to: 'pages#about'
   
   # Mailchimp integration
@@ -19,6 +23,7 @@ Rails.application.routes.draw do
   resources :workouts do
     member do
       post :edit
+      get :save_workout
       put :toggle_public
     end
     
