@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   end
 
   def home_modal
+    skip_authorization
   end
 
   def about

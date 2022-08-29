@@ -12,9 +12,13 @@
 <br>
 <div class="d-flex flex-row-reverse">
   <% if !user_signed_in? %>
-    <%= link_to "💪 Sign in to save this workout", new_user_session_path(:workout => @workout), class: "btn btn-secondary" %>
+    <%= link_to "💪 Sign in/up to save & edit this workout", new_user_session_path(:workout => @workout), class: "btn btn-secondary" %>
   <% else %>
-    <%= link_to "💪 Save this exercise", "#", class: "btn btn-secondary" %>
+    <%# <% if @workout.original_workout.to_i == @workout.id %>
+      <%# <p>You already saved this workout.</p> %>
+    <%# else %>
+      <%= link_to '💪 Save this exercise', save_workout_workout_path(@workout), method: :post, class: "btn btn-secondary" %>
+    <%# end %>
   <% end %>
 </div> 
 

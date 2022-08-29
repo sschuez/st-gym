@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :workouts do
     member do
       post :edit
+      get :save_workout
       put :toggle_public
     end
     

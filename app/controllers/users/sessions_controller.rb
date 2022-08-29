@@ -19,7 +19,8 @@ class Users::SessionsController < Devise::SessionsController
     sign_in(resource_name, resource)
     yield resource if block_given?
     if @workout_to_save
-      saved_workout = save_workout_for(resource, @workout_to_save)
+      saved_workout = helpers.save_workout_for(resource, @workout_to_save)
+      flash[:notice] = "Exercise #{saved_workout.name} was saved to your profile"
       respond_with resource, location: workout_path(saved_workout)
     else
       respond_with resource, location: after_sign_in_path_for(resource)
@@ -31,44 +32,10 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  private
-
-  def save_workout_for(user, workout)
-    workout = Workout.find(workout)
-    new_workout = Workout.new(
-      name: workout.name,
-      description: workout.description,
-      user: user,
-      public: false
-    )
-    new_workout.save!
-    workout.blocks.each do |block|
-      new_block = new_workout.blocks.new(
-        repetitions: block.repetitions,
-        time: block.time,
-        tabata: block.tabata,
-        title: block.title,
-        position: block.position
-      )
-      new_block.save
-      block.exercise_instances.each do |exercise_instance|
-        new_exercise_instance = new_block.exercise_instances.new(
-          exercise: exercise_instance.exercise,
-          repetitions: exercise_instance.repetitions,
-          time: exercise_instance.time,
-          tabata: exercise_instance.tabata,
-          position: exercise_instance.position
-        )
-        new_exercise_instance.save
-      end
-    end
-    return new_workout
-  end
-
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_in_params
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  end
+  # def configure_sign_in_params
+  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
+  # end
 end

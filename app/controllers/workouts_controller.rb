@@ -137,6 +137,15 @@ class WorkoutsController < ApplicationController
     end
   end
 
+  def save_workout
+    @workout_to_save = Workout.find(params[:id])
+    authorize @workout_to_save
+    
+    saved_workout = helpers.save_workout_for(current_user, @workout_to_save.id)
+    flash[:notice] = "Exercise #{saved_workout.name} was saved to your profile"
+    redirect_to workout_path(saved_workout)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_workout
