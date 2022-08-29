@@ -4,12 +4,13 @@
 <div class="container px-4 py-5">
   <h1 class="display-5 fw-bold lh-1 mb-3">Ready to work out?</h1>
   <p class="lead">Use the workout generator to build your own workout or to prepare for the gym. Create a workout and add blocks of exercises to it.</p>
-  <%= link_to "⚡️ Create a workout", new_workout_path, class: "btn btn-primary mt-3" %>
+  <%= link_to "⚡️ Create a workout", new_workout_path, class: "btn btn-primary btn-lg px-4 me-md-2" %>
 </div>
 
 <br><br>
 <div class="container px-4 py-5" id="selected-workouts">
   <h1 class="pb-2 border-bottom display-5 fw-bold lh-1 mb-3">Selected workouts</h1>
+  <p class="lead">Jump right in to one of the pre-built workouts.</p>
 
   <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
     <%= render "pages/page_elements/workout_card", category: "Belly", time: "30", image_name: "belly.jpg", workout: Workout.find(7) %>
