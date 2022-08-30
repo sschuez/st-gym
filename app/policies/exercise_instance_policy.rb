@@ -5,4 +5,9 @@ class ExerciseInstancePolicy < BlockPolicy # <- Inheriting from BlockPolicy!!
     #   scope.all
     # end
   end
+
+  def show?
+    true
+  end
+
 end
