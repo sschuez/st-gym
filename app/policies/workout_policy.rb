@@ -30,6 +30,10 @@ class WorkoutPolicy < ApplicationPolicy
     create?
   end
 
+  def destroy?
+    user_is_owner_of_record?
+  end
+
   def toggle_public?
     destroy?
   end
@@ -42,10 +46,6 @@ class WorkoutPolicy < ApplicationPolicy
     true
   end
   
-  def destroy?
-    user_is_owner_of_record?
-  end
-
   private
   
   def user_is_owner_of_record?

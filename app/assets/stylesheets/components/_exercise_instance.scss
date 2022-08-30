@@ -13,14 +13,21 @@
 .exercise-quantities {
   display: flex;
   padding-top: 0px !important;
+  margin-bottom: 3px;
+}
+
+.exercise-quantities .emoji {
+  padding-top: 9px;
 }
 
 .exercise-quantity {
   display: flex;
+  // margin-top: 3px;
 
   p {
-    // margin-right: 6px;
+    margin-bottom: 6px;
     font-weight: bold;
+    padding-top: 12px !important;
   }
 }
 

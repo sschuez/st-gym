@@ -29,6 +29,12 @@ class WorkoutsController < ApplicationController
   # GET /workouts/1 or /workouts/1.json
   def show
     @block = @workout.blocks.new
+
+    respond_to do |format|
+      format.turbo_stream
+      format.text
+      format.html
+    end
   end
 
   # GET /workouts/new
