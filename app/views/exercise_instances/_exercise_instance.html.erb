@@ -7,6 +7,6 @@
     <% end %>
   </div>
 
-  <%= turbo_frame_tag dom_id(exercise_instance, "authorization"), src: edit_authorization_workout_block_exercise_instance_actions_path(exercise_instance.block.workout, exercise_instance.block, exercise_instance), class: "exercise-instance-elements" %>
+  <%= turbo_frame_tag dom_id(exercise_instance, "edit_exercise_instance"), src: edit_exercise_instance_workout_block_exercise_instance_actions_path(exercise_instance.block.workout, exercise_instance.block, exercise_instance), class: "exercise-instance-elements" %>
 
 <% end %>

@@ -42,18 +42,13 @@ Rails.application.routes.draw do
       # Broadcasting authorizations
       scope module: :blocks do
         resource :actions do
-          get :edit_title
-          get :edit_quantity
-          get :edit_time
-          get :edit_repetitions
+          get :edit_block
         end #resource :actions, only: [:edit_title, :edit_quantities]
       end
       resources :exercise_instances, except: [:index] do
         scope module: :exercise_instances do
           resource :actions do
-            get :edit_authorization
-            # get :edit_time
-            # get :edit_repetitions
+            get :edit_exercise_instance
           end
         end
       end

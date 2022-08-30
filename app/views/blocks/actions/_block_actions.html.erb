@@ -1,0 +1,9 @@
+<div data-meta-target="" class="block-actions">
+  <div class="handle handle-block">
+    <i class="bi bi-grip-horizontal"></i>
+  </div>
+
+  <%= button_to workout_block_path(block.workout, block), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-styling" do %>
+  <span class="emoji">🗑</span> 
+  <% end %>
+</div>

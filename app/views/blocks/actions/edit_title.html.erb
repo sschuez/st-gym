@@ -1,7 +1,0 @@
-<%= turbo_frame_tag dom_id(@block, "title") do %>
-
-  <% if @block.workout.user_id == current_user&.id || current_user&.admin %>
-    <%= button_to "✍️", edit_title_workout_block_path(@block.workout, @block), method: :post, data: { "meta-target": "" }, class: "btn-styling" %>
-  <% end %>
-
-<% end %>

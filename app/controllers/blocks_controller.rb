@@ -78,7 +78,7 @@ class BlocksController < ApplicationController
           render turbo_stream: [
             turbo_stream.update(
               "block_#{@block.id}_title",
-              partial: "blocks/block_header_title",
+              partial: "blocks/actions/block_header_title",
               locals: {block: @block})
           ]
         end

@@ -1,7 +1,0 @@
-<%= turbo_frame_tag dom_id(@block, "quantity") do %>
-  <% if @workout.user_id == current_user&.id || current_user&.admin %>
-    <div class="emoji quantity-toggle" data-meta-target="" data-repetitions-target="toggle" data-action="click->repetitions#updateQuantity" data-balloon-length="medium" aria-label="Press this button to switch between time and repetitions" data-balloon-pos="up-left">
-      <%= @block.tabata ? "⏱" : "🔁" %>
-    </div>
-  <% end %>
-<% end %>
