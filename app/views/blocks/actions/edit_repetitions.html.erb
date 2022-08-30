@@ -1,0 +1,14 @@
+<%= turbo_frame_tag dom_id(@block, "repetitions") do %>
+  <% if @workout.user_id == current_user&.id || current_user&.admin %>
+    
+    <div data-meta-target="published" class="exercise-instance-quantities">
+      <%= link_to "#" do %>
+        <i data-action="click->repetitions#more" data-kind="repetitions" data-increment="1" class="bi bi-arrow-up-circle" format="turbo_stream"></i>
+      <% end %>
+      <%= link_to "#" do %>
+        <i data-action="click->repetitions#less" data-kind="repetitions" data-increment="1" class="bi bi-arrow-down-circle" format="turbo_stream"></i>
+      <% end %>
+    </div>
+
+  <% end %>
+<% end %>

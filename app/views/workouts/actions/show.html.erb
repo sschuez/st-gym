@@ -1,0 +1,16 @@
+<%= turbo_frame_tag dom_id(@workout, 'actions') do %>
+  
+  <% if @workout.user_id == current_user&.id || current_user&.admin %>
+
+    <div class="workout-edit" data-meta-target="">
+      <%= button_to edit_workout_path(@workout), method: :post, class: "btn-styling" do %>
+        <span class="emoji">✍️</span>
+      <% end %>
+
+      <%= button_to toggle_public_workout_path(@workout), method: :put, class: "btn-styling workout-toggle-public" do %>
+        <span class="emoji" data-balloon-length="medium" aria-label="If set to public, everyone can do with this exercise what they wish. Set to private to limit others' ability to change things " data-balloon-pos="left"><%= @workout.public ? "🔓" : "🔐" %></span>
+      <% end %>
+    </div>
+  <% end %>
+
+<% end %>

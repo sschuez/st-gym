@@ -1,0 +1,12 @@
+<%= turbo_frame_tag dom_id(@exercise_instance, "authorization") do %>
+  
+  <% if @workout.user_id == current_user&.id || current_user&.admin %>
+
+    <%= render "exercise_instances/actions/authorized_exercise_instance", exercise_instance: @exercise_instance %>
+  
+  <% else %>
+
+    <%= render "exercise_instances/actions/exercise_instance", exercise_instance: @exercise_instance %>
+  
+  <% end %>
+<% end %>

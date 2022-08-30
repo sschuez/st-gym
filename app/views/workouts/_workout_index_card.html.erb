@@ -18,7 +18,7 @@
   <% end %>
 
   <div class="workout-edit" data-meta-target="user">
-    <%= button_to workout_path(workout), method: :delete, data: { target: "meta.user" }, form: { data: { turbo_confirm: "Are you sure you want to delete this workout?" } }, class: "btn-styling" do %>
+    <%= button_to workout_path(workout), method: :delete, data: { "meta-target": "user" }, form: { data: { turbo_confirm: "Are you sure you want to delete this workout?" } }, class: "btn-styling" do %>
     <span class="emoji">🗑</span> 
     <% end %>
   </div>

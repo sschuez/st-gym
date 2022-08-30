@@ -1,0 +1,11 @@
+<div class="exercise-quantities">
+  <% if exercise_instance.tabata %>
+    <div data-controller="seconds" class="exercise-quantity">
+      <p data-seconds-target="time" class="py-2 mx-2"><%= exercise_instance.time %></p>
+    </div>
+  <% else %>
+  <div class="exercise-quantity">
+    <p class="py-2 mx-2"><%= exercise_instance.repetitions %>x</p>
+  </div>
+  <% end %>
+</div>
