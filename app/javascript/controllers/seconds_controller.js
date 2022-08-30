@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = [ "time" ]
   
   connect() {
-    console.log(this.timeTarget.innerHTML)
     // Time from DOM
     let time = this.timeTarget.innerHTML
     

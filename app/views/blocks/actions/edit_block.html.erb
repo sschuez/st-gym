@@ -1,0 +1,33 @@
+<%= turbo_frame_tag dom_id(@block, "edit_block") do %>
+  
+  <div class="block-elements">
+    <% if @workout.user_id == current_user&.id || current_user&.admin %>
+
+      <%= turbo_frame_tag "#{dom_id(@block)}_title" do %>
+        <%= render "block_header_title", block: @block %>
+      <% end %> 
+      <%= turbo_frame_tag "#{dom_id(@block)}_repetitions" do %>
+        <%= render "block_repetitions", block: @block %>
+      <% end %>
+      <%= render "block_actions", block: @block %>
+
+    <% else %>
+
+      <div class="block-title">
+        <h1><%= @block.title %></h1>
+      </div>
+      <% if @block.tabata %>
+        <div data-controller="seconds" class="exercise-quantity">
+          <p data-seconds-target="time" class="py-2 mx-2"><%= @block.time %></p>
+        </div>
+      <% else %>
+        <div class="exercise-quantity">
+          <p class="py-2 mx-2"><%= @block.repetitions %>x</p>
+        </div>
+      <% end %>
+
+    <% end %>
+  </div>
+
+
+<% end %>

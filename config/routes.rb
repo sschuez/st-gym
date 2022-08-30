@@ -17,14 +17,20 @@ Rails.application.routes.draw do
   post '/adduser', to: 'newsletters#addUser'
   put '/removeuser', to: 'newsletters#removeUser'
 
+  
   # Workouts
   get 'my_workouts' => 'workouts#user_workouts', as: :user_workouts
   get 'public_workouts' => 'workouts#public_workouts', as: :public_workouts
   resources :workouts do
+    # Additional actions for workouts
     member do
       post :edit
       get :save_workout
       put :toggle_public
+    end
+    # Broadcasting authorizations
+    scope module: :workouts do
+      resource :actions, only: :show
     end
     
     # Exercises within block
@@ -33,11 +39,19 @@ Rails.application.routes.draw do
         post :edit
         post :edit_title
       end
-      resources :exercise_instances, except: [:index]# do
-        # member do
-        #   get :exercise_info
-        # end
-      # end
+      # Broadcasting authorizations
+      scope module: :blocks do
+        resource :actions do
+          get :edit_block
+        end #resource :actions, only: [:edit_title, :edit_quantities]
+      end
+      resources :exercise_instances, except: [:index] do
+        scope module: :exercise_instances do
+          resource :actions do
+            get :edit_exercise_instance
+          end
+        end
+      end
     end
   
   end

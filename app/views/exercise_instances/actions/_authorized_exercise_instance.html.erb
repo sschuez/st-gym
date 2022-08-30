@@ -1,0 +1,47 @@
+<div class="exercise-quantities">
+  <div class="emoji quantity-toggle" data-meta-target="published" data-repetitions-target="toggle" data-action="click->repetitions#updateQuantity" data-balloon-length="medium" aria-label="Press this button to switch between time and repetitions" data-balloon-pos="up-left">
+    <%= exercise_instance.tabata ? "⏱" : "🔁" %>
+  </div>
+
+  <% if exercise_instance.tabata %>
+    <div data-controller="seconds" class="exercise-quantity">
+    <p data-seconds-target="time" class="py-2 mx-2"><%= exercise_instance.time %></p>
+
+      <div data-meta-target="published" class="exercise-instance-quantities">
+        <%= link_to "#" do %>
+          <i data-action="click->repetitions#more" data-kind="time" data-increment="10" class="bi bi-arrow-up-circle" format="turbo_stream"></i>
+        <% end %>
+        <%= link_to "#" do %>
+          <i data-action="click->repetitions#less" data-kind="time" data-increment="10" class="bi bi-arrow-down-circle" format="turbo_stream"></i>
+        <% end %>
+      </div>
+
+    </div>
+      
+  <% else %>
+    <div class="exercise-quantity">
+    <p class="py-2 mx-2"><%= exercise_instance.repetitions %>x</p>
+
+      <div data-meta-target="" class="exercise-instance-quantities">
+        <%= link_to "#" do %>
+          <i data-action="click->repetitions#more" data-kind="repetitions" data-increment="2" class="bi bi-arrow-up-circle" format="turbo_stream"></i>
+        <% end %>
+        <%= link_to "#" do %>
+          <i data-action="click->repetitions#less" data-kind="repetitions" data-increment="2" class="bi bi-arrow-down-circle" format="turbo_stream"></i>
+        <% end %>
+      </div>
+      
+    </div>
+  <% end %>
+</div>
+
+<div data-meta-target="published" class="exercise-instance-actions">
+  <div class="handle handle-exercise-instance">
+    <i class="bi bi-grip-horizontal"></i>
+  </div>
+  <%= button_to workout_block_exercise_instance_path(exercise_instance.block.workout, exercise_instance.block, exercise_instance), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-styling" do %>
+  <span class="emoji">🗑</span> 
+  <% end %>
+</div>
+
+
