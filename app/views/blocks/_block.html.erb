@@ -17,12 +17,12 @@
       <%= link_to "⚡️ Add exercises", new_workout_block_exercise_instance_path(block.workout, block), data: { controller: "turbo" }, class: "btn btn-primary" %>
     </div>
 
-    <div class="block-actions">
+    <div data-meta-target="published" class="block-actions">
       <div class="handle handle-block">
         <i class="bi bi-grip-horizontal"></i>
       </div>
 
-      <%= button_to workout_block_path(block.workout, block), method: :delete, data: { target: "meta.published" }, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-styling" do %>
+      <%= button_to workout_block_path(block.workout, block), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-styling" do %>
       <span class="emoji">🗑</span> 
       <% end %>
     </div>
