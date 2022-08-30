@@ -8,6 +8,11 @@
   p {
     margin-bottom: 0px !important;
   }
+
+}
+
+.dark-mode .exercise-instance {
+  border-bottom: 1px $border-color-dark solid !important;
 }
 
 .exercise-instance-name {
