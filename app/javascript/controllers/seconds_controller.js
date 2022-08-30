@@ -23,7 +23,9 @@ export default class extends Controller {
     if (secs<10) { secs = "0" + secs }
     
     // Set convert time in DOM
-    if (hours < 1) {
+    if (hours < 1 && mins < 1) {
+      this.timeTarget.innerHTML = secs + "s"
+    } else if (hours < 1) {
       this.timeTarget.innerHTML = mins + "m " + secs + "s"
     } else {
       this.timeTarget.innerHTML = hours + "h " + mins + "m " + secs + "s"
