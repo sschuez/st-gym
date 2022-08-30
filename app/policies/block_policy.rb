@@ -7,12 +7,11 @@ class BlockPolicy < WorkoutPolicy # <- Inheriting from WorkoutPolicy!!
   end
 
   def new?
-  #   true
-    user_is_owner_of_record? || record.workout.public
+    true
   end
-
+  
   def create?
-    new?
+    user_is_owner_of_record? || record.workout.public
   end
 
   def edit?
@@ -30,6 +29,7 @@ class BlockPolicy < WorkoutPolicy # <- Inheriting from WorkoutPolicy!!
   private
 
   def user_is_owner_of_record?
-    user == record.workout.user || user&.admin?
+    return false unless user
+    user == record.workout.user || user.admin?
   end
 end
