@@ -2,12 +2,16 @@
 
 .exercise-instance {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 3px;
 
   p {
     margin-bottom: 0px !important;
   }
+}
+
+.exercise-instance-name {
+  margin-right: auto;
 }
 
 .exercise-instance-elements {

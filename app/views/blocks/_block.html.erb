@@ -1,12 +1,11 @@
 <%= content_tag :div, id: dom_id(block), data: { sgid: block.to_sgid_param } do %>
 
-
   <%= turbo_frame_tag "#{dom_id(block)}_header" do %>
-    
-    <%= turbo_frame_tag dom_id(block, "edit_block"), src: edit_block_workout_block_actions_path(block.workout, block) %>
-  
+      <%= render 'blocks/block_header', block: block %>
   <% end %>
-
+  
+  <%# Authorization method via turbo_stream %>
+  <%#= turbo_frame_tag dom_id(block, "edit_block"), src: edit_block_workout_block_actions_path(block.workout, block) %>
 
   <div class="card block-card pb-3">
     <%= render 'shared/stopwatch' %>
