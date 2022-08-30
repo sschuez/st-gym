@@ -1,11 +1,11 @@
 <%= form_tag adduser_path, method: :post, data: { turbo: false } do %>
   <h5 class="display-5 fw-bold lh-1 mb-3">Coming soon</h5>
   <p class="lead">The <%= link_to "StGym routine", "#", class: "text-link link-info" %> is currently still in development. Once it's done we'll deliver daily to your inbox:
-    <ul>
+    <ul class="lead">
       <li>A new workout</li>
       <li>Curated by professionals</li>
       <li>With premium content & explanations</li>
-      <li>For $6 per month</li>
+      <%# <li>For $6 per month</li> %>
     </ul>
   </p>
   <p class="lead">Be sure to put your name on the list so that you're among the first to hear about when we're there. Or jump right in and <%= link_to "create your own workout", new_workout_path, class: "text-link link-info" %>.</p>

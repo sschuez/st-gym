@@ -43,7 +43,9 @@ a {
 
 /* Smallest device */
 @media (min-width: 100px) and (max-width: 575px) {
-
+  p {
+    font-size: 16px;
+  }
 }
 
 /* Small devices (landscape phones, 576px and up) */
