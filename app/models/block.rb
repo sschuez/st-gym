@@ -7,7 +7,7 @@ class Block < ApplicationRecord
   # == Extensions ===========================================================
   
   # == Relationships ========================================================
-  belongs_to :workout
+  belongs_to :workout, dependent: :destroy
   has_many :exercise_instances, dependent: :destroy
   has_many :exercises, through: :exercise_instances
   
