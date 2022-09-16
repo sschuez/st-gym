@@ -4,6 +4,7 @@
   min-height: 400px;
   position: relative;
   text-decoration: none !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .workout-cards a {
@@ -27,6 +28,7 @@
 .dark-mode .workout-card {
   background-color: $card-background-dark !important;
   border: 1px $border-color-dark solid !important;
+  box-shadow: 0 0 15px $card-background-dark;
 }
 
 .workout-card .workout-body {
