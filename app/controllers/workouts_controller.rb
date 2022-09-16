@@ -5,9 +5,6 @@ class WorkoutsController < ApplicationController
   # GET /workouts or /workouts.json
   def index
     @workouts = policy_scope(Workout).order(created_at: :desc)
-    # @workouts = Workout.all.order(created_at: :desc)
-    # @public_workouts = Workout.all.published.order(created_at: :desc)
-    # authorize @workouts
   end
 
   def user_workouts
@@ -37,10 +34,13 @@ class WorkoutsController < ApplicationController
     @workout = Workout.new(name: "Happy #{weekday} workout!")
     @workout.user = current_user if user_signed_in? 
     authorize @workout
-    @workout.save
     
     respond_to do |format|
       if @workout.save
+        # Create 1 block, with random exercise
+        block = @workout.blocks.create(title: "Sample block")
+        block.exercise_instances.create(exercise: Exercise.find(Exercise.pluck(:id).sample))
+
         format.html { redirect_to workout_path(@workout), notice: "Workout was successfully created." }
         format.json { render :show, status: :created, location: @workout }
       else

@@ -6,7 +6,7 @@ class BlocksController < ApplicationController
   # GET /blocks/new
   def new
     @block = @workout.blocks.new
-    @block.workout = @workout
+    # @block.workout = @workout
     # authorize(@block, policy_class: WorkoutPolicy)
     authorize @block
   end
