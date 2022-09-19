@@ -47,6 +47,8 @@ class ExerciseInstancesController < ApplicationController
     @exercise_instance = ExerciseInstance.find(params[:id])
     authorize @exercise_instance
     @exercise_instance.destroy
+
+    head :ok
   end
 
   private

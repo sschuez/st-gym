@@ -1,6 +1,6 @@
 class ExerciseInstance < ApplicationRecord
-  belongs_to :exercise, dependent: :destroy
-  belongs_to :block, dependent: :destroy
+  belongs_to :exercise
+  belongs_to :block
 
   delegate :workout, to: :block
 
