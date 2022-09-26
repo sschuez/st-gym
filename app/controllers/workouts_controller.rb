@@ -38,7 +38,7 @@ class WorkoutsController < ApplicationController
     respond_to do |format|
       if @workout.save
         # Create 1 block, with random exercise
-        block = @workout.blocks.create(title: "Sample block")
+        block = @workout.blocks.create(title: "Your first block")
         block.exercise_instances.create(exercise: Exercise.find(Exercise.pluck(:id).sample))
 
         format.html { redirect_to workout_path(@workout), notice: "Workout was successfully created." }
