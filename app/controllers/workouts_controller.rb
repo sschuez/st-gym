@@ -30,8 +30,8 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts/new
   def new
-    weekday = Workout::WEEKDAY[Time.new().wday()]
-    @workout = Workout.new(name: "Happy #{weekday} workout!")
+    @workout = Workout.new(name: "#{Time.now.strftime("%A, %B %e, %Y")
+    }")
     @workout.user = current_user if user_signed_in? 
     authorize @workout
     

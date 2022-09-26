@@ -9,9 +9,10 @@
       <h1 class="display-5 fw-bold lh-1 mb-3">Workout in your pocket</h1>
       <p class="lead">Join a community of fitness enthusiats and become healthy, fit and strong. Create your own exercises and workouts or join an existing session. The interactive workouts guru will assemble a daily workout for you, with premium content and explanations. Join the community, motivate and get motivated 💪</p>
       <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <%= link_to "Try it out!", home_modal_path,"data-controller": "turbo", class: "btn btn-primary btn-lg px-4 me-md-2" %>
-        <%# <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Try it out!</button> %>
-        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-secondary btn-lg px-4"  %>
+        <%= link_to "Create a workout", new_workout_path, class: "btn btn-primary btn-lg px-4 me-md-2" %>
+        <%= link_to "Public workouts", public_workouts_path, class: "btn btn-outline-secondary btn-lg" %>
+        <%#= link_to "Try it out!", home_modal_path,"data-controller": "turbo", class: "btn btn-primary btn-lg px-4 me-md-2" %>
+        <%#= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-secondary btn-lg px-4"  %>
       </div>
     </div>
   </div>
