@@ -14,7 +14,7 @@ class Workout < ApplicationRecord
   
   # == Scopes ===============================================================
   scope :published, -> { where public: true }
-
+  # scope :sanitized_published, -> { joins(:blocks).group('blocks.id').having('count(workout_id) > 1') }
 
   # == Callbacks ============================================================
   broadcasts
@@ -35,6 +35,13 @@ class Workout < ApplicationRecord
   end
 
   # == Class Methods ========================================================
+
+  # def self.published_sanitized(cnt = 1)
+  #   select('workouts.*, count(blocks.id) as block_count')
+  #     .joins(:blocks)
+  #     .group('workouts.id')
+  #     .having('count(blocks.id) > ?', cnt)
+  # end
   
   # == Instance Methods =====================================================
   
