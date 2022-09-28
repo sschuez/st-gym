@@ -8,7 +8,7 @@
     <div id="blocks" data-controller="block-position">
       <%= render workout.blocks.order(position: :asc) %>
     </div>
-    <%= turbo_frame_tag "new_block", src: new_workout_block_path(workout), target: "_top", class: "visible-if-public-admin-user", data: { "meta-target": "published" } %>
+    <%= turbo_frame_tag "new_block", src: new_workout_block_path(workout), target: "_top", class: "visible-if-public-admin-user", data: { controller: "meta", "meta-target": "published" } %>
     
     <%#= link_to "Add exercise", "#", class: "btn btn-primary", data: { controller: "tooltip", value: "Add directly some exercises outside of a block" } %>
   </div>
