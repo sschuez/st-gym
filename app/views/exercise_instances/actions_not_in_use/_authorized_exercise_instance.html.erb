@@ -7,7 +7,7 @@
     <div data-controller="seconds" class="exercise-quantity">
     <p data-seconds-target="time" class="py-2 mx-2"><%= exercise_instance.time %></p>
 
-      <div data-meta-target="published" class="exercise-instance-quantities">
+      <div data-meta-target="published" class="exercise-instance-quantities meta">
         <%= link_to "#" do %>
           <i data-action="click->repetitions#more" data-kind="time" data-increment="10" class="bi bi-arrow-up-circle" format="turbo_stream"></i>
         <% end %>
@@ -22,7 +22,7 @@
     <div class="exercise-quantity">
     <p class="py-2 mx-2"><%= exercise_instance.repetitions %>x</p>
 
-      <div data-meta-target="" class="exercise-instance-quantities">
+      <div data-meta-target="" class="exercise-instance-quantities meta">
         <%= link_to "#" do %>
           <i data-action="click->repetitions#more" data-kind="repetitions" data-increment="2" class="bi bi-arrow-up-circle" format="turbo_stream"></i>
         <% end %>
@@ -35,7 +35,7 @@
   <% end %>
 </div>
 
-<div data-meta-target="published" class="exercise-instance-actions">
+<div data-meta-target="published" class="exercise-instance-actions meta">
   <div class="handle handle-exercise-instance">
     <i class="bi bi-grip-horizontal"></i>
   </div>

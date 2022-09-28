@@ -2,7 +2,21 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="meta"
 export default class extends Controller {
-  static targets = [ "admin", "user", "published" ]
+  static targets = [ "admin", "user", "published", "checkbox" ]
+
+
+  toggleWorkoutMode(){
+    let elementsToHide = document.querySelectorAll(".meta")
+    if (this.checkboxTarget.checked) {
+      elementsToHide.forEach((element) => {
+        element.classList.add("hidden")
+      })
+    } else {
+      elementsToHide.forEach((element) => {
+        element.classList.remove("hidden")
+      })
+    }
+  }
 
   connect() {
     // Data from meta tags

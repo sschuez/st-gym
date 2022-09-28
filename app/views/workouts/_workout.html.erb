@@ -3,12 +3,21 @@
 <div class="card workout-card">
   
   <%= render "workouts/workout_header", workout: workout %>
-  
+
+  <%# Toggle workout mode %>
+  <fieldset data-controller="meta" data-meta-target="user" class="form-group">
+    <div class="form-check workout-mode">
+      <label class="visible-label" for="workout_mode">Workout mode</label>
+      <input data-meta-target="checkbox" class="form-check-input toggle" type="checkbox" value="1" id="workout_mode" data-action="change->meta#toggleWorkoutMode">
+      <label class="form-check-label" for="workout_mode"></label>
+    </div>
+  </fieldset>
+
   <div class="card-body workout-body">
     <div id="blocks" data-controller="block-position">
       <%= render workout.blocks.order(position: :asc) %>
     </div>
-    <%= turbo_frame_tag "new_block", src: new_workout_block_path(workout), target: "_top", class: "visible-if-public-admin-user", data: { controller: "meta", "meta-target": "published" } %>
+    <%= turbo_frame_tag "new_block", src: new_workout_block_path(workout), target: "_top", class: "visible-if-public-admin-user meta", data: { controller: "meta", "meta-target": "published" } %>
     
     <%#= link_to "Add exercise", "#", class: "btn btn-primary", data: { controller: "tooltip", value: "Add directly some exercises outside of a block" } %>
   </div>

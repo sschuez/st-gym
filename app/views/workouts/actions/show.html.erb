@@ -2,7 +2,7 @@
   
   <% if @workout.user_id == current_user&.id || current_user&.admin %>
 
-    <div class="workout-edit" data-meta-target="">
+    <div class="workout-edit meta" data-meta-target="">
       <%= button_to edit_workout_path(@workout), method: :post, class: "btn-styling" do %>
         <span class="emoji">✍️</span>
       <% end %>
