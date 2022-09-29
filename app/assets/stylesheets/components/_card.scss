@@ -44,8 +44,17 @@
   margin-bottom: 12px;
 }
 
-.workout-index-card .card-header {
-  border: none;
+
+.dark-mode .workout-index-card .card-header {
+  border-bottom: none !important;
+}
+
+.card-header form {
+  margin-bottom: -20px !important;
+}
+
+.dark-mode .card-header {
+  border-bottom: 1px $border-color-dark solid !important;
 }
 
 .workout-index-card h1 {
@@ -76,14 +85,6 @@
   background-color: $card-background-dark !important;
   // border: 1px $border-color-dark dashed !important;
   border: 1px $border-color-dark solid !important;
-}
-
-.card-header form {
-  margin-bottom: -20px !important;
-}
-
-.dark-mode .card-header {
-  border-bottom: 1px $border-color-dark solid !important;
 }
 
 /* RESPONSIVE */
