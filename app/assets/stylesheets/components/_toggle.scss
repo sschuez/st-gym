@@ -1,3 +1,5 @@
+@use "config/variables" as *;
+
 .toggle {
   position: absolute;
   transform: scale(0);
@@ -22,8 +24,12 @@
   border-radius: 50rem;
 }
 
+.dark-mode .toggle + label::before {
+  background-color: $dark-gray;
+}
+
 .toggle:checked + label::before {
-  background-color: #1EDD88;
+  background-color: $gold;
 }
 
 .toggle + label::after {
