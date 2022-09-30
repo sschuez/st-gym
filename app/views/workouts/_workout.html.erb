@@ -5,7 +5,7 @@
   <%= render "workouts/workout_header", workout: workout %>
 
   <%# Toggle workout mode %>
-  <fieldset data-controller="meta" data-meta-target="user" class="form-group">
+  <fieldset data-controller="meta" data-meta-target="published" class="form-group">
     <div class="form-check workout-mode">
       <label class="visible-label" for="workout_mode">Workout mode</label>
       <input data-meta-target="checkbox" class="form-check-input toggle" type="checkbox" value="1" id="workout_mode" data-action="change->meta#toggleWorkoutMode">
