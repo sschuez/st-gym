@@ -30,7 +30,9 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts/new
   def new
-    @workout = Workout.new(name: "#{Time.now.strftime("%A, %B %e, %Y")
+    @workout = Workout.new(
+      name: "Workout ##{user_signed_in? ? current_user.workouts.count + 1 : Workout.count}",
+      description: "Workout on #{Time.now.strftime("%A, %B %e, %Y")
     }")
     @workout.user = current_user if user_signed_in? 
     authorize @workout
@@ -38,7 +40,7 @@ class WorkoutsController < ApplicationController
     respond_to do |format|
       if @workout.save
         # Create 1 block, with random exercise
-        block = @workout.blocks.create(title: "Your first block")
+        block = @workout.blocks.create(title: "Block #1")
         block.exercise_instances.create(exercise: Exercise.find(Exercise.pluck(:id).sample))
 
         format.html { redirect_to workout_path(@workout), notice: "Workout was successfully created." }
