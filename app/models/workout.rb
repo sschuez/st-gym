@@ -15,6 +15,7 @@ class Workout < ApplicationRecord
   # == Scopes ===============================================================
   scope :published, -> { where public: true }
   # scope :sanitized_published, -> { joins(:blocks).group('blocks.id').having('count(workout_id) > 1') }
+  scope :lonely_and_due, -> { where('created_at <= :hours_ago', hours_ago: 24.hours.ago).where(user_id: nil) }
 
   # == Callbacks ============================================================
   broadcasts
