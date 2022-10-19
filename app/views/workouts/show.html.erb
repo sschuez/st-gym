@@ -2,6 +2,7 @@
 <% content_for :meta_description, @workout.description %>
 <%# content_for :meta_image, cl_image_path(@workout.photo.path) %>
 
+<%# Popup to warn of deletion of lonely_and_due workouts %>
 <% unless @workout.user %>
   <div class="alert alert-top alert-warning alert-dismissible fade show" role="alert">
     This is a lost workout looking for its owner 🦮 Unless saved, it will be deleted within 24h 😭 Only you have the power to <%= link_to "rescue & save 🛟", new_user_session_path(:workout => @workout), class: "alert-link" %> it to your account.
