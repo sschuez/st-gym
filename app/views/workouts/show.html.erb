@@ -20,15 +20,8 @@
 </div>
 
 <br>
+<p class="text-secondary small grey d-flex flex-row-reverse">Want to keep or edit this workout?</p>
 <div class="d-flex flex-row-reverse">
-  <% if !user_signed_in? %>
-    <%= link_to "💪 Save to edit this workout", new_user_session_path(:workout => @workout), class: "btn btn-secondary" %>
-  <% else %>
-    <%# <% if @workout.original_workout.to_i == @workout.id %>
-      <%# <p>You already saved this workout.</p> %>
-    <%# else %>
-      <%= link_to '💪 Save to this exercise', save_workout_workout_path(@workout), method: :post, class: "btn btn-secondary" %>
-    <%# end %>
-  <% end %>
+  <%= link_to '🛟 Save workout', user_signed_in? ? save_workout_workout_path(@workout) : new_user_session_path(:workout => @workout), method: :post, class: "btn btn-outline-danger" %>
 </div> 
 
