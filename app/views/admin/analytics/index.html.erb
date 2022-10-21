@@ -1,0 +1,30 @@
+<h1>Ahoy tracking</h1>
+
+<div class="accordion" id="accordionTracking">
+  <% increment = 0 %>
+  <% @visits.each do |visit| %>
+    <% increment += 1 %>
+    
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading<%= increment.to_s %>">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= increment.to_s %>" aria-expanded="true" aria-controls="collapse<%= increment.to_s %>">
+          <strong>User id:</strong>&nbsp<%= visit.user_id ? visit.user_id : "n/a" %>&nbsp&nbsp
+          <%# <strong>At:</strong>&nbsp<%= visit.started_at.in_time_zone('Zurich').strftime("%H:%M on %e.%m.%y") %>
+          &nbsp<%= time_tag visit.started_at, "data-local": "time-ago" %>
+          <%# IP: <%= visit.ip %> 
+          <%# Agent: <%= visit.user_agent %> 
+        </button>
+      </h2>
+      <div id="collapse<%= increment.to_s %>" class="accordion-collapse collapse" aria-labelledby="heading<%= increment.to_s %>" data-bs-parent="#accordionTracking">
+        <div class="accordion-body">
+          <% visit.events.each do |event| %>
+              <strong><%= event.name %></strong><br>
+              At <%= event.time.in_time_zone('Zurich').strftime("%H:%M on %e.%m.%y") %>
+              <p><%= event.properties %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+  <% end %>
+</div>

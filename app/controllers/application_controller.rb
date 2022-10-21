@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :authenticate_user!
+  after_action :track_action
   include Pundit::Authorization
   # before_action :set_current_user, if: :user_signed_in?
 
@@ -46,4 +47,10 @@ class ApplicationController < ActionController::Base
   # def set_current_user
   #   Current.user = current_user
   # end
+  
+  protected
+
+  def track_action
+    ahoy.track "Ran action", request.path_parameters
+  end
 end
