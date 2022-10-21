@@ -5,3 +5,6 @@ import "bootstrap"
 import * as bootstrap from "bootstrap"
 window.bootstrap = bootstrap
 import "@rails/request.js"
+
+import LocalTime from "local-time"
+LocalTime.start()

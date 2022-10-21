@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :workouts
+  has_many :visits, class_name: "Ahoy::Visit"
 end

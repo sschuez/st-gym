@@ -1,14 +1,22 @@
 Rails.application.routes.draw do
+  # EXERCISES
   resources :exercises
   
-  # Users
+  # USERS
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }  
   resources :users, only: [:index, :show]
+
+  # ADMIN
+  authenticate :user, ->(user) { user.admin? } do  
+    scope module: :admin do
+      resources :analytics, only: [:index]
+    end
+  end 
     
-  # Public pages
+  # PUBLIC PAGES
   root to: 'pages#home'
   get '/home_modal', to: 'pages#home_modal'
   get '/about', to: 'pages#about'
@@ -18,7 +26,7 @@ Rails.application.routes.draw do
   put '/removeuser', to: 'newsletters#removeUser'
 
   
-  # Workouts
+  # WORKOUTS
   get 'my_workouts' => 'workouts#user_workouts', as: :user_workouts
   get 'public_workouts' => 'workouts#public_workouts', as: :public_workouts
   resources :workouts do

@@ -83,3 +83,4 @@ gem "faraday"
 gem "requestjs-rails"
 gem "acts_as_list", "~> 1.0"
 gem 'ruby-progressbar'
+gem "ahoy_matey", "~> 4.1"
