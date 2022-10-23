@@ -11,12 +11,12 @@
           <strong>User id:</strong>&nbsp<%= visit.user_id ? visit.user_id : "n/a" %>&nbsp&nbsp
           <%# <strong>At:</strong>&nbsp<%= visit.started_at.in_time_zone('Zurich').strftime("%H:%M on %e.%m.%y") %>
           &nbsp<%= time_tag visit.started_at, "data-local": "time-ago" %>
-          <%# IP: <%= visit.ip %> 
-          <%# Agent: <%= visit.user_agent %> 
         </button>
       </h2>
       <div id="collapse<%= increment.to_s %>" class="accordion-collapse collapse" aria-labelledby="heading<%= increment.to_s %>" data-bs-parent="#accordionTracking">
         <div class="accordion-body">
+          <p><%= visit.ip %></p>
+          <p><%= visit.user_agent %></p>
           <% visit.events.each do |event| %>
               <strong><%= event.name %></strong><br>
               At <%= event.time.in_time_zone('Zurich').strftime("%H:%M on %e.%m.%y") %>
