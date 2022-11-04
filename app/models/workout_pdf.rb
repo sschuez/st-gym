@@ -43,10 +43,26 @@ class WorkoutPdf
 
   def instance_repetitions(instance)
     if instance.tabata
-      "  -  #{instance.time}s"
+      "  -  #{formatted_duration(instance.time)}"
     else
       "  -  #{instance.repetitions}x"
     end
+  end
+
+  # From https://gist.github.com/shunchu/3175001
+  def formatted_duration(total_seconds)
+    total_seconds = total_seconds.round
+    hours = total_seconds / (60*60)
+    minutes = (total_seconds / 60) % 60
+    seconds = total_seconds % 60
+    times = [
+      ("#{hours}h" if hours > 0), 
+      ("#{minutes}m" if minutes > 0), 
+      ("#{seconds}s" if seconds > 0)
+    ]
+    times.map do |time|
+      time if time
+    end.join(' ')
   end
 
   # def display_order_created_at
