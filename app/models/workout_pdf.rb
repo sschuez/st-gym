@@ -20,34 +20,35 @@ class WorkoutPdf
   private
   
   def display_header
-    text @workout.name
-    text @workout.description
+    text @workout.name, size: 40
+    text @workout.description, size: 20
   end
   
   def display_blocks
     # draw_text "Order #: #{@order.order_number}", at: [400, 712]
     blocks = @workout.blocks.order(position: :asc)
     blocks.each do |block| 
-      text "#{block.title} #{instance_repetitions(block)}"
+      text "#{block.title} #{instance_repetitions(block)}", size: 30
       block_exercises(block)
       move_down 15
     end
   end
-
+  
   def block_exercises(block)
     block.exercise_instances.includes(:exercise).each do |exercise_instance|
-      text "#{exercise_instance.exercise.name} #{instance_repetitions(exercise_instance)}"
+      text "#{exercise_instance.exercise.name} #{instance_repetitions(exercise_instance)}", size: 20
+      move_down 5
     end
   end
 
   def instance_repetitions(instance)
     if instance.tabata
-      "--> #{instance.time}s"
+      "  -  #{instance.time}s"
     else
-      "--> #{instance.repetitions}x"
+      "  -  #{instance.repetitions}x"
     end
   end
-  
+
   # def display_order_created_at
   #   draw_text @order.created_at, at: [400, 698]
   # end
