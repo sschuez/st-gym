@@ -25,3 +25,5 @@
   <%= link_to '🛟 Save workout', user_signed_in? ? save_workout_workout_path(@workout) : new_user_session_path(:workout => @workout), method: :post, class: "btn btn-outline-danger" %>
 </div> 
 
+<%= link_to "PDF", workout_path(@workout, format: :pdf) %>
+

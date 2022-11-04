@@ -28,6 +28,17 @@ class WorkoutsController < ApplicationController
   def show
     @block = @workout.blocks.new
     track "Viewed workout", name: @workout.name
+
+    respond_to do |format|
+      format.html {}
+      format.pdf do
+        pdf = WorkoutPdf.new(@workout)
+        send_data pdf.render,
+          filename: "#{@workout.id}_workout.pdf",
+          type: 'application/pdf',
+          disposition: 'inline'
+      end
+    end
   end
 
   # GET /workouts/new
