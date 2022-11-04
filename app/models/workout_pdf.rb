@@ -50,19 +50,13 @@ class WorkoutPdf
   end
 
   # From https://gist.github.com/shunchu/3175001
-  def formatted_duration(total_seconds)
-    total_seconds = total_seconds.round
-    hours = total_seconds / (60*60)
-    minutes = (total_seconds / 60) % 60
-    seconds = total_seconds % 60
+  def formatted_duration(seconds)
     times = [
-      ("#{hours}h" if hours > 0), 
-      ("#{minutes}m" if minutes > 0), 
-      ("#{seconds}s" if seconds > 0)
+      "#{seconds / 3600}h", 
+      "#{seconds / 60 % 60}m", 
+      "#{seconds % 60}s"
     ]
-    times.map do |time|
-      time if time
-    end.join(' ')
+    times.select { |str| str =~ /[1-9]/ }.join(" ")
   end
 
   # def display_order_created_at
