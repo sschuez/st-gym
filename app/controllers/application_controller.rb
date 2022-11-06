@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :authenticate_user!
-  after_action :track_action
+  # after_action :track_action
   include Pundit::Authorization
   # before_action :set_current_user, if: :user_signed_in?
 
