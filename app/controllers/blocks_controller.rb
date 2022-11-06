@@ -42,7 +42,7 @@ class BlocksController < ApplicationController
     authorize @block
     @block.workout = @workout
     next_block_nr = @workout.blocks.count + 1
-    @block.title = "Block #{next_block_nr}"
+    @block.title = "Block ##{next_block_nr}"
     
     respond_to do |format|
       if @block.save

@@ -23,5 +23,11 @@
 <p class="text-secondary small grey d-flex flex-row-reverse">Want to keep or edit this workout?</p>
 <div class="d-flex flex-row-reverse">
   <%= link_to '🛟 Save workout', user_signed_in? ? save_workout_workout_path(@workout) : new_user_session_path(:workout => @workout), method: :post, class: "btn btn-outline-danger" %>
-</div> 
+</div>
+<br>
+<br>
+<p class="text-secondary small grey d-flex flex-row-reverse">Print this workout?</p>
+<div class="d-flex flex-row-reverse">
+  <%= link_to "📄 Get PDF", workout_path(@workout, format: :pdf), class: "btn btn-outline-secondary"  %>
+</div>
 
