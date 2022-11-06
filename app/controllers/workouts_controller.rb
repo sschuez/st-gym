@@ -34,7 +34,7 @@ class WorkoutsController < ApplicationController
       format.pdf do
         pdf = WorkoutPdf.new(@workout)
         send_data pdf.render,
-          filename: "#{@workout.id}_workout.pdf",
+          filename: "#{Date.today.strftime("%Y_%m_%d")}_workout_#{@workout.id}.pdf",
           type: 'application/pdf',
           disposition: 'inline'
       end

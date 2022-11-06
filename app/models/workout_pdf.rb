@@ -18,48 +18,63 @@ class WorkoutPdf
   def display_header
     text @workout.name, size: 40, color: '7E73FF'
     text @workout.description, size: 20
-    move_down 20
+    move_down 10
+    text "Generated on www.stgym.club"
+    move_down 10
   end
   
   def display_blocks
     # draw_text "Order #: #{@order.order_number}", at: [400, 712]
     blocks = @workout.blocks.order(position: :asc)
-    blocks.each do |block| 
-      # text "#{block.title} #{instance_repetitions(block)}", size: 30, color: 'f2c94c'
-      text(
-        "<color rgb='f2c94c'>#{block.title}</color>#{instance_repetitions(block)}",
-        size: 30,
-        # color: '0000FF',
-        inline_format: true
-      )
+    
+    blocks.each do |block|
+      array = [ [ block.title, { content: instance_repetitions(block), align: :right }] ]
       
-      # table([ [block.title, instance_repetitions(block)] ])
-      
-      move_down 10
-      block_exercises(block)
-      move_down 20
-      
+      table(
+        array, 
+        column_widths: [340, 200], 
+        :cell_style => { :size => 30, :text_color => "f2c94c" }
+        ) do
+          cells.borders = []
+        end
+        
+        move_up 10
+        block_exercises(block)
+        move_down 25
     end
+
   end
 
   def block_exercises(block)
     array = []
-    array << ["Exercise", { content: "Repetitions", align: :right }]
-    exercise_instances(array, block)
-    # array << total_price
-    table(array, column_widths: [400, 125]) do
-      cells.borders = []
-      row(0).borders = [:bottom]
-    end
+    array << ["", ""]
+    
+    cursors = exercise_instances(array, block)
+    table = table(
+      array, 
+      column_widths: [400, 140],
+      :cell_style => { :size => 20 }
+      ) do
+        cells.borders = []
+        # row(0).borders = [:bottom]
+      end
+      # start_new_page if (page_numbers.last.to_i != page_number)
+      # text page_number.to_s
+      # text bounds.to_s
+      # start_new_page if (cursors.last.to_i > cursor)
+      # text cursor.to_s
   end
 
   def exercise_instances(array, block)
+    cursors = []
     block.exercise_instances.includes(:exercise).each do |exercise_instance|
+      cursors << cursor.to_s
       array << [
         exercise_instance.exercise.name,
         { content: instance_repetitions(exercise_instance), align: :right }
       ]
     end
+    return cursors
   end
 
   def instance_repetitions(instance)
