@@ -32,6 +32,11 @@ class WorkoutPdf# < Prawn::Document
   end
   
   def display_blocks
+
+    # https://stackoverflow.com/questions/31380482/prawn-pdf-render-a-set-of-things-on-the-same-page -> check this for making tables that don't break the page
+    
+    # http://railscasts.com/episodes/153-pdfs-with-prawn-revised?autoplay=true
+    
     # draw_text "Order #: #{@order.order_number}", at: [400, 712]
     blocks = @workout.blocks.order(position: :asc)
     

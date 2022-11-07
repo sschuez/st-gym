@@ -5,9 +5,7 @@
   <%= link_to workout_path(workout) do %>
     <div class="card-header bg-transparent small">  
       
-      <%# <div class="workout-title"> %>
       <h1><%= workout.name %></h1>
-      <%# </div> %>
       <% if workout.description %>
         <%= workout.description %>
       <% end %>
@@ -17,10 +15,12 @@
     </div>
   <% end %>
 
-  <div class="workout-edit meta" data-meta-target="user">
-    <%= button_to workout_path(workout), method: :delete, data: { "meta-target": "user" }, form: { data: { turbo_confirm: "Are you sure you want to delete this workout?" } }, class: "btn-styling" do %>
-    <span class="emoji">🗑</span> 
-    <% end %>
-  </div>
+  <% if current_user && (current_user== workout.user || current_user&.admin?) %>
+    <div class="workout-edit meta" data-meta-target="user">
+      <%= button_to workout_path(workout), method: :delete, data: { "meta-target": "user" }, form: { data: { turbo_confirm: "Are you sure you want to delete this workout?" } }, class: "btn-styling" do %>
+      <span class="emoji">🗑</span> 
+      <% end %>
+    </div>
+  <% end %>
 
 <% end %>
