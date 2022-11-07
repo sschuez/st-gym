@@ -86,3 +86,4 @@ gem 'ruby-progressbar'
 gem "ahoy_matey", "~> 4.1"
 gem "prawn", "~> 2.4"
 gem "prawn-table", "~> 0.2.2"
+gem "matrix"
