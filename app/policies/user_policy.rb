@@ -8,5 +8,13 @@ class UserPolicy < ApplicationPolicy
       end
     end
   end
+
+  def show?
+    true  
+  end
+
+  private
+
+
   
 end
