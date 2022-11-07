@@ -33,11 +33,6 @@ class WorkoutsController < ApplicationController
       format.html {}
       format.pdf do
         pdf = WorkoutPdf.new(@workout)
-        pdf.font_families.update("Roboto"=>{
-          :normal =>"fonts/Roboto-Regular.ttf",
-          :italic => "fonts/Roboto-Italic.ttf",
-          :bold => "fonts/Roboto-Bold.ttf"
-          })
         send_data pdf.render,
           filename: "#{Date.today.strftime("%Y_%m_%d")}_workout_#{@workout.id}.pdf",
           type: 'application/pdf',

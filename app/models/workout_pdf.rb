@@ -4,6 +4,11 @@ class WorkoutPdf
 
   def initialize(workout)
     @workout = workout
+    self.font_families.update("Roboto"=>{
+      :normal => Rails.root.join("vendor/fonts/Roboto-Regular.ttf"),
+      :italic => Rails.root.join("vendor/fonts/Roboto-Italic.ttf"),
+      :bold => Rails.root.join("vendor/fonts/Roboto-Bold.ttf")
+      })
     content
   end
 
