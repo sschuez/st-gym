@@ -1,14 +1,16 @@
-class WorkoutPdf
+class WorkoutPdf# < Prawn::Document
   include Prawn::View
-  # include ActiveSupport::NumberHelper
 
   def initialize(workout)
     @workout = workout
-    self.font_families.update("Roboto"=>{
-      :normal => Rails.root.join("vendor/fonts/Roboto-Regular.ttf"),
-      :italic => Rails.root.join("vendor/fonts/Roboto-Italic.ttf"),
-      :bold => Rails.root.join("vendor/fonts/Roboto-Bold.ttf")
-      })
+    font_families.update(
+      'DejaVuSans' => {
+        normal: Rails.root.join('app', 'assets', 'fonts', 'DejaVuSans.ttf'),
+        bold: Rails.root.join('app', 'assets', 'fonts', 'DejaVuSans-Bold.ttf'),
+        semi_bold: Rails.root.join('app', 'assets', 'fonts', 'DejaVuSans-Bold.ttf')
+      }
+    )
+    fallback_fonts ['DejaVuSans']
     content
   end
 

@@ -1,5 +1,6 @@
 class WorkoutsController < ApplicationController
   include Trackable
+
   skip_before_action :authenticate_user!, only: [ :public_workouts, :new, :show, :edit, :update ]
   before_action :set_workout, only: %i[ show edit update destroy ]
 
