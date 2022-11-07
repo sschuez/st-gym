@@ -10,6 +10,7 @@ class WorkoutPdf# < Prawn::Document
         semi_bold: Rails.root.join('app', 'assets', 'fonts', 'DejaVuSans-Bold.ttf')
       }
     )
+    font 'DejaVuSans'
     fallback_fonts ['DejaVuSans']
     content
   end
