@@ -2,7 +2,7 @@
 
 <div class="accordion" id="accordionTracking">
   <% increment = 0 %>
-  <% @visits.each do |visit| %>
+  <% @visits.select { |visit| visit.events.any? }.each do |visit| %>
     <% increment += 1 %>
     
     <div class="accordion-item">
