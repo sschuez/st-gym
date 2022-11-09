@@ -1,13 +1,9 @@
 <h1><%= header %> (<%= workouts.count %>)</h1>
-
 <div id="workouts">
   <% workouts.each do |workout| %>
-    
-    <%#= render "workout_index_card", workout: workout %>
+    <%= turbo_stream_from workout %>
     <%= WorkoutIndexCardPresenter.call(workout, self) %>
-    
   <% end %>
 </div>
-
 <%= link_to "+ New workout", new_workout_path, class: "my-3 btn btn-primary" %>
 
