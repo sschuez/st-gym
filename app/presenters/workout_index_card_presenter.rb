@@ -2,6 +2,7 @@ class WorkoutIndexCardPresenter
   include ActionView::Context
   include ActionView::Helpers::AssetTagHelper
   include ActionView::Helpers::UrlHelper
+  include ApplicationHelper
 
   def self.call(workout, view_context)
     new(workout, view_context).call
@@ -24,7 +25,7 @@ class WorkoutIndexCardPresenter
       link_to(view_context.workout_url(workout)) do
         card_content
       end +
-      card_controls      
+      card_controls   
     end
   end
 
@@ -46,7 +47,7 @@ class WorkoutIndexCardPresenter
 
   def workout_status
     workout_st = workout.public ? "Public workout" : "Private workout"
-    content_tag :p, workout_st, class: "text-secondary small grey my-1"
+    content_tag :p, "⏱️ #{formatted_duration(workout.time_it_takes)} - #{workout_st}", class: "text-secondary small grey my-1"
   end
 
   def card_controls

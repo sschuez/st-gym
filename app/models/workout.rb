@@ -5,7 +5,8 @@ class Workout < ApplicationRecord
   # == Attributes ===========================================================
   
   # == Extensions ===========================================================
-  
+  include WorkoutTimer
+
   # == Relationships ========================================================
   has_many :blocks, dependent: :destroy
   belongs_to :user, optional: true
@@ -38,12 +39,6 @@ class Workout < ApplicationRecord
 
   # == Class Methods ========================================================
 
-  # def self.published_sanitized(cnt = 1)
-  #   select('workouts.*, count(blocks.id) as block_count')
-  #     .joins(:blocks)
-  #     .group('workouts.id')
-  #     .having('count(blocks.id) > ?', cnt)
-  # end
   
   # == Instance Methods =====================================================
   

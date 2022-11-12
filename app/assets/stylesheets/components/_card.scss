@@ -44,6 +44,10 @@
   margin-bottom: 12px;
 }
 
+.workout-index-card a {
+  color: inherit;
+}
+
 .workout-index-card .card-header {
   border-bottom: none !important;
 }
@@ -63,11 +67,6 @@
 .workout-index-card h1 {
   font-size: 22px;
   font-weight: 600;
-}
-
-#workouts a {
-  // text-decoration: none;
-  color: inherit;
 }
 
 .block-card {

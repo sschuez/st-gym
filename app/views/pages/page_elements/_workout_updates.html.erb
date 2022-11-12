@@ -1,0 +1,13 @@
+<div class="narrow-container">
+  <h1 class="display-5 fw-bold lh-1 mb-3">Join a recent workout!</h1>
+  <p class="small text-secondary">Copy any of these workouts to your profile to edit them.</p>
+  <% Workout.where(user_id: 1).last(4).each do |workout| %>
+    <%= WorkoutIndexCardPresenter.call(workout, self) %>
+  <% end %>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+    <%= link_to "🔥 New workout", new_workout_path, class: "btn btn-outline-danger btn-lg" %>
+    <%= link_to "🏋️‍♀️ More workouts", public_workouts_path, class: "btn btn-outline-warning btn-lg" %>
+  </div>
+</div>
+<br>
+<br>
