@@ -1,5 +1,8 @@
 <div class="narrow-container">
-  <h1 class="display-5 fw-bold lh-1 mb-3">Join a recent workout!</h1>
+  <h1 class="display-5 fw-bold lh-1 mb-3">Workout in your pocket</h1>
+  <p class="lead">Create your own workouts or join an existing session. Join the community, motivate and get motivated 💪</p>
+  <br>
+  <h2 class="display-6 fw-bold lh-1 mb-3"> 🚀 Join a recent workout</h2>
   <p class="small text-secondary">Copy any of these workouts to your profile to edit them.</p>
   <% @workouts.first(4).each do |workout| %>
     <%= WorkoutIndexCardPresenter.call(workout, self) %>
