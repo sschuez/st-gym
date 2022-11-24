@@ -99,6 +99,7 @@ GEM
       xpath (~> 3.2)
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
+    connection_pool (2.3.0)
     crass (1.0.6)
     dartsass-rails (0.4.0)
       railties (>= 6.0.0)
@@ -114,12 +115,17 @@ GEM
       warden (~> 1.2.3)
     errbase (0.2.2)
     erubi (1.11.0)
+    et-orbi (1.2.7)
+      tzinfo
     execjs (2.8.1)
     faraday (2.6.0)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.1)
     ffi (1.15.5)
+    fugit (1.7.2)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -174,6 +180,7 @@ GEM
       nio4r (~> 2.0)
     pundit (2.2.0)
       activesupport (>= 3.0.0)
+    raabro (1.4.0)
     racc (1.6.0)
     rack (2.2.4)
     rack-test (2.0.2)
@@ -206,6 +213,8 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.0.6)
     redis (4.8.0)
+    redis-client (0.11.2)
+      connection_pool
     regexp_parser (2.6.0)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -218,6 +227,8 @@ GEM
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
+    rufus-scheduler (3.8.2)
+      fugit (~> 1.1, >= 1.1.6)
     safely_block (0.3.0)
       errbase (>= 0.1.1)
     sassc (2.4.0)
@@ -233,6 +244,18 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sidekiq (7.0.1)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.9.0)
+    sidekiq-failures (1.0.4)
+      sidekiq (>= 4.0.0)
+    sidekiq-scheduler (4.0.2)
+      redis (>= 4.2.0)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 4)
+      tilt (>= 1.4.0)
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -307,6 +330,9 @@ DEPENDENCIES
   requestjs-rails
   ruby-progressbar
   selenium-webdriver
+  sidekiq
+  sidekiq-failures (~> 1.0)
+  sidekiq-scheduler
   simple_form
   sprockets-rails
   stimulus-rails

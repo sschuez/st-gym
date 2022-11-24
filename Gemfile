@@ -88,3 +88,6 @@ gem "prawn", "~> 2.4"
 gem "prawn-table", "~> 0.2.2"
 gem 'prawn-emoji', '~> 5.3'
 gem "matrix" # Required explicitly for latest ruby version
+gem "sidekiq"
+gem "sidekiq-failures", "~> 1.0"
+gem "sidekiq-scheduler"
