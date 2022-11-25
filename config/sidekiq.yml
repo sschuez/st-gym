@@ -10,9 +10,3 @@
   - active_storage_analysis
   - active_storage_purge
 
-:schedule:
-  ClearLonlyWorkouts:
-    cron: "0 8 * * *"
-    queue: scheduler
-    enabled: true
-    # dynamic: true 

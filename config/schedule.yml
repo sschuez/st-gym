@@ -1,0 +1,9 @@
+clear_lonely_workouts:
+  # every: 2 hours
+  cron: '0 0 * * * *' 
+  class: ClearLonlyWorkouts
+  description: 'This job removes workouts that have no owner'
+  active_job: true
+  # queue: scheduler
+  # enabled: true
+  # dynamic: true 
