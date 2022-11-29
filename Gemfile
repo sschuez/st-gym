@@ -90,5 +90,5 @@ gem 'prawn-emoji', '~> 5.3'
 gem "matrix" # Required explicitly for latest ruby version
 gem "sidekiq"
 gem "sidekiq-failures", "~> 1.0"
-# gem "sidekiq-cron"
-# gem "sidekiq-scheduler"
+gem 'whenever', require: false
+

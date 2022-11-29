@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   require "sidekiq/web"
-  # require 'sidekiq/cron/web'
   
   # EXERCISES
   resources :exercises
