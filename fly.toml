@@ -5,10 +5,6 @@ kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
-[processes]
-web = "bin/rails fly:server"
-worker = "bundle exec sidekiq"
-
 [build]
   [build.args]
     BUILD_COMMAND = "bin/rails fly:build"
@@ -27,7 +23,7 @@ worker = "bundle exec sidekiq"
 [[services]]
   http_checks = []
   internal_port = 8080
-  processes = ["web"]
+  processes = ["app"]
   protocol = "tcp"
   script_checks = []
   [services.concurrency]
