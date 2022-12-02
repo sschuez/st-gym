@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  require "sidekiq/web"
+  # require "sidekiq/web"
   
   # EXERCISES
   resources :exercises
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   # ADMIN
   authenticate :user, ->(user) { user.admin? } do  
-    mount Sidekiq::Web => '/sidekiq'
+    # mount Sidekiq::Web => '/sidekiq'
     scope module: :admin do
       resources :analytics, only: [:index]
     end

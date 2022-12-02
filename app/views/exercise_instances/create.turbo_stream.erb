@@ -1,0 +1,3 @@
+<%= turbo_stream.append "block_#{@block.id}_exercise_instances" do %>
+  <%= render "exercise_instances/exercise_instance", exercise_instance: @exercise_instance %>
+<% end %>

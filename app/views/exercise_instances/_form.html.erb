@@ -8,6 +8,7 @@
                        class: "form-control",
                        placeholder: 'Type an exercise name..',
                        value: params[:query],
+                       include_hidden: false,
                        data: {
                         refresh_list_target: 'searchInput',
                         action: "keyup->refresh-list#update"

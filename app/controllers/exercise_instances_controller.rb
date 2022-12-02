@@ -20,27 +20,21 @@ class ExerciseInstancesController < ApplicationController
   def create
     exercises = params[:exercise_instance][:exercise_id]
     exercises.reject { |e| e.empty? }.each do |exercise|
+      
       @exercise_instance = @block.exercise_instances.new(
         exercise: Exercise.find(exercise.to_i)
       )
       authorize @exercise_instance
-      respond_to do |format|
-        if @exercise_instance.save
-          format.turbo_stream { flash.now[:notice] = "Exercise instance was successfully created." }
-          # format.html { redirect_to @workout, notice: "Exercise instance was successfully created." }
-          # format.json { render :show, status: :created, location: @exercise_instance }
-        else
-          format.turbo_stream do
-            render turbo_stream: turbo_stream.update(
-              'new_exercise_instance',
-              partial: "exercise_instances/form_modal",
-              locals: {exercise_instance: @exercise_instance})
-          end
-          # format.html { render :new, status: :unprocessable_entity }
-          # format.json { render json: @exercise_instance.errors, status: :unprocessable_entity }
+      
+      if @exercise_instance.save
+        respond_to do |format|
+          format.turbo_stream
         end
+      else
+        render :new, status: :unprocessable_entity
       end
     end
+
   end
 
   def destroy
