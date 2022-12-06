@@ -19,22 +19,15 @@ class ExerciseInstancesController < ApplicationController
   
   def create
     exercises = params[:exercise_instance][:exercise_id]
-    exercises.reject { |e| e.empty? }.each do |exercise|
-      
-      @exercise_instance = @block.exercise_instances.new(
+    @exercise_instances = exercises.reject { |e| e.empty? }
+                                    .map do |exercise|      
+      @exercise_instance = @block.exercise_instances.create(
         exercise: Exercise.find(exercise.to_i)
       )
       authorize @exercise_instance
-      
-      if @exercise_instance.save
-        respond_to do |format|
-          format.turbo_stream
-        end
-      else
-        render :new, status: :unprocessable_entity
-      end
     end
-
+      
+    respond_to { |format| format.turbo_stream }
   end
 
   def destroy
