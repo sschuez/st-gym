@@ -39,8 +39,6 @@ class ExerciseInstancesController < ApplicationController
     respond_to do |format|
       format.turbo_stream
     end
-
-    # head :ok
   end
 
   private
