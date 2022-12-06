@@ -33,9 +33,14 @@ class ExerciseInstancesController < ApplicationController
   def destroy
     @exercise_instance = ExerciseInstance.find(params[:id])
     authorize @exercise_instance
+
     @exercise_instance.destroy
 
-    head :ok
+    respond_to do |format|
+      format.turbo_stream
+    end
+
+    # head :ok
   end
 
   private
