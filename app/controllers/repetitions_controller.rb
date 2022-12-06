@@ -14,7 +14,10 @@ class RepetitionsController < ApplicationController
       new_time = @exercise_instance_or_block.time += params[:increment]
       @exercise_instance_or_block.update(time: new_time)
     end
-    head :ok
+    respond_to do |format|
+      format.turbo_stream
+    end
+    # head :ok
   end
   
 end
