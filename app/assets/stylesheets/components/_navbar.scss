@@ -3,11 +3,33 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
-  margin-bottom: 24px;
+
+  a, button {
+    color: black;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  .hamburger {
+    font-size: 25px;
+  }
 }
 
 .dark-mode .navbar-lewagon {
   background-color: $background-color-dark;
+
+  i {
+    color: $font-color-dark;
+  }
+
+  button {
+    color: $font-color-dark;
+  }
 }
 
 .navbar-lewagon .navbar-collapse {

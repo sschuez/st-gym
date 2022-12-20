@@ -1,13 +1,19 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
+  static targets = [ "btn" ]
+
   connect() {
     var theme = getCookie("theme")
     if (theme == "light-mode") {
-      document.querySelector(".dark-mode-btn").innerHTML = "🌘"
+      this.btnTarget.innerHTML = "🌘"
+      this.btnTarget.nextElementSibling.innerHTML = "Dark Mode"
     } else {
-      document.querySelector(".dark-mode-btn").innerHTML = "🌞"
+      this.btnTarget.innerHTML = "🌞"
+      this.btnTarget.nextElementSibling.innerHTML = "Light Mode"
     }
+
+  
 
     // Get cookie - for reference only (cosole.log())
     function getCookie(cname) {
@@ -35,11 +41,13 @@ export default class extends Controller {
     let currentTheme = element.classList.contains("dark-mode") ? "dark-mode" : "light-mode"
     if (currentTheme == "dark-mode") {
       document.body.classList.remove("light-mode")
-      document.querySelector(".dark-mode-btn").innerHTML = "🌞"
       document.cookie = "theme=dark-mode"
+      this.btnTarget.innerHTML = "🌞"
+      this.btnTarget.nextElementSibling.innerHTML = "Light Mode"
     } else {
       document.cookie = "theme=light-mode"
-      document.querySelector(".dark-mode-btn").innerHTML = "🌘"
+      this.btnTarget.innerHTML = "🌘"
+      this.btnTarget.nextElementSibling.innerHTML = "Dark Mode"
     }
   }
 }
