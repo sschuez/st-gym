@@ -16,14 +16,14 @@
                   method: :delete,
                   class: "sidebar__item" do %>
                 <%= Icon.new("sign_out").call %>
-                <span>Sign out</span>
+                <span class="font-weight-normal">Sign out</span>
               <% end %>
             </li>
           <% else %>
             <li>
               <%= link_to new_user_session_path, class: "sidebar__item" do %>
                 <%= Icon.new("sign_in").call %>
-                <span>Sign in</span>
+                <span class="font-weight-normal">Sign in</span>
               <% end %>
             </li>
           <% end %>
