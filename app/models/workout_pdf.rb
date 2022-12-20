@@ -27,7 +27,7 @@ class WorkoutPdf# < Prawn::Document
     text @workout.name, size: 40, color: '7E73FF'
     text @workout.description, size: 20
     move_down 10
-    text "Generated on www.stgym.club"
+    text "Generated on stgym.club"
     move_down 10
   end
   
