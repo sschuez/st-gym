@@ -22,6 +22,10 @@
   transition: opacity 200ms ease;
   pointer-events: none;
 
+  .session {
+    font-weight: normal !important;
+  }
+  
   &__container {
     position: relative;
   }
