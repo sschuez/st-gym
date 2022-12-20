@@ -1,27 +1,7 @@
 @use "config/variables" as *;
 
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
-
-  a, button {
-    color: black;
-    background-color: transparent;
-    border: none;
-    text-decoration: none;
-  }
-
-  button:focus {
-    outline: none;
-  }
-
-  .hamburger {
-    font-size: 25px;
-  }
-}
-
-.dark-mode .navbar-lewagon {
-  background-color: $background-color-dark;
+.dark-mode .navbar {
+  background-color: $card-background-dark;
 
   i {
     color: $font-color-dark;
@@ -32,23 +12,40 @@
   }
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  justify-content: space-between;
+  padding: 8px 20px !important;
+  
+  a, button {
+    color: black;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  .hamburger {
+    font-size: 25px;
+  }
 
-.dark-mode .navbar-collapse {
-  background: $background-color-dark;
-}
+  &__brand {
+    font-weight: bold;
+    font-size: 25px;
+  }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
+  &__name {
+    margin-left: auto;
+    margin-right: 12px;
+  }
 
-.dark-mode .dropdown-menu {
-  background-color: $background-color-dark !important;
-  border: 1px solid rgba($font-color-dark, 0.15)
-}
+  &__right {
+    margin-left: auto;
+  }
 
-.dark-mode .dropdown-item:hover {
-  background-color: $background-color-dark-secondary;
 }

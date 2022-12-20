@@ -11,9 +11,12 @@ class Icon
       hamburger: '<i class="bi bi-list hamburger"></i>',
       close: '<i class="bi bi-x"></i>',
       close_lg: '<i class="bi bi-x-lg"></i>',
-      sign_out: '<i class="bi bi-box-arrow-in-right"></i>',
-      sign_in: '<i class="bi bi-box-arrow-right"></i>',
-      translate: '<i class="bi bi-translate"></i>'
+      sign_out: '<i class="bi bi-box-arrow-right"></i>',
+      sign_in: '<i class="bi bi-box-arrow-in-right"></i>',
+      translate: '<i class="bi bi-translate"></i>',
+      admin: '<i class="bi bi-eyeglasses"></i>',
+      bicycle: '<i class="bi bi-bicycle"></i>',
+      person: '<i class="bi bi-person"></i>'
     }
   end
 

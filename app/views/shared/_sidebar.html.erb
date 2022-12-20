@@ -1,4 +1,4 @@
-<div  class="sidebar" 
+<div class="sidebar" 
       data-sidebar-target="toggle" data-action="click->sidebar#toggleClose">
   <div class="sidebar__container">
     <div class="sidebar__inner">
@@ -8,51 +8,82 @@
           <%= Icon.new("close_lg").call %>
         </button>
       
-        <ul data-controller="sidebar">
-            <% if user_signed_in? %>
-              <li>
-                <%= button_to destroy_user_session_path,
-                    method: :delete,
-                    class: "sidebar__item" do %>
-                  <%= Icon.new("sign_out").call %>
-                  <span>Sign out</span>
-                <% end %>
-              </li>
-            <% else %>
-              <li>
-                <%= link_to new_user_session_path, class: "sidebar__item" do %>
-                  <%= Icon.new("sign_in").call %>
-                  <span>Sign in</span>
-                <% end %>
-              </li>
-            <% end %>
-
+        <ul>
+        
+          <% if user_signed_in? %>
             <li>
-              <div class="divider"></div>
+              <%= button_to destroy_user_session_path,
+                  method: :delete,
+                  class: "sidebar__item" do %>
+                <%= Icon.new("sign_out").call %>
+                <span>Sign out</span>
+              <% end %>
             </li>
-
+          <% else %>
             <li>
-              <%= link_to root_path, class: "sidebar__item" do %>
-                <%= Icon.new("repeat").call %>
+              <%= link_to new_user_session_path, class: "sidebar__item" do %>
+                <%= Icon.new("sign_in").call %>
+                <span>Sign in</span>
+              <% end %>
+            </li>
+          <% end %>
+
+          <li>
+            <div class="divider"></div>
+          </li>
+
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to user_workouts_path, class: "sidebar__item" do %>
+                <%= Icon.new("person").call %>
                 <span>
-                  Another button
+                  My workouts
                 </span>
               <% end %>
+            </li>
+          <% end %>    
+          
+          <li>
+            <%= link_to public_workouts_path, class: "sidebar__item" do %>
+              <%= Icon.new("bicycle").call %>
+              <span>
+                Public workouts
+              </span>
+            <% end %>
+          </li>
+  
+          <li>
+            <div class="divider"></div>
+          </li>
+
+          <% if current_user&.admin? %>
+            <li>
+              <button class="sidebar__item" data-action="click->sidebar#toggleSub">
+                <%= Icon.new("admin").call %>
+                <span>
+                  Admin
+                </span>
+                <div data-sidebar-target="arrowIcon"></div>
+                <div class="toggle-sub" id="sub">
+                  <ul>
+                    <li>
+                      <%= link_to "All workouts", workouts_path %>
+                    </li>
+                    <li>
+                      <%= link_to "All users", users_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Analytics", analytics_path %>
+                    </li>
+                  </ul>
+                </div>
+              </button>
             </li>
             
             <li>
               <div class="divider"></div>
             </li>
-          
-            <li>
-              <%= link_to root_path, class: "sidebar__item" do %>
-                <%= Icon.new("repeat").call %>
-                <span>
-                  One more button
-                </span>
-              <% end %>
-            </li>
-
+          <% end %>
 
           <li data-controller="dark" data-action="click->dark#darkMode">
             <div class="sidebar__item sidebar__item--dark-mode">
@@ -61,50 +92,6 @@
                 Dark mode
               </span>
             </div>
-          </li>
-
-          <li>
-            <button class="sidebar__item toggle" data-action="click->sidebar#toggleSub">
-              <%= Icon.new("translate").call %>
-              <span>
-                Admin
-              </span>
-              <div data-sidebar-target="arrowIcon"></div>
-              <div class="toggle-sub" id="sub">
-                <ul>
-                  <li>
-                    <%= link_to 'One language', url_for(locale: :de) %>
-                  </li>
-                  <li>
-                    <%= link_to 'Another language', url_for(locale: :en) %>
-                  </li>
-                </ul>
-              </div>
-            </button>
-          </li>
-          
-
-          <li>
-            <button class="sidebar__item toggle" data-action="click->sidebar#toggleSub">
-              <%= Icon.new("repeat").call %>
-              <span>
-                Admin
-              </span>
-              <div data-sidebar-target="arrowIcon"></div>
-              <div class="toggle-sub" id="sub">
-                <ul>
-                  <li>
-                    <%= link_to "All workouts", workouts_path %>
-                  </li>
-                  <li>
-                    <%= link_to "All users", users_path %>
-                  </li>
-                  <li>
-                    <%= link_to "Analytics", analytics_path %>
-                  </li>
-                </ul>
-              </div>
-            </button>
           </li>
 
         </ul>
