@@ -1,5 +1,14 @@
 @use "config/variables" as *;
 
+.my-card {
+  text-decoration: none !important;
+  color: black;
+}
+
+.dark-mode .my-card {
+  color: $font-color-dark !important;
+}
+
 .workout-card {
   min-height: 400px;
   position: relative;
