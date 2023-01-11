@@ -35,7 +35,7 @@
           <% if user_signed_in? %>
             <li>
               <%= link_to user_workouts_path, class: "sidebar__item" do %>
-                <%= Icon.new("person").call %>
+                <%= Icon.new("bicycle").call %>
                 <span>
                   My workouts
                 </span>
@@ -45,9 +45,18 @@
           
           <li>
             <%= link_to public_workouts_path, class: "sidebar__item" do %>
-              <%= Icon.new("bicycle").call %>
+              <%= Icon.new("fist").call %>
               <span>
                 Public workouts
+              </span>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to exercises_path, class: "sidebar__item" do %>
+              <%= Icon.new("exercise").call %>
+              <span>
+                Exercises
               </span>
             <% end %>
           </li>

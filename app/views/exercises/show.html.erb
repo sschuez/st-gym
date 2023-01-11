@@ -1,10 +1,22 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :meta_title, "#{@exercise.name} on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @exercise.description %>
+<%# content_for :meta_image, cl_image_path(@exercise.photo.path) %>
 
-<%= render @exercise %>
+<div class="container border-bottom">
+  <div class="my-header">
+    <h1><%= @exercise.name %></h1>
+  </div>
+  <h5 class="my-3">Description</h5>
+  <p><%= @exercise.description %></p>
+  <h5 class="mt-5">Categories</h5>
+  <span class="pill my-3"><%= @exercise.category.name %></span>
+</div>
 
-<div>
-  <%= link_to "Edit this exercise", edit_exercise_path(@exercise) %> |
-  <%= link_to "Back to exercises", exercises_path %>
+<div class="container">
+  <div class="actions my-3">
+    <%#= link_to "Edit this exercise", edit_exercise_path(@exercise) %>
+    <%= link_to "Back to exercises", exercises_path, class: "btn btn-primary btn-sm" %>
 
-  <%= button_to "Destroy this exercise", @exercise, method: :delete %>
+    <%#= button_to "Destroy this exercise", @exercise, method: :delete %>
+  </div>
 </div>

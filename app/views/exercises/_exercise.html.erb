@@ -1,17 +1,9 @@
-<div id="<%= dom_id exercise %>">
-  <p>
-    <strong>Name:</strong>
-    <%= exercise.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= exercise.description %>
-  </p>
-
-  <p>
-    <strong>Category:</strong>
-    <%= exercise.category_id %>
-  </p>
-
-</div>
+<%= link_to exercise do %>
+  <%= content_tag :div, id: dom_id(exercise), class: "card my-3" do %>
+    <h5 class="card-header"><%= exercise.name %></h5>
+    <div class="card-body">
+      <p><%= exercise.description %></p>
+      <span class="pill"><%= exercise.category.name %></span>
+    </div>
+  <% end %>  
+<% end %>

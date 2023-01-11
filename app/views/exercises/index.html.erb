@@ -1,14 +1,19 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :meta_title, "#{@exercises.count} exercises on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, "Choose among many cool exercises, or add some new one, if you're missing something" %>
+<%# content_for :meta_image, cl_image_path(@exercise.photo.path) %>
 
-<h1>Exercises</h1>
+<div class="my-header">
+  <h1>Exercises (<%= @exercises.count %>)</h1>
+  <div class="mt-auto p-2">
+    <%= link_to "⚡️ Add exercises", new_exercise_path, data: { controller: "turbo" }, class: "btn btn-primary" %>
+    <%#= link_to "New exercise", new_exercise_path, class: "btn btn-primary" %>
+  </div>
+</div>
+<p class="my-3">
+  Choose among many cool exercises or add a new one, if you're missing something
+</p>
 
 <div id="exercises">
-  <% @exercises.each do |exercise| %>
-    <%= render exercise %>
-    <p>
-      <%= link_to "Show this exercise", exercise %>
-    </p>
-  <% end %>
+  <%= render @exercises %>
 </div>
 
-<%= link_to "New exercise", new_exercise_path %>
