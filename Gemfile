@@ -92,3 +92,5 @@ gem "matrix" # Required explicitly for latest ruby version
 # gem "sidekiq-failures", "~> 1.0"
 gem 'whenever', require: false
 
+
+gem "pagy", "~> 6.0"

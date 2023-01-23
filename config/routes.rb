@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   post '/adduser', to: 'newsletters#addUser'
   put '/removeuser', to: 'newsletters#removeUser'
 
-  
+  # CONTACTS
+  resources :contacts, only: [:index, :new, :create, :show, :destroy]
+
   # WORKOUTS
   get 'my_workouts' => 'workouts#user_workouts', as: :user_workouts
   get 'public_workouts' => 'workouts#public_workouts', as: :public_workouts

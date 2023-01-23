@@ -32,6 +32,15 @@
             <div class="divider"></div>
           </li>
 
+          <li>
+            <%= link_to new_workout_path, class: "sidebar__item" do %>
+              <%= Icon.new("plus").call %>
+              <span>
+                New workout
+              </span>
+            <% end %>
+          </li>
+
           <% if user_signed_in? %>
             <li>
               <%= link_to user_workouts_path, class: "sidebar__item" do %>
@@ -65,7 +74,28 @@
             <div class="divider"></div>
           </li>
 
+          <li class="sidebar__item" data-action="click->sidebar#closeSidebar">
+            <%= link_to new_contact_path, 
+                data: { controller: "turbo" } do %>
+              <%= Icon.call("mail") %> Feedback
+            <% end %>
+          </li>
+
+          <li data-controller="dark" data-action="click->dark#darkMode">
+            <div class="sidebar__item sidebar__item--dark-mode">
+              <div class="dark-mode-switch sidebar__dark-mode-switch" data-dark-target="btn"></div>
+              <span>
+                Dark mode
+              </span>
+            </div>
+          </li>
+
           <% if current_user&.admin? %>
+    
+            <li>
+              <div class="divider"></div>
+            </li>
+
             <li>
               <button class="sidebar__item" data-action="click->sidebar#toggleSub">
                 <%= Icon.new("admin").call %>
@@ -84,24 +114,15 @@
                     <li>
                       <%= link_to "Analytics", analytics_path %>
                     </li>
+                    <li>
+                      <%= link_to "Contacts", contacts_path %>
+                    </li>
                   </ul>
                 </div>
               </button>
             </li>
             
-            <li>
-              <div class="divider"></div>
-            </li>
           <% end %>
-
-          <li data-controller="dark" data-action="click->dark#darkMode">
-            <div class="sidebar__item sidebar__item--dark-mode">
-              <div class="dark-mode-switch sidebar__dark-mode-switch" data-dark-target="btn"></div>
-              <span>
-                Dark mode
-              </span>
-            </div>
-          </li>
 
         </ul>
 

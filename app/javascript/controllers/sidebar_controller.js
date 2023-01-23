@@ -28,6 +28,10 @@ export default class extends Controller {
     }
   }
 
+  closeSidebar() {
+    this.toggleTarget.classList.remove("open");
+  }
+
   toggleSub() {
     const sub = event.currentTarget.querySelector("#sub")
     const arrow = event.currentTarget.querySelector("#caret")

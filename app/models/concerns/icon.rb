@@ -1,8 +1,12 @@
 class Icon
+  def self.call(icon)
+    new(icon).call
+  end
+  
   def initialize(icon)
     @icon = icon
     @icons = {
-      trash: '<i class="bi bi-trash-fill"></i>',
+      trash: '<i class="fas fa-trash-alt"></i>',
       edit: '<i class="bi bi-pencil-fill"></i>',
       confirm: '<i class="bi bi-check-circle-fill"></i>',
       cancel: '<i class="bi bi-x-circle-fill"></i>',
@@ -18,7 +22,11 @@ class Icon
       bicycle: '<i class="fas fa-bicycle"></i>',
       person: '<i class="bi bi-person"></i>',
       exercise: '<i class="fas fa-dumbbell"></i>',
-      fist: '<i class="fas fa-fist-raised"></i>'
+      fist: '<i class="fas fa-fist-raised"></i>',
+      info: '<i class="bi bi-info-circle" style="color: hsl(210, 100%, 82%)"></i>',
+      mail: '<i class="far fa-envelope"></i>',
+      eye: '<i class="fas fa-eye"></i>',
+      plus: '<i class="fas fa-plus"></i>'
     }
   end
 
