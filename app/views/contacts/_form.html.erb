@@ -3,7 +3,8 @@
   <%= form_error_notification(contact) %>
   
   <div class="mb-3">
-    <%= f.input :email, 
+    <%= f.input :email,
+          hint: "Optional, but if you want me to get back to you, please provide your email.",
           input_html: { value: current_user&.email },
           class: 'form-control' %>
   </div>
