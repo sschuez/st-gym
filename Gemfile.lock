@@ -100,6 +100,7 @@ GEM
     childprocess (4.1.0)
     chronic (0.10.2)
     concurrent-ruby (1.1.10)
+    connection_pool (2.3.0)
     crass (1.0.6)
     dartsass-rails (0.4.0)
       railties (>= 6.0.0)
@@ -206,6 +207,8 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.0.6)
     redis (4.8.0)
+    redis-client (0.13.0)
+      connection_pool
     regexp_parser (2.6.1)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -233,6 +236,13 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sidekiq (7.0.6)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.11.0)
+    sidekiq-failures (1.0.4)
+      sidekiq (>= 4.0.0)
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -309,6 +319,8 @@ DEPENDENCIES
   requestjs-rails
   ruby-progressbar
   selenium-webdriver
+  sidekiq
+  sidekiq-failures (~> 1.0)
   simple_form
   sprockets-rails
   stimulus-rails

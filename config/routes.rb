@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  # require "sidekiq/web"
+  # SIDEKIQ
+  require "sidekiq/web"
+
+  # WORKER (Github Cronjob)
+  get "/start_clearing_lonely_workouts", to: "worker#start_clearing_lonely_workouts"
   
   # EXERCISES
   resources :exercises
@@ -13,7 +17,7 @@ Rails.application.routes.draw do
 
   # ADMIN
   authenticate :user, ->(user) { user.admin? } do  
-    # mount Sidekiq::Web => '/sidekiq'
+    mount Sidekiq::Web => '/sidekiq'
     scope module: :admin do
       resources :analytics, only: [:index]
     end
