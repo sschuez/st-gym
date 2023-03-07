@@ -1,0 +1,14 @@
+name: BG Worker To Clear Lonely Workout
+
+on:
+  schedule:
+    # Once per hour
+    - cron: '0 * * * *'
+
+jobs:
+  worker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Call server
+        run: wget http://stgym.club/start_clearing_lonely_workouts
