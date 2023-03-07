@@ -28,6 +28,43 @@
             </li>
           <% end %>
 
+          <% if current_user&.admin? %>
+    
+            <li>
+              <div class="divider"></div>
+            </li>
+
+            <li>
+              <button class="sidebar__item" data-action="click->sidebar#toggleSub">
+                <%= Icon.new("admin").call %>
+                <span>
+                  Admin
+                </span>
+                <div data-sidebar-target="arrowIcon"></div>
+                <div class="toggle-sub" id="sub">
+                  <ul>
+                    <li>
+                      <%= link_to "All workouts", workouts_path %>
+                    </li>
+                    <li>
+                      <%= link_to "All users", users_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Analytics", analytics_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Contacts", contacts_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Sidekiq", sidekiq_web_path %>
+                    </li>
+                  </ul>
+                </div>
+              </button>
+            </li>
+            
+          <% end %>
+
           <li>
             <div class="divider"></div>
           </li>
@@ -89,43 +126,6 @@
               </span>
             </div>
           </li>
-
-          <% if current_user&.admin? %>
-    
-            <li>
-              <div class="divider"></div>
-            </li>
-
-            <li>
-              <button class="sidebar__item" data-action="click->sidebar#toggleSub">
-                <%= Icon.new("admin").call %>
-                <span>
-                  Admin
-                </span>
-                <div data-sidebar-target="arrowIcon"></div>
-                <div class="toggle-sub" id="sub">
-                  <ul>
-                    <li>
-                      <%= link_to "All workouts", workouts_path %>
-                    </li>
-                    <li>
-                      <%= link_to "All users", users_path %>
-                    </li>
-                    <li>
-                      <%= link_to "Analytics", analytics_path %>
-                    </li>
-                    <li>
-                      <%= link_to "Contacts", contacts_path %>
-                    </li>
-                    <li>
-                      <%= link_to "Sidekiq", sidekiq_web_path %>
-                    </li>
-                  </ul>
-                </div>
-              </button>
-            </li>
-            
-          <% end %>
 
         </ul>
 
