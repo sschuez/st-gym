@@ -1,11 +1,11 @@
 @use "config/variables" as *;
 
 .sort-btns {
-  display: flex;
   margin-bottom: 1rem;
 }
 
 .sort-btn-selector + label {
+  min-width: 0 !important;
   background-color: var(--color-glint) !important;
   color: var(--color-secondary-background-dark);
   border: 1px solid var(--color-secondary-background-dark);
