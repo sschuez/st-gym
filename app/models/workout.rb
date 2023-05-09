@@ -5,7 +5,6 @@ class Workout < ApplicationRecord
   # == Attributes ===========================================================
   
   # == Extensions ===========================================================
-  include WorkoutTimer
 
   # == Relationships ========================================================
   has_many :blocks, dependent: :destroy
@@ -41,5 +40,13 @@ class Workout < ApplicationRecord
 
   
   # == Instance Methods =====================================================
+  def rounded_duration(seconds = duration)
+    ((seconds / 60.to_f) / 5).ceil * 300
+  end
   
+  def duration
+    seconds_for_blocks = blocks.map(&:duration).sum
+    last_block_rest = blocks.count < 2 ? 0 : blocks.last.seconds_for_rest
+    seconds_for_blocks - last_block_rest
+  end
 end

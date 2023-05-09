@@ -7,7 +7,7 @@
     <% if workout.description %>
       <%= workout.description %>
     <% end %>
-    <span class="text-secondary small grey">⏱️ <%= formatted_duration(workout.time_it_takes) %> - <%= workout.public ? "Public workout" : "Private workout" %></span>
+    <span class="text-secondary small grey">⏱️ <%= formatted_duration(workout.rounded_duration) %> - <%= workout.public ? "Public workout" : "Private workout" %></span>
 
     <%= turbo_frame_tag dom_id(workout, 'actions'), src: workout_actions_path(workout) %>          
     

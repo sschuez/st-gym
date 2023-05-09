@@ -26,5 +26,13 @@ class ExerciseInstance < ApplicationRecord
     broadcast_remove_to block, :exercise_instances,
       target: "exercise_instance_#{self.id}"
   end
+
+  def duration
+    seconds_exercises = tabata ? time : repetitions * exercise.duration
+    seconds_exercises + seconds_for_rest()
+  end
   
+  def seconds_for_rest
+    5
+  end
 end

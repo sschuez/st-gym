@@ -47,7 +47,7 @@ class WorkoutIndexCardPresenter
 
   def workout_status
     workout_st = workout.public ? "Public workout" : "Private workout"
-    content_tag :p, "⏱️ #{formatted_duration(workout.time_it_takes)} - #{workout_st}", class: "text-secondary small grey my-1"
+    content_tag :p, "⏱️ #{formatted_duration(workout.rounded_duration)} - #{workout_st}", class: "text-secondary small grey my-1"
   end
 
   def card_controls

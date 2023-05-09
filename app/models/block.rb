@@ -39,5 +39,15 @@ class Block < ApplicationRecord
   # == Class Methods ========================================================
   
   # == Instance Methods =====================================================
+  def duration
+    seconds_for_exercises = exercise_instances.map(&:duration).sum
+    block_is_repetitions = seconds_for_exercises + seconds_for_rest()
+    block_is_tabata = time + seconds_for_rest
+    seconds_for_block = tabata ? block_is_tabata : block_is_repetitions 
+  end
+
+  def seconds_for_rest
+    20
+  end
   
 end
