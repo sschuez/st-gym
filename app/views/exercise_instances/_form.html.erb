@@ -22,13 +22,6 @@
     </fieldset>
   </div>
 
-  <%#= f.association :exercise,
-    collection: Exercise.order(name: :asc),
-    legend_tag: false,
-    as: :check_boxes,
-    input_html: { class: "tag-selector" },
-    item_wrapper_class: 'tag-item' %>
-
   <div class="form-actions">
     <%= f.submit "Add exercise", class: "btn btn-primary", data: { action: "type=submit click->modal#disconnect" } %>
   </div>

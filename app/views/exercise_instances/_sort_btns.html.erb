@@ -1,19 +1,18 @@
 <div class="sort-btns">
   
-  <%# <input type="hidden" name="category[category_id]" value=""> 
+  <%# Btn for all exercises %>
+  <input type="hidden" name="category[category_id]" value=""> 
   <div class="tag-item">
-    <input data-action="click->refresh-list#update" data-refresh-list-target="category" class="category form-check-input check_boxes optional tag-selector" type="radio" value="all" name="category[category_id]" id="category_id_all">
-    <label class="form-check-label collection_check_boxes" for="category_id_all">All</label>
-  </div> %>
+    <input data-action="click->refresh-list#update" data-refresh-list-target="category" class="category form-check-input check_boxes optional tag-selector sort-btn-selector" type="radio" value="reset_category_list" name="category[category_id]" id="category_id_all">
+    <label class="sort-btn form-check-label collection_check_boxes" for="category_id_all">All</label>
+  </div>
 
   <% Category.ordered.all.each do |category| %>
-    
     <input type="hidden" name="category[category_id]" value=""> 
     <div class="tag-item">
       <input data-action="click->refresh-list#update" data-refresh-list-target="category" class="category form-check-input check_boxes optional tag-selector sort-btn-selector" type="radio" value="<%= category.id %>" name="category[category_id]" id="category_id_<%= category.id %>">
       <label class="sort-btn form-check-label collection_check_boxes" for="category_id_<%= category.id %>"><%= category.name.capitalize %></label>
     </div>
-    
   <% end %>
   
 </div>

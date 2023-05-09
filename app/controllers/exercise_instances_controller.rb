@@ -13,9 +13,9 @@ class ExerciseInstancesController < ApplicationController
     @exercise_instance = @block.exercise_instances.new
     authorize @exercise_instance
     
-    category_query = params[:query].present? && params[:query].to_i != 0
+    category_query = params[:category].present? && (params[:category].to_i != 0 || params[:category] != "reset_category_list")
     # binding.break
-    @exercises = category_query ? Exercise.where(category_id: params[:query].to_i).ordered : Exercise.ordered
+    @exercises = category_query ? Exercise.where(category_id: params[:category].to_i).ordered : Exercise.ordered
     query_and_respond(@exercises)
   end
   

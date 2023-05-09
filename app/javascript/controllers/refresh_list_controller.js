@@ -6,15 +6,16 @@ export default class extends Controller {
   static targets = [ "form", "list", "searchInput", "category" ]
 
   connect() {
-    // console.log(this.element);
-    // console.log(this.formTarget);
-    // console.log(this.listTarget);
-    // console.log(this.searchInputTarget);
+    this.category = 0
   }
 
   update() {
-    const categoryPresent = event.currentTarget.classList.contains("category")
-    const url = `${this.formTarget.action}?query=${categoryPresent ? event.currentTarget.value : this.searchInputTarget.value}`
+    if (event.currentTarget.classList.contains("category")) {
+      this.category = event.currentTarget.value
+    } else if (event.currentTarget.value === "reset_category_list") {
+      this.category = 0
+    }
+    const url = `${this.formTarget.action}?query=${this.searchInputTarget.value}&category=${this.category}`
     fetch(url, { 
       headers: { 
         Accept: 'text/plain'
