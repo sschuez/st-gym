@@ -6,7 +6,7 @@ export default class extends Controller {
   static targets = [ "form", "list", "searchInput", "category" ]
 
   connect() {
-    this.category = 0
+    this.category = "reset_category_list"
   }
 
   update() {
