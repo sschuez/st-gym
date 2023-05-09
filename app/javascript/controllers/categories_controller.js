@@ -1,15 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
-import { FetchRequest } from "@rails/request.js"
 
-// Connects to data-controller="refresh-list"
+// Connects to data-controller="categories"
 export default class extends Controller {
-  static targets = [ "form", "list", "searchInput", "category" ]
-
+  static target = [ "category" ]
+  
   connect() {
-    // console.log(this.element);
-    // console.log(this.formTarget);
-    // console.log(this.listTarget);
-    // console.log(this.searchInputTarget);
   }
 
   update() {
@@ -26,5 +21,4 @@ export default class extends Controller {
         this.listTarget.outerHTML = data;
       })
   }
-
 }

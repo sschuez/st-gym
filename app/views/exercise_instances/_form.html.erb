@@ -15,10 +15,10 @@
                       } %>
     <% end %>
     
-    <fieldset class="form-group check_boxes optional exercise_instance_exercises my-3">
-      
-      <%= render "exercise_instances/list", exercises: @exercises %>
+    <%= render "exercise_instances/sort_btns", workout: @workout, block: @block, exercise_instance: @exercise_instance %>
     
+    <fieldset class="form-group check_boxes optional exercise_instance_exercises my-3">
+      <%= render "exercise_instances/list", exercises: @exercises %>
     </fieldset>
   </div>
 

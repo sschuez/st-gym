@@ -13,7 +13,9 @@ class ExerciseInstancesController < ApplicationController
     @exercise_instance = @block.exercise_instances.new
     authorize @exercise_instance
     
-    @exercises = Exercise.order(name: :asc)
+    category_query = params[:query].present? && params[:query].to_i != 0
+    # binding.break
+    @exercises = category_query ? Exercise.where(category_id: params[:query].to_i).ordered : Exercise.ordered
     query_and_respond(@exercises)
   end
   
@@ -44,7 +46,7 @@ class ExerciseInstancesController < ApplicationController
   private
 
   def query_and_respond(exercises)
-    if params[:query].present?
+    if params[:query].present? && params[:query].to_i == 0
       # sql_query = "name ILIKE :query OR description ILIKE :query"
       sql_query = "name ILIKE :query"
       exercises = exercises.where(sql_query, query: "%#{params[:query]}%")
