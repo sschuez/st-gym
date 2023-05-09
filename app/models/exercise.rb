@@ -4,6 +4,8 @@ class Exercise < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :by_category, -> (category_id) { where(category_id: category_id) }
+
   def duration
     seconds_for_exercise = 2
     seconds_for_rest = 1
