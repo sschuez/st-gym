@@ -96,3 +96,5 @@ gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
 gem "pagy", "~> 6.0"
 
+
+gem "marginalia", "~> 1.11"
