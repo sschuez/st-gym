@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_23_130740) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_11_092240) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_130740) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "exercise_categories", force: :cascade do |t|
+    t.bigint "exercise_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_exercise_categories_on_category_id"
+    t.index ["exercise_id"], name: "index_exercise_categories_on_exercise_id"
+  end
+
   create_table "exercise_instances", force: :cascade do |t|
     t.bigint "block_id", null: false
     t.bigint "exercise_id", null: false
@@ -97,10 +106,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_130740) do
   create_table "exercises", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_exercises_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -130,8 +137,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_130740) do
   end
 
   add_foreign_key "blocks", "workouts"
+  add_foreign_key "exercise_categories", "categories"
+  add_foreign_key "exercise_categories", "exercises"
   add_foreign_key "exercise_instances", "blocks"
   add_foreign_key "exercise_instances", "exercises"
-  add_foreign_key "exercises", "categories"
   add_foreign_key "workouts", "users"
 end
