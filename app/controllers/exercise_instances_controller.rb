@@ -14,8 +14,11 @@ class ExerciseInstancesController < ApplicationController
     authorize @exercise_instance
     
     category_query = params[:category].present? && (params[:category].to_i != 0 || params[:category] != "reset_category_list")
-    # binding.break
-    @exercises = category_query ? Exercise.where(category_id: params[:category].to_i).ordered : Exercise.ordered
+    if category_query
+      @exercises = Exercise.joins(:exercise_categories).where(exercise_categories: { category_id: params[:category].to_i }).ordered
+    else
+      @exercises = Exercise.ordered
+    end
     query_and_respond(@exercises)
   end
   

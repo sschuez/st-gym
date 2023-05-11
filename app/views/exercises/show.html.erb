@@ -9,7 +9,9 @@
   <h5 class="my-3">Description</h5>
   <p><%= @exercise.description %></p>
   <h5 class="mt-5">Categories</h5>
-  <span class="pill my-3"><%= @exercise.category.name %></span>
+  <% @exercise.categories.each do |category| %>
+    <span class="pill my-3"><%= category.name %></span>
+  <% end %>
 </div>
 
 <div class="container">
