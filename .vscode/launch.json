@@ -8,9 +8,9 @@
       "type": "rdbg",
       "name": "Debug current file with rdbg",
       "request": "launch",
-      "script": "${file}",
-      "args": [],
-      "askParameters": true
+      "script": "./blog/bin/rails s",
+      "useBundler": false,
+      "command": "ruby"
     },
     {
       "type": "rdbg",
