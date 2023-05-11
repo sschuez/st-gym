@@ -4,7 +4,7 @@ class ExercisesController < ApplicationController
 
   # GET /exercises or /exercises.json
   def index
-    @exercises = policy_scope(Exercise)    
+    @exercises = policy_scope(Exercise).includes(:categories).ordered
   end
 
   # GET /exercises/1 or /exercises/1.json
