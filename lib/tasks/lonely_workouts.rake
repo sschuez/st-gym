@@ -5,5 +5,4 @@ namespace :lonely_workouts do
     Workout.lonely_and_due.destroy_all
     puts "Done!"
   end
-
 end
