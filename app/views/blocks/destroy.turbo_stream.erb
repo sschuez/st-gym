@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "workout_#{@block.workout.id}_duration" do %>
+  <%= render "workouts/workout_duration", workout: @block.workout %>
+<% end %>
+
+<%= turbo_stream.remove @block %>

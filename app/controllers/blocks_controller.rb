@@ -99,7 +99,7 @@ class BlocksController < ApplicationController
     @block.destroy
 
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@block) }
+      format.turbo_stream
     end
   end
 

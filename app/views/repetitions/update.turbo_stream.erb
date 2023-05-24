@@ -1,1 +1,5 @@
 <%= turbo_stream.replace @exercise_instance_or_block %>
+
+<%= turbo_stream.replace "workout_#{@exercise_instance_or_block.workout.id}_duration" do %>
+  <%= render "workouts/workout_duration", workout: @exercise_instance_or_block.workout %>
+<% end %>
