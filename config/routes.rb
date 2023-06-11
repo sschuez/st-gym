@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get "/start_clearing_lonely_workouts", to: "worker#start_clearing_lonely_workouts"
   
   # EXERCISES
-  resources :exercises
+  resources :exercises do
+    resources :exercise_categories, only: [:new, :create, :destroy]
+  end
   
   # USERS
   devise_for :users, controllers: {
@@ -38,6 +40,7 @@ Rails.application.routes.draw do
   # WORKOUTS
   get 'my_workouts' => 'workouts#user_workouts', as: :user_workouts
   get 'public_workouts' => 'workouts#public_workouts', as: :public_workouts
+
   resources :workouts do
     # Additional actions for workouts
     member do
@@ -56,20 +59,7 @@ Rails.application.routes.draw do
         post :edit
         post :edit_title
       end
-      # Broadcasting authorizations
-      # scope module: :blocks do
-        # resource :actions do
-          # get :edit_block
-        # end
-      # end
-      resources :exercise_instances, except: [:index] do
-        # Broadcasting authorizations
-        # scope module: :exercise_instances do
-          # resource :actions do
-            # get :edit_exercise_instance
-          # end
-        # end
-      end
+      resources :exercise_instances, except: [:index] 
     end
   
   end

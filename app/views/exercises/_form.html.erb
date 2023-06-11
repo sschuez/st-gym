@@ -5,10 +5,20 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :description %>
-    <%#= f.association :category %>
+    <%= f.input :exercise_categories,
+                collection: Category.main_categories_first,
+                input_html: { multiple: true, data: { 
+                  controller: "tom-select",
+                  main_categories_count: Category.main_categories.count,  
+                  # tom_select_options_value: { 
+                  #   maxItems: 3,
+                  # },
+                  } 
+                },
+                include_hidden: false %>
   </div>
 
-  <div class="form-actions">
+  <div class="form-actions flex-end">
     <%= f.button :submit, class: "btn btn-primary" %>
   </div>
 <% end %>
