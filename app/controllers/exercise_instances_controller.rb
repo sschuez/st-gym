@@ -20,7 +20,8 @@ class ExerciseInstancesController < ApplicationController
     if main_category_query && category_query
       main_category_exercises = Exercise.joins(:exercise_categories).where(exercise_categories: { category_id: params[:main_category].to_i }).ordered
       category_exercises = Exercise.joins(:exercise_categories).where(exercise_categories: { category_id: params[:category].to_i }).ordered
-      @exercises = main_category_exercises & category_exercises
+      exercises_array = main_category_exercises & category_exercises
+      @exercises = Exercise.where(id: exercises_array.map(&:id))
     elsif main_category_query && !category_query
       @exercises = Exercise.joins(:exercise_categories).where(exercise_categories: { category_id: params[:main_category].to_i }).ordered
     elsif params[:main_category] == "reset_main_category_list" && category_query
