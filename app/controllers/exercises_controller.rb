@@ -25,11 +25,19 @@ class ExercisesController < ApplicationController
 
   # POST /exercises or /exercises.json
   def create
-    @exercise = Exercise.new(exercise_params)
+    @exercise = Exercise.new(exercise_params.reject { |k,v| k == "exercise_categories" })
     authorize @exercise
+
+    categories = Category.where(id: params[:exercise][:exercise_categories])
+    exercise_categories = []
+    categories.each do |category|
+      exercise_category = ExerciseCategory.new(category: category)
+      exercise_categories << exercise_category
+    end
 
     if @exercise.save
       redirect_to request.referrer, notice: "#{@exercise.name} was created. You can now choose and add it to a block."
+      exercise_categories.each { |exercise_category| exercise_category.update(exercise: @exercise) }
     else
       render :new, status: :unprocessable_entity
     end
@@ -62,6 +70,6 @@ class ExercisesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def exercise_params
-      params.require(:exercise).permit(:name, :description, :category_id)
+      params.require(:exercise).permit(:name, :description, exercise_categories: [])
     end
 end

@@ -4,7 +4,7 @@ class Exercise < ApplicationRecord
   has_many :exercise_instances, dependent: :destroy
 
   validates :name, presence: true
-  validate :one_main_category
+  # validate :one_main_category
 
   scope :by_category, -> (category_id) { where(category_id: category_id) }
   scope :ordered, -> { order(name: :asc) }
