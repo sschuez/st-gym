@@ -11,8 +11,10 @@
   </div>
 <% end %>
 
-<%= link_to "Create a new exercise", new_exercise_path, "data-controller": "turbo", class: "btn btn-primary" %>
-<br><br>
+<div class="flex-end">
+  <%= link_to "Create a new exercise", new_exercise_path, "data-controller": "turbo", class: "btn btn-primary" %>
+</div>
+<br>
 
 <div id="<%= dom_id @workout %>">
   <%= render @workout %>

@@ -9,8 +9,8 @@
   <h5 class="my-3">Description</h5>
   <p><%= @exercise.description %></p>
   <h5 class="mt-5">Categories</h5>
-  <% @exercise.categories.each do |category| %>
-    <span class="pill my-3"><%= category.name %></span>
+  <% @exercise.categories.main_categories_first.each do |category| %>
+    <span class="pill <%= "main-category" if category.main_category %> my-3"><%= category.name %></span>
   <% end %>
 </div>
 
