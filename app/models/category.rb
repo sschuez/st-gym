@@ -3,16 +3,8 @@ class Category < ApplicationRecord
   has_many :exercises, through: :exercise_categories
 
   scope :ordered, -> { order(:name) }
-  
-  def self.main_categories
-    self.where(name: ["functional", "gym"]).order(:name)
-  end
+  scope :main_categories, -> { where(main_category: true).order(:name) }
+  scope :other_categories, -> { where(main_category: false).order(:name) }
+  scope :main_categories_first, -> { main_categories + other_categories }
 
-  def self.other_categories
-    self.all.order(:name) - self.main_categories
-  end
-
-  def self.main_categories_first
-    self.main_categories + self.other_categories
-  end
 end

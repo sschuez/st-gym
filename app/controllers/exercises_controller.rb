@@ -35,10 +35,17 @@ class ExercisesController < ApplicationController
       exercise_categories << exercise_category
     end
 
-    if @exercise.save
-      redirect_to request.referrer, notice: "#{@exercise.name} was created. You can now choose and add it to a block."
-      exercise_categories.each { |exercise_category| exercise_category.update(exercise: @exercise) }
+    has_one_main_category = exercise_categories.select { |exercise_category| exercise_category.category.main_category }.count == 1
+
+    if has_one_main_category
+      if @exercise.save
+        redirect_to request.referrer, notice: "#{@exercise.name} was created. You can now choose and add it to a block."
+        exercise_categories.each { |exercise_category| exercise_category.update(exercise: @exercise) }
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
+      @exercise.errors.add(:categories, "must have one main category")
       render :new, status: :unprocessable_entity
     end
   end

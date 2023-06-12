@@ -4,8 +4,7 @@ class Exercise < ApplicationRecord
   has_many :exercise_instances, dependent: :destroy
 
   validates :name, presence: true
-  # validate :one_main_category
-
+  
   scope :by_category, -> (category_id) { where(category_id: category_id) }
   scope :ordered, -> { order(name: :asc) }
 
@@ -16,7 +15,7 @@ class Exercise < ApplicationRecord
   end
 
   def one_main_category
-    unless categories.main_categories.count == 1
+    unless categories.where(main_category: true).count == 1
       errors.add(:categories, "must have one main category")
     end
   end
