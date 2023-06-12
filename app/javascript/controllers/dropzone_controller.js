@@ -52,7 +52,7 @@ export default class extends Controller {
   }
 
   get dictFileTooBig() {
-    return this.data.get("dictFileTooBig") || "File sile is {{filesize}} but only files up to {{maxFilesize}} are allowed";
+    return this.data.get("dictFileTooBig") || "File size is {{filesize}} but only files up to {{maxFilesize}} are allowed";
   }
 
   get dictInvalidFileType() {

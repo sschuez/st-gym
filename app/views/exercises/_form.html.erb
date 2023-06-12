@@ -8,10 +8,18 @@
     <%= f.label :files, class: "label d-none" %>
 
     <%= dropzone_controller_div do %>
-      <%= f.object.files.each do |file| %>
+      <% f.object.files.each do |file| %>
         <%= f.hidden_field :files, multiple: true, value: file.signed_id %>
       <% end %>
       <%= f.file_field :files, direct_upload: true, multiple: true, 'data-dropzone-target': 'input' %>
+      <div class="dropzone-msg dz-message needsclick text-gray-600">
+        <h3 class="dropzone-msg-title">
+          Drag here to upload or click here to browse
+        </h3> 
+        <span class="dropzone-msg-desc text-sm">
+          2 MB file size maximum. Allowed file types png, jpg.
+        </span>
+      </div>
       <%#= f.button "Upload", class: 'btn-primary mt-2' %>
     <% end %>
     

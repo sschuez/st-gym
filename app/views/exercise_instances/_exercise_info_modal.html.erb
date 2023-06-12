@@ -8,15 +8,21 @@
         </div>
         <div class="modal-body">
           <p class="lead"><%= @exercise.description %></p>
-          <% @exercise.files.each do |file| %>
-            <%= image_tag file.variant(resize_to_limit: [500, 500]) %>
-          <% end %>
-          <% @exercise.categories.main_categories_first.each do |category| %>
-            <span class="pill <%= "main-category" if category.main_category %>"><%= category.name %></span>
-          <% end %>
+          <div class="exercise-images">
+            <% @exercise.files.each do |file| %>
+              <%= cl_image_tag file.key, width: 450, class: "exercise-image" %>
+            <% end %>
+          </div>
+          <div class="exercise-categories mt-3">
+            <% @exercise.categories.main_categories_first.each do |category| %>
+              <span class="pill <%= "main-category" if category.main_category %>"><%= category.name %></span>
+            <% end %>
+          </div>
         </div>
         <div class="modal-footer">
-          <%# <button type="button" class="btn btn-primary">Save changes</button> %>
+          <% if policy(@exercise).edit? %>  
+            <%= link_to "Edit exercise", edit_exercise_path(@exercise), "data-controller": "turbo", class: "btn btn-warning" %>
+          <% end %>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
