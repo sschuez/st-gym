@@ -13,11 +13,4 @@ class Exercise < ApplicationRecord
     seconds_for_rest = 1
     seconds_for_exercise + seconds_for_rest
   end
-
-  def one_main_category
-    unless categories.where(main_category: true).count == 1
-      errors.add(:categories, "must have one main category")
-    end
-  end
-
 end

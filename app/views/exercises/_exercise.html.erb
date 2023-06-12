@@ -3,8 +3,8 @@
     <h5 class="card-header"><%= exercise.name %></h5>
     <div class="card-body">
       <p><%= exercise.description %></p>
-      <% exercise.categories.each do |category| %>
-        <span class="pill"><%= category.name %></span>
+      <% exercise.categories.main_categories_first.each do |category| %>
+        <span class="pill <%= "main-category" if category.main_category %>"><%= category.name %></span>
       <% end %>
     </div>
   <% end %>  
