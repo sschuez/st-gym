@@ -30,7 +30,7 @@ export default class extends Controller {
       i += 1
       if (i <= this.mainCategoriesCount) {
         option.classList.add('main-category')
-        option.innerText = option.innerText + ' (main)'
+        option.innerText = '*main*  ' + option.innerText
       }
     })    
   }

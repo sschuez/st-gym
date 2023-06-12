@@ -8,6 +8,9 @@
         </div>
         <div class="modal-body">
           <p class="lead"><%= @exercise.description %></p>
+          <% @exercise.files.each do |file| %>
+            <%= image_tag file.variant(resize_to_limit: [500, 500]) %>
+          <% end %>
           <% @exercise.categories.main_categories_first.each do |category| %>
             <span class="pill <%= "main-category" if category.main_category %>"><%= category.name %></span>
           <% end %>
