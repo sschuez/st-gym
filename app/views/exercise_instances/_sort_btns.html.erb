@@ -1,18 +1,16 @@
 <div class="sort-btns">
-  
-  <%# Btn for all exercises %>
-  <input type="hidden" name="category[category_id]" value=""> 
-  <div class="tag-item">
-    <input checked data-action="click->refresh-list#update" data-refresh-list-target="category" class="category form-check-input check_boxes optional tag-selector sort-btn-selector" type="radio" value="reset_category_list" name="category[category_id]" id="category_id_all">
-    <label class="sort-btn form-check-label collection_check_boxes" for="category_id_all">All</label>
-  </div>
 
-  <% Category.ordered.all.each do |category| %>
-    <input type="hidden" name="category[category_id]" value=""> 
-    <div class="tag-item">
-      <input data-action="click->refresh-list#update" data-refresh-list-target="category" class="category form-check-input check_boxes optional tag-selector sort-btn-selector" type="radio" value="<%= category.id %>" name="category[category_id]" id="category_id_<%= category.id %>">
-      <label class="sort-btn form-check-label collection_check_boxes" for="category_id_<%= category.id %>"><%= category.name.capitalize %></label>
-    </div>
+  <%= render "exercise_instances/sort_btn", name: "main_category", checked: true, class_list: "main-category", btn_value: "reset_main_category_list", btn_id: "main_category_id_all", label: "All" %>
+
+  <% Category.main_categories.each do |category| %>
+    <%= render "exercise_instances/sort_btn", name: "main_category", checked: false, class_list: "main-category", btn_value: category.id, btn_id: "category_id_#{category.id}", label: category.name.capitalize %>
+  <% end %>
+
+  <br>
+  <%= render "exercise_instances/sort_btn", name: "category", checked: true, class_list: "category", btn_value: "reset_category_list", btn_id: "category_id_all", label: "All" %>
+
+  <% Category.other_categories.each do |category| %>
+    <%= render "exercise_instances/sort_btn", name: "category", checked: false, class_list: "category", btn_value: category.id, btn_id: "category_id_#{category.id}", label: category.name.capitalize %>
   <% end %>
   
 </div>
