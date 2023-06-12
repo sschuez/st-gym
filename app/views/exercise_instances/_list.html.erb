@@ -1,6 +1,6 @@
 <div data-controller="random-select" data-refresh-list-target="list">
   <div class="actions flex-end">
-    <button data-action="click->random-select#selectRandomExercises" class="btn btn-primary btn-sm mb-3">Select 5 random</button>
+    <button data-action="click->random-select#selectRandomExercises" class="btn btn-primary btn-sm mb-3">5 random</button>
   </div>
   <% exercises.each do |exercise| %>
     <input type="hidden" name="exercise_instance[exercise_id][]" value="">

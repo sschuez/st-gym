@@ -17,12 +17,12 @@
     
     <%= render "exercise_instances/sort_btns", workout: @workout, block: @block, exercise_instance: @exercise_instance %>
     
-    <fieldset class="form-group check_boxes optional exercise_instance_exercises my-3">
+    <fieldset class="form-group check_boxes optional exercise_instance_exercises">
       <%= render "exercise_instances/list", exercises: @exercises %>
     </fieldset>
   </div>
 
   <div class="form-actions flex-end">
-    <%= f.submit "Add exercise", class: "btn btn-primary btn-sm", data: { action: "type=submit click->modal#disconnect" } %>
+    <%= f.submit "Add exercises", class: "btn btn-primary btn-sm", data: { action: "type=submit click->modal#disconnect" } %>
   </div>
 <% end %>
