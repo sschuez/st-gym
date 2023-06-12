@@ -13,9 +13,18 @@ class ExerciseInstancesController < ApplicationController
     @exercise_instance = @block.exercise_instances.new
     authorize @exercise_instance
     
+    main_category_query = params[:main_category].present? && (params[:main_category].to_i != 0 || params[:main_category] != "reset_main_category_list")
+
     category_query = params[:category].present? && (params[:category].to_i != 0 || params[:category] != "reset_category_list")
-    if category_query
-      @exercises = Exercise.joins(:exercise_categories).where(exercise_categories: { category_id: params[:category].to_i }).ordered
+    
+    if main_category_query && category_query
+      main_category_exercises = Exercise.joins(:exercise_categories).where(exercise_categories: { category_id: params[:main_category].to_i }).ordered
+      category_exercises = Exercise.joins(:exercise_categories).where(exercise_categories: { category_id: params[:category].to_i }).ordered
+      @exercises = main_category_exercises & category_exercises
+    elsif main_category_query && !category_query
+      @exercises = Exercise.joins(:exercise_categories).where(exercise_categories: { category_id: params[:main_category].to_i }).ordered
+    elsif params[:main_category] == "reset_main_category_list" && category_query
+      @exercises = Exercise.joins(:exercise_categories).where(exercise_categories: { category_id: params[:category].to_i }).ordered  
     else
       @exercises = Exercise.ordered
     end
