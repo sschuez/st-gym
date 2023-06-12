@@ -1,6 +1,5 @@
 <div class="sort-btns">
 
-  <%# Btn for all categories %>
   <%= render "exercise_instances/sort_btn", name: "main_category", checked: true, class_list: "main-category", btn_value: "reset_main_category_list", btn_id: "main_category_id_all", label: "All" %>
 
   <% Category.main_categories.each do |category| %>
@@ -8,7 +7,6 @@
   <% end %>
 
   <br>
-  <%# Btn for all exercises %>
   <%= render "exercise_instances/sort_btn", name: "category", checked: true, class_list: "category", btn_value: "reset_category_list", btn_id: "category_id_all", label: "All" %>
 
   <% Category.other_categories.each do |category| %>
