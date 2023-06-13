@@ -5,7 +5,6 @@
     <%= f.input :name %>
     <%= f.input :description %>
 
-    <%= f.label :files, class: "label" %>
     
     <%= f.input :exercise_categories,
                 collection: Category.main_categories_first,
@@ -13,7 +12,7 @@
                   controller: "tom-select",
                   main_categories_count: Category.main_categories.count,  
                   # tom_select_options_value: { 
-                  #   maxItems: 3,
+                    #   maxItems: 3,
                   # },
                   } 
                 },
@@ -21,6 +20,7 @@
                 label: "Categories",
                 required: true %>
 
+    <%= f.label :files, class: "label" %>
     <%= dropzone_controller_div do %>
       
       <% f.object.files.each do |file| %>

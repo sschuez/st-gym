@@ -25,15 +25,9 @@ class ExercisesController < ApplicationController
   def create
     @exercise = Exercise.new(exercise_params.reject { |k,v| k == "exercise_categories" })
     authorize @exercise
-
-    categories = Category.where(id: params[:exercise][:exercise_categories])
-    exercise_categories = []
-    categories.each do |category|
-      exercise_category = ExerciseCategory.new(category: category)
-      exercise_categories << exercise_category
-    end
-
-    has_one_main_category = exercise_categories.select { |exercise_category| exercise_category.category.main_category }.count == 1
+    
+    exercise_categories = get_exercise_categories(params)
+    has_one_main_category = check_if_has_one_main_category(exercise_categories)
 
     if has_one_main_category
       if @exercise.save
@@ -43,16 +37,24 @@ class ExercisesController < ApplicationController
         render :new, status: :unprocessable_entity
       end
     else
-      @exercise.errors.add(:categories, "must have one main category")
+      add_custom_error(@exercise)
       render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /exercises/1 or /exercises/1.json
   def update
-    if @exercise.update(exercise_params.reject { |k,v| k == "exercise_categories" })
-      redirect_to request.referrer, notice: "Exercise was successfully updated."
+    exercise_categories = get_exercise_categories(params)
+    has_one_main_category = check_if_has_one_main_category(exercise_categories)
+
+    if has_one_main_category
+      if @exercise.update(exercise_params.reject { |k,v| k == "exercise_categories" })
+        redirect_to request.referrer, notice: "Exercise was successfully updated."
+      else
+        render :edit, status: :unprocessable_entity
+      end
     else
+      add_custom_error(@exercise)
       render :edit, status: :unprocessable_entity
     end
   end
@@ -77,5 +79,18 @@ class ExercisesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def exercise_params
       params.require(:exercise).permit(:name, :description, exercise_categories: [], files: [])
+    end
+
+    def get_exercise_categories(params)
+      categories = Category.where(id: params[:exercise][:exercise_categories])
+      exercise_categories = categories.map { |category| ExerciseCategory.new(category: category) }
+    end
+
+    def check_if_has_one_main_category(exercise_categories)
+      exercise_categories.select { |exercise_category| exercise_category.category.main_category }.count == 1
+    end
+
+    def add_custom_error(exercise)
+      exercise.errors.add(:categories, "must have one main category")
     end
 end
