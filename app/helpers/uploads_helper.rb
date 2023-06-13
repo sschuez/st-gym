@@ -4,8 +4,9 @@ module UploadsHelper
     url = blob.attachments.any? ? rails_blob_path(file) : blob.url
     { filename: blob.filename,
       size: blob.byte_size,
-      content_type: blob.content_type,
-      url: url
+      # content_type: blob.content_type,
+      url: url,
+      blob_id: blob.id
     }
   end
 end

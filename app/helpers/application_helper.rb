@@ -40,10 +40,10 @@ module ApplicationHelper
   def dropzone_controller_div
     data = {
       controller: "dropzone",
-      'dropzone-max-file-size'=>"8",
-      'dropzone-max-files' => "10",
+      'dropzone-max-file-size'=>"10",
+      'dropzone-max-files' => "4",
       'dropzone-accepted-files' => 'image/jpeg,image/jpg,image/png,image/gif',
-      'dropzone-dict-file-too-big' => "Your file ({{filesize}} MB) is larger than allowd ({{maxFilesize}} MB)",
+      'dropzone-dict-file-too-big' => "Your file ({{filesize}} MB) is larger than allowed ({{maxFilesize}} MB)",
       'dropzone-dict-invalid-file-type' => "Invalid file type. Only jpg, .png or .gif are allowed",
     }
   

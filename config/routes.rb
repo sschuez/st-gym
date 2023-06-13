@@ -73,4 +73,7 @@ Rails.application.routes.draw do
   # Update repetitions
   resource :repetitions, only: [:update]
   
+  # Manage file uploads
+  resources :file_uploads, only: [:destroy]
+  
 end

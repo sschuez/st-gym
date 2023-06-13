@@ -5,24 +5,7 @@
     <%= f.input :name %>
     <%= f.input :description %>
 
-    <%= f.label :files, class: "label d-none" %>
-    
-    <%= dropzone_controller_div do %>
-      <% f.object.files.each do |file| %>
-        <% file_details = file_details_for(file) %>
-        <%= f.hidden_field :files, multiple: true, value: file.signed_id, data: { filename: file_details[:filename], size: file_details[:size], content_type: file_details[:content_type], url: file_details[:url], "dropzone-target": "existingFile" } %>
-      <% end %>
-      <%= f.file_field :files, direct_upload: true, multiple: true, 'data-dropzone-target': 'input' %>
-      <div class="dropzone-msg dz-message needsclick text-gray-600">
-        <h3 class="dropzone-msg-title">
-          Drag here to upload or click here to browse
-        </h3> 
-        <span class="dropzone-msg-desc text-sm">
-          2 MB file size maximum. Allowed file types png, jpg.
-        </span>
-      </div>
-      <%#= f.button "Upload", class: 'btn-primary mt-2' %>
-    <% end %>
+    <%= f.label :files, class: "label" %>
     
     <%= f.input :exercise_categories,
                 collection: Category.main_categories_first,
@@ -37,6 +20,27 @@
                 include_hidden: false,
                 label: "Categories",
                 required: true %>
+
+    <%= dropzone_controller_div do %>
+      
+      <% f.object.files.each do |file| %>
+        <% file_details = file_details_for(file) %>
+        <%= f.hidden_field :files, multiple: true, value: file.signed_id, data: { filename: file_details[:filename], size: file_details[:size], content_type: file_details[:content_type], url: file_details[:url], blob_id: file_details[:blob_id], "dropzone-target": "existingFile" } %>
+      <% end %>
+
+      <%= f.file_field :files, direct_upload: true, multiple: true, 'data-dropzone-target': 'input' %>
+
+      <div class="dropzone-msg dz-message needsclick text-gray-600">
+        <h5 class="dropzone-msg-title">
+          Drag to upload or click to browse
+        </h5> 
+        <span class="dropzone-msg-desc text-sm small">
+          10 MB max size. 
+          <%# Allowed file types png, jpg. %>
+        </span>
+      </div>
+    <% end %>
+    
   </div>
 
   <div class="form-actions flex-end">
