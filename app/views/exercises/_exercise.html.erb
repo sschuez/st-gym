@@ -6,6 +6,12 @@
       <% exercise.categories.main_categories_first.each do |category| %>
         <span class="pill <%= "main-category" if category.main_category %>"><%= category.name %></span>
       <% end %>
+      
+      <% if policy(exercise).edit? %>
+        <div class="flex-end">
+          <%= link_to "Edit", edit_exercise_path(exercise), data: { controller: "turbo" }, class: "btn btn-primary" %>
+        </div>
+      <% end %>
     </div>
   <% end %>  
 <% end %>

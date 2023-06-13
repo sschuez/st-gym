@@ -50,7 +50,7 @@ class ExercisesController < ApplicationController
 
   # PATCH/PUT /exercises/1 or /exercises/1.json
   def update
-    if @exercise.update(exercise_params)
+    if @exercise.update(exercise_params.reject { |k,v| k == "exercise_categories" })
       redirect_to request.referrer, notice: "Exercise was successfully updated."
     else
       render :edit, status: :unprocessable_entity
