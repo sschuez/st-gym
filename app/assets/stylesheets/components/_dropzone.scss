@@ -5,6 +5,10 @@
   margin-top: 6px !important;
 }
 
+.dark-mode .dropzone {
+  background-color: inherit !important;
+}
+
 .dropzone-msg {
   &--only-child {
     display: none !important;

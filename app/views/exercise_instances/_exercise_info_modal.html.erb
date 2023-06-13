@@ -10,7 +10,7 @@
           <p class="lead"><%= @exercise.description %></p>
           <div class="exercise-images">
             <% @exercise.files.each do |file| %>
-              <%= cl_image_tag file.key, width: 450, class: "exercise-image" %>
+              <%= cl_image_tag file.key, class: "exercise-image" %>
             <% end %>
           </div>
           <div class="exercise-categories mt-3">
