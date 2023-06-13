@@ -9,13 +9,11 @@ class ExercisesController < ApplicationController
 
   # GET /exercises/1 or /exercises/1.json
   def show
-    authorize @exercise
   end
 
   # GET /exercises/new
   def new
     @exercise = Exercise.new
-    # authorize @exercise
     authorize @exercise
   end
 
@@ -53,7 +51,7 @@ class ExercisesController < ApplicationController
   # PATCH/PUT /exercises/1 or /exercises/1.json
   def update
     if @exercise.update(exercise_params)
-      redirect_to @exercise, notice: "Exercise was successfully updated."
+      redirect_to request.referrer, notice: "Exercise was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -73,10 +71,11 @@ class ExercisesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_exercise
       @exercise = Exercise.find(params[:id])
+      authorize @exercise
     end
 
     # Only allow a list of trusted parameters through.
     def exercise_params
-      params.require(:exercise).permit(:name, :description, exercise_categories: [])
+      params.require(:exercise).permit(:name, :description, exercise_categories: [], files: [])
     end
 end

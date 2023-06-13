@@ -5,15 +5,23 @@ class ExercisePolicy < ApplicationPolicy
     end
   end
 
-  def new?
-    true
-  end
-
   def show?
     new?
   end
-
+ 
+  def new?
+    true
+  end
+  
   def create?
     new?
+  end
+
+  def edit?
+    user.admin?
+  end
+
+  def update?
+    edit?
   end
 end
