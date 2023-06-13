@@ -4,15 +4,24 @@ import { Dropzone } from "dropzone";
 
 
 export default class extends Controller {
-  static targets = ["input"];
+  static targets = ["input", "existingFile"];
 
   connect() {
     this.dropZone = this.createDropZone(this);
     this.hideFileInput();
     this.bindEvents();
     Dropzone.autoDiscover = false;
+    this.displayExistingFiles();
   }
 
+  displayExistingFiles() {
+    this.existingFileTargets.forEach((file) => {
+      const mockFile = { name: file.dataset.filename, size: file.dataset.size, accepted: true };
+      this.dropZone.emit("addedfile", mockFile);
+      this.dropZone.emit("thumbnail", mockFile, file.dataset.url);
+      this.dropZone.emit("complete", mockFile);
+    })
+  }
   // Private
   hideFileInput() {
     this.inputTarget.disabled = true;
