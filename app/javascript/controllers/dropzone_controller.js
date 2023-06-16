@@ -12,7 +12,6 @@ export default class extends Controller {
     this.bindEvents()
     Dropzone.autoDiscover = false
     this.displayExistingFiles()
-    console.log(this.existingFileTargets.length)
   }
 
   // Private

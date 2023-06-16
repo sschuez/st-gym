@@ -26,7 +26,8 @@ class Icon
       info: '<i class="bi bi-info-circle" style="color: hsl(210, 100%, 82%)"></i>',
       mail: '<i class="far fa-envelope"></i>',
       eye: '<i class="fas fa-eye"></i>',
-      plus: '<i class="fas fa-plus"></i>'
+      plus: '<i class="fas fa-plus"></i>',
+      close: '<i class="fas fa-times"></i>'
     }
   end
 

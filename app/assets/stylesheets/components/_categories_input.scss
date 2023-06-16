@@ -1,0 +1,20 @@
+.categories {
+  &__input-field {
+    margin-top: 0.5rem;
+    border: 1px solid var(--bootstrap-gray);
+    height: 3rem;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 6px;
+
+    &--category-pills {
+
+    }
+
+    &--dropdown-btn {
+
+    }
+  }
+}

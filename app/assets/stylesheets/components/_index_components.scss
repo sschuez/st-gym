@@ -6,6 +6,8 @@
 @use "flash";
 @use "footer";
 @use "card";
+@use "categories_input";
+@use "dropdown";
 @use "dropzone";
 @use "tooltip";
 @use "form";
@@ -22,3 +24,4 @@
 @use "tom_select";
 @use "sidebar";
 @use "sort";
+@use "visually_hidden";
