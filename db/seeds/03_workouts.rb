@@ -22,8 +22,9 @@ CATEGORIES.each do |category|
   workout.blocks.each do |block|
     exercise_instance = ExerciseInstance.new(
       block: block,
-      exercise: Exercise.joins(:category).where(categories: { name: category }).sample
+      exercise: Exercise.all.sample
     )
+
     exercise_instance.save
   end
 
