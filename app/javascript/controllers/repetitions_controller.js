@@ -17,12 +17,12 @@ export default class extends Controller {
       })
     })
     if (response.ok) {
-      console.log("Updated quantity type")
+      // console.log("Updated quantity type")
     }
   }
 
   async more(e) {
-    console.log(e.target.dataset.kind)
+    // console.log(e.target.dataset.kind)
     const response = await put('/repetitions', {
       responseKind: "turbo-stream",
       body: JSON.stringify({
@@ -32,7 +32,7 @@ export default class extends Controller {
       })
     })
     if (response.ok) {
-      console.log(this.element.dataset.sgid)
+      // console.log(this.element.dataset.sgid)
     }
   }
   
@@ -46,7 +46,7 @@ export default class extends Controller {
       })
     })
     if (response.ok) {
-      console.log(this.element.dataset.sgid)
+      // console.log(this.element.dataset.sgid)
     }
   }
 

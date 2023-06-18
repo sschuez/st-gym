@@ -22,7 +22,7 @@ export default class extends Controller {
       })
     })
     if (response.ok) {
-      console.log(event.item.dataset.sgid);
+      // console.log(event.item.dataset.sgid);
     }
   }
 }
