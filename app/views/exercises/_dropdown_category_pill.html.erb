@@ -1,0 +1,4 @@
+<%= content_tag :div, id: dom_id(category), data: { action: "click->category-select#addCategory", main_category: category.main_category }, class: "pill pill--categories__input categories__dropdown__category-pill #{"main-category" if category.main_category} #{"visually-hidden" if category.selected_in?(exercise)}" do %>
+  <%= category.name %>
+<% end %>
+ 

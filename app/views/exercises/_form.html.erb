@@ -8,29 +8,33 @@
     <%= f.label :categories, class: "label", required: true %> 
     <div class="categoriies" data-controller="category-select dropdown">
       <div class="categories__input-field">
-        <div class="categories__input-field--category-pills">
+        <div class="categories__input-field--category-pills" data-category-select-target="inputField">
           <% @exercise.categories.main_categories_first.each do |category| %>
-            <div class="pill pill--categories__input <%= "main-category" if category.main_category %>">
-            <%= category.name %>
-              <span class="pill__close-pill" data-action="click->category-select#removeCategory">
-                <%= Icon.call("close") %>
-              </span>
-            </div>
+            <%= render "exercises/input_category_pill", category: category %>
           <% end %>
         </div>
         <div class="categories__input-field--dropdown-btn">
-          <button data-dropdown-target="button" class="my-btn my-btn--dark my-btn--translaite">
-            <%#= Icon.call("translate") %>
+          <button data-dropdown-target="button" class="">
+
           </button>
         </div>
       </div>
-      <div data-dropdown-target="menu" class="categories__dropdown dropdown-content visually-hidden">    
+      <div data-dropdown-target="menu" class="categories__dropdown visually-hidden">
+        
+        <% Category.main_categories_first.each do |category| %>
+          <%= render "exercises/dropdown_category_pill", category: category, exercise: @exercise %>
+          <% if category == Category.main_categories.last %>
+            <br>
+          <% end %>
+        <% end %>
+        
       </div>
     </div>
+    <%= f.hidden_field :exercise_categories, input_html: { multiple: true }, include_hidden: false %>
     
     <br>
     
-    <%= f.input :exercise_categories,
+    <%#= f.input :exercise_categories,
                 collection: Category.main_categories_first,
                 input_html: { multiple: true, data: { 
                   controller: "tom-select",

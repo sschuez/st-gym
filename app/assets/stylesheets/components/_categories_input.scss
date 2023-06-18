@@ -17,4 +17,32 @@
 
     }
   }
+
+  &__dropdown {
+    border: 1px solid var(--bootstrap-gray) !important;
+    border-top: none !important;
+    background-color: white !important;
+    border-radius: var(--border-radius);
+    width: 100%;
+    overflow:scroll; 
+    z-index: 1;
+    padding: 0.5rem 0.5rem;
+  
+    &--main-categories {
+    }
+    
+    &__category-pill {
+      // margin-top: 12px;
+      cursor: pointer;
+    }
+  }
+
+  &__warning {
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    i {
+      color: inherit;
+    }
+  }
 }
