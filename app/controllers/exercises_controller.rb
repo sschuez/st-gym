@@ -23,11 +23,11 @@ class ExercisesController < ApplicationController
 
   # POST /exercises or /exercises.json
   def create
-    @exercise = Exercise.new(exercise_params.reject { |k,v| k == "exercise_categories" })
+    @exercise = Exercise.new(exercise_params)
     authorize @exercise
     
     exercise_categories = get_exercise_categories(params)
-    has_one_main_category = check_if_has_one_main_category(exercise_categories)
+    has_one_main_category = check_if_has_at_least_one_main_category(exercise_categories, @exercise)
 
     if has_one_main_category
       if @exercise.save
