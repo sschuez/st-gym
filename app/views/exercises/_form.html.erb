@@ -3,57 +3,34 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
+
     <%= f.input :description %>
 
     <%= f.label :categories, class: "label", required: true %> 
     <div class="categoriies" data-controller="category-select dropdown">
       <div class="categories__input-field">
         <div class="categories__input-field--category-pills" data-category-select-target="inputField">
-
           <% @exercise.categories.main_categories_first.each do |category| %>
             <%= render "exercises/input_category_pill", exercise_id: @exercise.id, category: category %>
           <% end %>
-
         </div>
-        
         <div class="categories__input-field--dropdown-btn">
           <button data-dropdown-target="button">
           </button>
         </div>
-        
       </div>
       <div data-dropdown-target="menu" class="categories__dropdown visually-hidden">
-        
         <% Category.main_categories_first.each do |category| %>
           <%= render "exercises/dropdown_category_pill", category: category, exercise: @exercise %>
           <% if category == Category.main_categories.last %>
             <br>
           <% end %>
         <% end %>
-        
       </div>
-  
       <%= f.hidden_field :exercise_categories, input_html: { multiple: true }, data: { "category-select-target": "hiddenField" }, include_hidden: false %>
-    
     </div>
-    
-    <br>
-    
-    <%#= f.input :exercise_categories,
-                collection: Category.main_categories_first,
-                input_html: { multiple: true, data: { 
-                  controller: "tom-select",
-                  main_categories_count: Category.main_categories.count,  
-                  # tom_select_options_value: { 
-                    #   maxItems: 3,
-                  # },
-                  } 
-                },
-                include_hidden: false,
-                label: "Categories",
-                required: true %>
 
-    <%= f.label :files, class: "label" %>
+    <%= f.label :files, class: "label mt-3" %>
     <%= dropzone_controller_div do %>
       
       <% f.object.files.each do |file| %>
