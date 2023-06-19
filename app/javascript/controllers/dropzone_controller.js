@@ -4,7 +4,7 @@ import { Dropzone } from "dropzone";
 import { destroy } from "@rails/request.js"
 
 export default class extends Controller {
-  static targets = ["input", "existingFile"];
+  static targets = ["input", "existingFile", "dropzoneMsg"]
 
   connect() {
     this.dropZone = this.createDropZone(this)
@@ -12,6 +12,15 @@ export default class extends Controller {
     this.bindEvents()
     Dropzone.autoDiscover = false
     this.displayExistingFiles()
+    this.displayDropzoneMsg()
+  }
+
+  displayDropzoneMsg() {
+    if (this.element.querySelector(".dz-preview")) {
+      this.dropzoneMsgTarget.style.display = "none"
+    } else {
+      this.dropzoneMsgTarget.style.display = "block"
+    }
   }
 
   // Private
@@ -44,16 +53,21 @@ export default class extends Controller {
       setTimeout(() => {
         file.accepted && this.createDirectUploadController(this, file).start()
       }, 500)
+
+      this.displayDropzoneMsg() 
     })
 
     this.dropZone.on("removedfile", file => {
       file.controller && this.removeElement(file.controller.hiddenInput)
       
-      this.deleteBlobAndAttachment(file.blob_id)  
+      this.deleteBlobAndAttachment(file.blob_id)
+      this.displayDropzoneMsg() 
     })
     
     this.dropZone.on("canceled", file => {
       file.controller && file.controller.xhr.abort()
+
+      this.displayDropzoneMsg() 
     })
   }
 

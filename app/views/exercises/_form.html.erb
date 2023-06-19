@@ -40,7 +40,7 @@
 
       <%= f.file_field :files, direct_upload: true, multiple: true, 'data-dropzone-target': 'input' %>
 
-      <div class="dropzone-msg dropzone-msg--only-child dz-message needsclick text-gray-600">
+      <div data-dropzone-target="dropzoneMsg" class="dropzone-msg dz-message needsclick">
         <h5 class="dropzone-msg-title">
           Drag to upload or click to browse
         </h5> 
