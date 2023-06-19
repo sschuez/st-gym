@@ -44,7 +44,6 @@ export default class extends Controller {
   adjustHiddenField() {
     const categoryIdsString = [...this.inputFieldTarget.querySelectorAll(".pill")].map(pill => pill.id.replace("category_", ""))
     const idsArray = categoryIdsString.map(id => parseInt(id))
-    // console.log(idsArray)
     this.hiddenFieldTarget.value = JSON.stringify(idsArray)
   }
 
