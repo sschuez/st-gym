@@ -12,3 +12,26 @@
     margin-bottom: var(--space-xl);
   }
 }
+
+
+.workout-tools {
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 57px;
+  background-color: var(--color-white);
+  z-index: 999;
+  border-bottom: 1px solid var(--bootstrap-gray);
+}
+
+.workout-mode {
+  display: flex;
+  margin-top: 6px;
+  padding-top: 6px;
+  padding-left: 6px !important;
+
+  .visible-label {
+    margin-right: 10px;
+  }
+}
+
