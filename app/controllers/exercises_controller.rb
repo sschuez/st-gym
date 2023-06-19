@@ -44,11 +44,12 @@ class ExercisesController < ApplicationController
 
   # PATCH/PUT /exercises/1 or /exercises/1.json
   def update
-    exercise_categories = get_exercise_categories(params)
-    has_one_main_category = check_if_has_one_main_category(exercise_categories)
+    new_exercise_categories = get_exercise_categories(params)
+    has_one_main_category = check_if_has_at_least_one_main_category(new_exercise_categories, @exercise)
 
     if has_one_main_category
-      if @exercise.update(exercise_params.reject { |k,v| k == "exercise_categories" })
+      if @exercise.update(exercise_params)
+        new_exercise_categories.each { |new_exercise_category| new_exercise_category.update(exercise: @exercise) }
         redirect_to request.referrer, notice: "Exercise was successfully updated."
       else
         render :edit, status: :unprocessable_entity
@@ -78,19 +79,25 @@ class ExercisesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def exercise_params
-      params.require(:exercise).permit(:name, :description, exercise_categories: [], files: [])
+      params.require(:exercise).permit(:name, :description, files: [])
     end
 
     def get_exercise_categories(params)
-      categories = Category.where(id: params[:exercise][:exercise_categories])
-      exercise_categories = categories.map { |category| ExerciseCategory.new(category: category) }
+      exercise = Exercise.find(params[:id]) if params[:id]
+      categoriesArray = JSON.parse(params[:exercise][:exercise_categories])
+      categories = Category.where(id: categoriesArray)
+      exercise_categories = categories
+        .reject { |category| category.selected_in?(exercise)}
+        .map { |category| ExerciseCategory.new(category: category) }
     end
 
-    def check_if_has_one_main_category(exercise_categories)
-      exercise_categories.select { |exercise_category| exercise_category.category.main_category }.count == 1
+    def check_if_has_at_least_one_main_category(exercise_categories, exercise)
+      new_exercise_categories = exercise_categories.select { |exercise_category| exercise_category.category.main_category }.count
+      existing_exercise_categories = exercise.exercise_categories.select { |exercise_category| exercise_category.category.main_category }.count
+      new_exercise_categories + existing_exercise_categories >= 1
     end
 
     def add_custom_error(exercise)
-      exercise.errors.add(:categories, "must have one main category")
+      exercise.errors.add(:categories, "must have at least one main category")
     end
 end

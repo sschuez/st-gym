@@ -1,4 +1,4 @@
-<%= content_tag :div, id: dom_id(category), data: { main_category: category.main_category }, class: "pill pill--categories__input #{"main-category" if category.main_category}" do %>
+<%= content_tag :div, id: dom_id(category), data: { main_category: category.main_category, exercise_id: exercise_id }, class: "pill pill--categories__input #{"main-category" if category.main_category}" do %>
   <%= category.name %>
   <span class="pill__close-pill" data-action="click->category-select#removeCategory">
     <%= Icon.call("close") %>

@@ -75,5 +75,7 @@ Rails.application.routes.draw do
   
   # Manage file uploads
   resources :file_uploads, only: [:destroy]
-  
+
+  # Destroy Async Exercise Categories
+  resource :exercise_categories, only: [:destroy]
 end

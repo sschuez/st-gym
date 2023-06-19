@@ -9,14 +9,18 @@
     <div class="categoriies" data-controller="category-select dropdown">
       <div class="categories__input-field">
         <div class="categories__input-field--category-pills" data-category-select-target="inputField">
+
           <% @exercise.categories.main_categories_first.each do |category| %>
-            <%= render "exercises/input_category_pill", category: category %>
+            <%= render "exercises/input_category_pill", exercise_id: @exercise.id, category: category %>
           <% end %>
+
         </div>
+        
         <div class="categories__input-field--dropdown-btn">
-          <button data-dropdown-target="button" class="">
+          <button data-dropdown-target="button">
           </button>
         </div>
+        
       </div>
       <div data-dropdown-target="menu" class="categories__dropdown visually-hidden">
         
@@ -28,8 +32,10 @@
         <% end %>
         
       </div>
+  
+      <%= f.hidden_field :exercise_categories, input_html: { multiple: true }, data: { "category-select-target": "hiddenField" }, include_hidden: false %>
+    
     </div>
-    <%= f.hidden_field :exercise_categories, input_html: { multiple: true }, include_hidden: false %>
     
     <br>
     
