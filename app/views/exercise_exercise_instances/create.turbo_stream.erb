@@ -1,0 +1,11 @@
+<%= turbo_stream.append "block_#{@block.id}_exercise_instances" do %>
+  <%= render "exercise_instances/exercise_instance", exercise_instance: @exercise_instance %>
+<% end %>
+
+<%= turbo_stream.replace "workout_#{@block.workout.id}_duration" do %>
+  <%= render "workouts/workout_duration", workout: @block.workout %>
+<% end %>
+
+<%= turbo_stream.update "remote_modal", "" %>
+
+<%= render_turbo_stream_flash_messages %>

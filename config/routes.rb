@@ -60,6 +60,7 @@ Rails.application.routes.draw do
         post :edit_title
       end
       resources :exercise_instances, except: [:index] 
+      resources :exercise_exercise_instances, only: [:new, :create]
     end
   
   end

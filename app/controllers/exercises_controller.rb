@@ -15,6 +15,8 @@ class ExercisesController < ApplicationController
   def new
     @exercise = Exercise.new
     authorize @exercise
+    
+    @url = exercises_path
   end
 
   # GET /exercises/1/edit

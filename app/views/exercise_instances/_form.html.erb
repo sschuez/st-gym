@@ -18,11 +18,16 @@
     <%= render "exercise_instances/sort_btns", workout: @workout, block: @block, exercise_instance: @exercise_instance %>
     
     <fieldset class="form-group check_boxes optional exercise_instance_exercises">
-      <%= render "exercise_instances/list", exercises: @exercises %>
+      
+      <div class="flex-end">
+        <%= link_to "Create & add new exercise", new_workout_block_exercise_exercise_instance_path(@block.workout, @block), data: { controller: "turbo" }, class: "btn btn-primary btn-sm mb-2" %>
+      </div>
+
+      <%= render "exercise_instances/list", exercises: @exercises, block: @block %>
     </fieldset>
   </div>
 
   <div class="form-actions flex-end">
-    <%= f.submit "Add exercises", class: "btn btn-primary btn-sm", data: { action: "type=submit click->modal#disconnect" } %>
+    <%= f.submit "Add existing exercise(s)", class: "btn btn-primary btn-sm mt-2", data: { action: "type=submit click->modal#disconnect" } %>
   </div>
 <% end %>

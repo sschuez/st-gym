@@ -12,9 +12,6 @@ class ApplicationController < ActionController::Base
   # after_action :track_action
   # before_action :set_current_user, if: :user_signed_in?
   
-
-
-  # Uncomment when you *really understand* Pundit!
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def default_url_options
@@ -22,10 +19,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
-  # def set_current_user
-  #   Current.user = current_user
-  # end
   
   protected
 
