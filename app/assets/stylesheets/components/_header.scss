@@ -18,15 +18,16 @@
   display: flex;
   justify-content: space-between;
   position: sticky;
-  top: 57px;
+  top: 55px;
   background-color: var(--color-white);
   z-index: 999;
   border-bottom: 1px solid var(--bootstrap-gray);
+  padding-top: 6px;
 }
 
 .workout-mode {
   display: flex;
-  margin-top: 6px;
+  margin-top: 3px;
   padding-top: 6px;
   padding-left: 6px !important;
 
