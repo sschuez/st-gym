@@ -76,7 +76,7 @@ group :test do
 end
 
 # Added
-gem "devise"
+gem "devise", github: "heartcombo/devise", branch: "main"
 gem "pundit"
 gem "dartsass-rails"
 gem "bootstrap"

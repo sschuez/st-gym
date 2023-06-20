@@ -1,17 +1,4 @@
 # frozen_string_literal: true
-class TurboFailureApp < Devise::FailureApp
-  def respond
-    if request_format == :turbo_stream
-      redirect
-    else
-      super
-    end
-  end
-
-  def skip_format?
-    %w(html turbo_stream */*).include? request_format.to_s
-  end
-end
 
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
@@ -286,10 +273,10 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-  # ==> Warden configuration
-    config.warden do |manager|
-      manager.failure_app = TurboFailureApp
-    end
+  # New Turbo integration for devise
+  config.responder.error_status = :unprocessable_entity
+  config.responder.redirect_status = :see_other
+
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
