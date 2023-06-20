@@ -7,6 +7,7 @@ export default class extends Controller {
 
   toggleWorkoutMode(){
     let elementsToHide = document.querySelectorAll(".meta")
+    console.log(elementsToHide)
     if (this.checkboxTarget.checked) {
       elementsToHide.forEach((element) => {
         element.classList.add("hidden")

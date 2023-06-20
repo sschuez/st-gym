@@ -16,8 +16,10 @@
       <%= render block.exercise_instances.order(position: :asc), workout: @workout, block: block %>
     <% end %>
 
-    <div data-controller="meta" data-meta-target="published" class="new_exercise mt-2 mx-2 meta flex-end">
-      <%= link_to "⚡️ Add exercises", new_workout_block_exercise_instance_path(block.workout, block), data: { controller: "turbo" }, class: "btn btn-primary" %>
+    <div class="meta">
+      <div data-controller="meta" data-meta-target="published" class="new_exercise mt-2 mx-2 flex-end">
+        <%= link_to "⚡️ Add exercises", new_workout_block_exercise_instance_path(block.workout, block), data: { controller: "turbo" }, class: "btn btn-primary" %>
+      </div>
     </div>
   
   </div>
