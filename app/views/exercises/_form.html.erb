@@ -54,7 +54,8 @@
     <% if @block %>
       <%= link_to "Back", new_workout_block_exercise_instance_path(@block.workout, @block), data: { controller: "turbo" }, class: "btn btn-primary mx-2" %>
     <% else %>
-      <%= link_to "Back", request.referrer, class: "btn btn-primary mx-2" %>
+      <button type="button" class="btn btn-primary mx-2" data-bs-dismiss="modal" aria-label="Close">Back</button>
+      <%#= link_to "Back", request.referrer, class: "btn btn-primary mx-2" %>
     <% end %>
     <%= f.button :submit, class: "btn btn-primary" %>
   </div>
