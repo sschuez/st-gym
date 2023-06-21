@@ -1,4 +1,4 @@
-<%= turbo_stream.replace "remote_modal", "" %>
+<%= turbo_stream.update "remote_modal", "" %>
 
 <%= turbo_stream.replace "user_#{current_user&.id}_exercises_index_header" do %>
   <%= render "shared/index_header", user: current_user, name: "Exercises", count: Exercise.all.count %>
