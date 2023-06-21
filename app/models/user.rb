@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :workouts
+  has_many :exercises, dependent: :nullify
   has_many :visits, class_name: "Ahoy::Visit"
 end

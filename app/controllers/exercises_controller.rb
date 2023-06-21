@@ -22,7 +22,8 @@ class ExercisesController < ApplicationController
   def create
     @exercise = Exercise.new(exercise_params)
     authorize @exercise
-    
+
+    @exercise.user = current_user
     exercise_categories = get_exercise_categories(params)
     has_one_main_category = check_if_has_at_least_one_main_category(exercise_categories, @exercise)
 
