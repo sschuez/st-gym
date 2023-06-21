@@ -3,7 +3,7 @@
     <%= link_to exercise_path(exercise), method: :get, data: { controller: "turbo" }, class: "exercise__content" do %>
       <h6><%= highlight(exercise.name, query_array) %></h6>
       <% exercise.categories.main_categories_first.each do |category| %>
-        <span class="mx-1 pill <%= "main-category" if category.main_category %>"><%= category.name %></span>
+        <span class="pill pill--sm <%= "main-category" if category.main_category %>"><%= category.name %></span>
         <% end %>
     <% end %>
     
