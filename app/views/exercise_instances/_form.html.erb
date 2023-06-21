@@ -21,7 +21,7 @@
       
     <% if user_signed_in? %>  
       <div class="flex-end">
-        <%= link_to "Create & add new exercise", new_workout_block_exercise_exercise_instance_path(@block.workout, @block), data: { controller: "turbo" }, class: "btn btn-primary btn-sm mb-2" %>
+        <%= link_to "Create & add your own exercise", new_workout_block_exercise_exercise_instance_path(@block.workout, @block), data: { controller: "turbo" }, class: "btn btn-primary btn-sm mb-2" %>
       </div>
     <% end %>
 
