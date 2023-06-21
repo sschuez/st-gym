@@ -33,8 +33,12 @@ class ExercisesController < ApplicationController
 
     if has_one_main_category
       if @exercise.save
-        redirect_to request.referrer, notice: "#{@exercise.name} was created. You can now choose and add it to a block."
         exercise_categories.each { |exercise_category| exercise_category.update(exercise: @exercise) }
+
+        respond_to do |format|
+          format.turbo_stream { flash.now[:notice] = "Exercise was successfully created." }
+          format.html { redirect_to request.referrer, notice: "Exercise was successfully created. You can now choose and add it to a block." }
+        end
       else
         render :new, status: :unprocessable_entity
       end
@@ -51,7 +55,11 @@ class ExercisesController < ApplicationController
     if has_one_main_category
       if @exercise.update(exercise_params)
         new_exercise_categories.each { |new_exercise_category| new_exercise_category.update(exercise: @exercise) }
-        redirect_to request.referrer, notice: "Exercise was successfully updated."
+
+        respond_to do |format|
+          format.turbo_stream { flash.now[:notice] = "Exercise was successfully updated." }
+          format.html { redirect_to request.referrer, notice: "Exercise was successfully updated." }
+        end
       else
         render :edit, status: :unprocessable_entity
       end

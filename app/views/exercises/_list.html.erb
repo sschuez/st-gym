@@ -1,4 +1,4 @@
-<div id="exercises" data-refresh-list-target="list">
+<div id="user_<%=current_user&.id%>_exercises" data-refresh-list-target="list">
   <% exercises.each do |exercise| %>
     <%= render "exercises/exercise", exercise: exercise %>
   <% end %>
