@@ -1,10 +1,13 @@
 class ExercisesController < ApplicationController
   include ExercisesControllable
+  include ExercisesQueryable
   before_action :set_exercise, only: %i[ show edit update destroy ]
   skip_before_action :authenticate_user!, only: %i[ index show ]
+  skip_after_action :verify_policy_scoped, :only => :index
 
   def index
-    @exercises = policy_scope(Exercise).includes(:categories).ordered
+    @exercises = determine_category_exercises(params)
+    query_and_respond(@exercises) 
   end
 
   def show
@@ -62,6 +65,7 @@ class ExercisesController < ApplicationController
     @exercise.destroy
 
     respond_to do |format|
+      format.turbo_stream { flash.now[:notice] = "Exercise was successfully destroyed." }
       format.html { redirect_to exercises_url, notice: "Exercise was successfully destroyed." }
       format.json { head :no_content }
     end

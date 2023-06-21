@@ -1,14 +1,18 @@
 .exercise {
   display: flex;
-  border: 1px solid var(--bootstrap-gray);
-  border-radius: var(--space-xxs);
+  border-bottom: 1px solid var(--bootstrap-gray);
+  // border-radius: var(--space-xxs);
   justify-content: space-between;
-  padding: var(--space-xxxs);
+  padding: var(--space-xxs);
   margin-bottom: var(--space-xxxs);
 
   &__content {
-    a {
-      color: inherit;
+    display: flex !important;
+    color: inherit;
+
+    h6 {
+      margin-bottom: 0 !important;
+      margin-right: 4px;
     }
   }
 

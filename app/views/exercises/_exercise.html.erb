@@ -1,8 +1,11 @@
   <%= content_tag :div, id: dom_id(exercise), class: "exercise" do %>
     
-    <div class="exercise__content">
-      <%= link_to exercise.name, exercise_path(exercise), method: :get, data: { controller: "turbo" } %>
-    </div>
+    <%= link_to exercise_path(exercise), method: :get, data: { controller: "turbo" }, class: "exercise__content" do %>
+      <h6><%= highlight(exercise.name, query_array) %></h6>
+      <% exercise.categories.main_categories_first.each do |category| %>
+        <span class="mx-1 pill <%= "main-category" if category.main_category %>"><%= category.name %></span>
+        <% end %>
+    <% end %>
     
     <% if policy(exercise).edit? %>
       <div class="exercise__actions">
@@ -10,7 +13,6 @@
           <span class="emoji emoji--sm">✍️</span>
         <% end %>
         <%= button_to exercise_path(exercise), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn-styling" do %>
-          <%#= Icon.call("delete") %>
           <span class="emoji--sm">🗑️</span>
         <% end %>
       </div>

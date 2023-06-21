@@ -3,7 +3,8 @@
 <%# content_for :meta_image, cl_image_path(@exercise.photo.path) %>
 
 <div class="my-header">
-  <h1>Exercises (<%= @exercises.count %>)</h1>
+  <%= render "shared/index_header", user: current_user, name: "Exercises", count: @exercises.count %>
+  
     <div class="mt-auto p-2">
       <% if user_signed_in? %>
         <%= link_to "⚡️ Add new exercise", new_exercise_path, data: { controller: "turbo" }, class: "btn btn-primary" %>
@@ -12,11 +13,22 @@
       <% end %>
     </div>
 </div>
-<p class="my-3">
-  Choose among many cool exercises or add a new one, if you're missing something
-</p>
 
-<div id="exercises">
-  <%= render @exercises %>
+<div data-controller="refresh-list">
+  <%= form_with url: exercises_path, method: :get, html: { class: 'mb-3', data: { refresh_list_target: 'form' } } do |f| %>
+    <%= f.text_field :query,
+                    class: "form-control",
+                    placeholder: 'Type an exercise name..',
+                    value: params[:query],
+                    include_hidden: false,
+                    data: {
+                      refresh_list_target: 'searchInput',
+                      action: "keyup->refresh-list#update"
+                    } %>
+  <% end %>
+
+  <%= render "exercise_instances/sort_btns" %>
+  <br>
+  <%= render "exercises/list", exercises: @exercises %>
 </div>
 

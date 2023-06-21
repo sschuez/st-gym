@@ -25,6 +25,10 @@ class ExercisePolicy < ApplicationPolicy
     edit?
   end
 
+  def destroy?
+    admin_or_owner?
+  end
+
   private
 
   def admin_or_owner?
