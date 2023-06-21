@@ -18,10 +18,16 @@ class ExercisePolicy < ApplicationPolicy
   end
 
   def edit?
-    user&.admin?
+    admin_or_owner?
   end
 
   def update?
     edit?
+  end
+
+  private
+
+  def admin_or_owner?
+    user&.admin? || record.user == user
   end
 end

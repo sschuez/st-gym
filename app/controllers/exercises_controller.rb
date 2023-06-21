@@ -1,6 +1,7 @@
 class ExercisesController < ApplicationController
   include ExercisesControllable
   before_action :set_exercise, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_user!, only: %i[ index show ]
 
   def index
     @exercises = policy_scope(Exercise).includes(:categories).ordered
@@ -22,7 +23,8 @@ class ExercisesController < ApplicationController
   def create
     @exercise = Exercise.new(exercise_params)
     authorize @exercise
-    
+
+    @exercise.user = current_user
     exercise_categories = get_exercise_categories(params)
     has_one_main_category = check_if_has_at_least_one_main_category(exercise_categories, @exercise)
 

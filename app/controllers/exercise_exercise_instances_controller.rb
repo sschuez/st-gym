@@ -13,6 +13,7 @@ class ExerciseExerciseInstancesController < ApplicationController
     @exercise = Exercise.new(exercise_params)
     authorize @exercise
 
+    @exercise.user = current_user
     @workout = Workout.find(params[:workout_id])
     @block = Block.find(params[:block_id])
     

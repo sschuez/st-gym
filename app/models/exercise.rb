@@ -2,6 +2,7 @@ class Exercise < ApplicationRecord
   has_many :exercise_categories
   has_many :categories, through: :exercise_categories, dependent: :destroy
   has_many :exercise_instances, dependent: :destroy
+  belongs_to :user
   has_many_attached :files
 
   validates :name, presence: true
