@@ -3,7 +3,7 @@
   <div class="exercise-instance-name">
     <p class="py-2 fw-bold"><%= exercise_instance.exercise.name %></p>
     
-    <%= link_to workout_block_exercise_instance_path(exercise_instance.block.workout, exercise_instance.block, exercise_instance), method: :get, data: { controller: "turbo" } do %>
+    <%= link_to exercise_path(exercise_instance.exercise), method: :get, data: { controller: "turbo" } do %>
       <i class="bi bi-info-circle emoji-info"></i>
     <% end %>
   </div>

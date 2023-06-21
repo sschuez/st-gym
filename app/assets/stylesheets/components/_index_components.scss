@@ -1,5 +1,7 @@
 @use "button";
 @use "error_message";
+@use "exercise_instance";
+@use "exercise";
 @use "alert";
 @use "avatar";
 @use "navbar";
@@ -13,7 +15,6 @@
 @use "modal";
 @use "header";
 @use "image";
-@use "exercise_instance";
 @use "tag_selectors";
 @use "block";
 @use "timer";

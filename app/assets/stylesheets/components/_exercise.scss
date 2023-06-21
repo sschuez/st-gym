@@ -1,0 +1,21 @@
+.exercise {
+  display: flex;
+  border: 1px solid var(--bootstrap-gray);
+  border-radius: var(--space-xxs);
+  justify-content: space-between;
+  padding: var(--space-xxxs);
+  margin-bottom: var(--space-xxxs);
+
+  &__content {
+    a {
+      color: inherit;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    // align-items: center;
+    justify-content: space-between;
+    min-width: 60px;
+  }
+}
