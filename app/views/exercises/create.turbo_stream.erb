@@ -4,9 +4,9 @@
   <%= render "shared/index_header", name: "Exercises", count: Exercise.all.count %>
 <% end %>
 
-<%= turbo_stream.replace "categories" do %>
-  <%= render "exercises/sort_btns" %>
-<% end %>
+<%#= turbo_stream.replace "categories" do %>
+  <%#= render "exercises/sort_btns", exercises: Exercise.all %>
+<%# end %>
 
 <%= turbo_stream.prepend "exercises", @exercise %>
 <%= render_turbo_stream_flash_messages %>

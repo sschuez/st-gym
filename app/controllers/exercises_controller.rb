@@ -7,6 +7,7 @@ class ExercisesController < ApplicationController
 
   def index
     @main_category_filter_changed = params[:main_category_filter_changed]
+    @main_category = params[:main_category]
     @exercises = determine_category_exercises(params)
     query_and_respond(@exercises) 
   end

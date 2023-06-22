@@ -23,5 +23,6 @@ class Category < ApplicationRecord
   def self.without_exercises
     self.joins("LEFT JOIN exercise_categories ON exercise_categories.category_id = categories.id").where(exercise_categories: { id: nil })
   end
+
 end
 

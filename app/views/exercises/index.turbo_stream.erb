@@ -4,7 +4,7 @@
 
 <% if @main_category_filter_changed == "true" %>
   <%= turbo_stream.replace "subcategories" do %>
-    <%= render "exercises/sort_btns_subcategories", exercises: @exercises %>
+    <%= render "exercises/sort_btns_subcategories", main_category: @main_category, exercises: @exercises %>
   <% end %>
 <% end %>
 

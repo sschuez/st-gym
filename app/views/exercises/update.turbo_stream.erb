@@ -2,8 +2,8 @@
 
 <%= turbo_stream.replace @exercise %>
 
-<%= turbo_stream.replace "categories" do %>
-  <%= render "exercises/sort_btns" %>
-<% end %>
+<%#= turbo_stream.replace "categories" do %>
+  <%#= render "exercises/sort_btns", exercises: Exercise.all %>
+<%# end %>
 
 <%= render_turbo_stream_flash_messages %>
