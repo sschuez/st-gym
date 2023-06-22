@@ -22,7 +22,7 @@ export default class extends Controller {
       this.category = 0
     }
 
-    const mainCategoriesFilterChanged = event.currentTarget.dataset.previousMainCategory !== this.mainCategory
+    const mainCategoriesFilterChanged = (event.currentTarget.dataset.previousMainCategory !== this.mainCategory) && (this.category === "reset_category_list")
     const url = `${this.formTarget.action}?main_category_filter_changed=${mainCategoriesFilterChanged}&query=${this.searchInputTarget.value}&main_category=${this.mainCategory}&category=${this.category}`
 
     fetch(url, { 
