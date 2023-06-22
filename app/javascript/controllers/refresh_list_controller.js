@@ -23,14 +23,15 @@ export default class extends Controller {
     const url = `${this.formTarget.action}?query=${this.searchInputTarget.value}&main_category=${this.mainCategory}&category=${this.category}`
     fetch(url, { 
       headers: { 
-        Accept: 'text/plain'
-        // Accept: "text/vnd.turbo-stream.html" 
+        // Accept: 'text/plain'
+        Accept: "text/vnd.turbo-stream.html" 
       } 
     })
       .then(response => response.text())
-      .then((data) => {
-        this.listTarget.outerHTML = data
-      })
+      // .then((data) => {
+        // this.listTarget.outerHTML = data
+      .then(html => Turbo.renderStreamMessage(html))
+      
   }
 
 }

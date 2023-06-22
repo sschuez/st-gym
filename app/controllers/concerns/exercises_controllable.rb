@@ -27,5 +27,4 @@ module ExercisesControllable
   def add_custom_error(exercise)
     exercise.errors.add(:categories, "must have at least one main category")
   end
-
 end

@@ -1,3 +1,3 @@
-<%= turbo_frame_tag "user_#{user&.id}_#{name.downcase}_index_header" do %>
+<%= turbo_frame_tag "#{name.downcase}_index_header" do %>
   <h1><%= name %> (<%= count %>)</h1>
 <% end %>

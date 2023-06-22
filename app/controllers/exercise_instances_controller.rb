@@ -31,9 +31,7 @@ class ExerciseInstancesController < ApplicationController
     
     @exercise_instance.destroy
     
-    respond_to do |format|
-      format.turbo_stream
-    end
+    respond_to { |format| format.turbo_stream }
   end
 
   def set_workout

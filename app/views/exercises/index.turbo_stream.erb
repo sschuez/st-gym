@@ -1,0 +1,11 @@
+<%= turbo_stream.replace "exercises" do %>
+  <%= render "exercises/list", exercises: @exercises %>
+<% end %>
+
+<%#= turbo_stream.replace "categories" do %>
+  <%#= render "exercises/sort_btns", exercises: @exercises %>
+<%# end %>
+
+<%= turbo_stream.replace "exercises_index_header" do %>
+  <%= render "shared/index_header", name: "Exercises", count: @exercises.count %>
+<% end %>

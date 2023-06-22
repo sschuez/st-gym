@@ -2,7 +2,7 @@
 
 <%= turbo_stream.replace @exercise %>
 
-<%= turbo_stream.replace "user_#{current_user&.id}_categories" do %>
+<%= turbo_stream.replace "categories" do %>
   <%= render "exercises/sort_btns" %>
 <% end %>
 

@@ -14,18 +14,19 @@
                         action: "keyup->refresh-list#update"
                       } %>
     <% end %>
-    
-    <%= render "exercises/sort_btns" %>
+
+    <%= render "exercises/sort_btns", exercises: @exercises %>
     
     <fieldset class="form-group check_boxes optional exercise_instance_exercises">
       
-    <% if user_signed_in? %>  
-      <div class="flex-end">
-        <%= link_to "Create & add your own exercise", new_workout_block_exercise_exercise_instance_path(@block.workout, @block), data: { controller: "turbo" }, class: "btn btn-primary btn-sm mb-2" %>
-      </div>
-    <% end %>
+      <% if user_signed_in? %>  
+        <div class="flex-end">
+          <%= link_to "Create & add your own exercise", new_workout_block_exercise_exercise_instance_path(@block.workout, @block), data: { controller: "turbo" }, class: "btn btn-primary btn-sm my-2" %>
+        </div>
+      <% end %>
 
       <%= render "exercise_instances/list", exercises: @exercises, block: @block %>
+
     </fieldset>
   </div>
 

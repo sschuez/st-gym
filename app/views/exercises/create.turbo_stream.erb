@@ -1,12 +1,12 @@
 <%= turbo_stream.update "remote_modal", "" %>
 
-<%= turbo_stream.replace "user_#{current_user&.id}_exercises_index_header" do %>
-  <%= render "shared/index_header", user: current_user, name: "Exercises", count: Exercise.all.count %>
+<%= turbo_stream.replace "exercises_index_header" do %>
+  <%= render "shared/index_header", name: "Exercises", count: Exercise.all.count %>
 <% end %>
 
-<%= turbo_stream.replace "user_#{current_user&.id}_categories" do %>
+<%= turbo_stream.replace "categories" do %>
   <%= render "exercises/sort_btns" %>
 <% end %>
 
-<%= turbo_stream.prepend "user_#{current_user.id}_exercises", @exercise %>
+<%= turbo_stream.prepend "exercises", @exercise %>
 <%= render_turbo_stream_flash_messages %>

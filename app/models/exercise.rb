@@ -7,7 +7,7 @@ class Exercise < ApplicationRecord
 
   validates :name, presence: true
   
-  scope :by_category, -> (category_id) { where(category_id: category_id) }
+  scope :by_category, -> (category_id) { joins(:exercise_categories).where(exercise_categories: { category_id: category_id }) }
   scope :ordered, -> { order(name: :asc) }
 
   def duration
