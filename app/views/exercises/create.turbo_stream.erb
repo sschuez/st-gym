@@ -4,5 +4,9 @@
   <%= render "shared/index_header", user: current_user, name: "Exercises", count: Exercise.all.count %>
 <% end %>
 
+<%= turbo_stream.replace "user_#{current_user&.id}_categories" do %>
+  <%= render "exercises/sort_btns" %>
+<% end %>
+
 <%= turbo_stream.prepend "user_#{current_user.id}_exercises", @exercise %>
 <%= render_turbo_stream_flash_messages %>

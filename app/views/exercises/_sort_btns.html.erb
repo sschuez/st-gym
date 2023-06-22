@@ -1,0 +1,18 @@
+<%= turbo_frame_tag "user_#{current_user.id}_categories" do %>
+  <div class="sort-btns">
+
+    <%= render "exercises/sort_btn", name: "main_category", checked: true, class_list: "main-category", btn_value: "reset_main_category_list", btn_id: "main_category_id_all", label: "All" %>
+
+    <% Category.main_categories_with_exercises.each do |category| %>
+      <%= render "exercises/sort_btn", name: "main_category", checked: false, class_list: "main-category", btn_value: category.id, btn_id: "category_id_#{category.id}", label: category.name.capitalize %>
+    <% end %>
+
+    <br>
+    <%= render "exercises/sort_btn", name: "category", checked: true, class_list: "category", btn_value: "reset_category_list", btn_id: "category_id_all", label: "All" %>
+
+    <% Category.other_categories_with_exercises.each do |category| %>
+      <%= render "exercises/sort_btn", name: "category", checked: false, class_list: "category", btn_value: category.id, btn_id: "category_id_#{category.id}", label: category.name.capitalize %>
+    <% end %>
+    
+  </div>
+<% end %>

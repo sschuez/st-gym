@@ -10,5 +10,17 @@ class Category < ApplicationRecord
   def selected_in?(exercise)
     exercise_categories.where(exercise: exercise).exists?
   end
+
+  def self.main_categories_with_exercises
+    self.main_categories.where.not(id: self.without_exercises)
+  end
+  
+  def self.other_categories_with_exercises
+    self.other_categories.where.not(id: self.without_exercises)
+  end
+  
+  def self.without_exercises
+    self.joins("LEFT JOIN exercise_categories ON exercise_categories.category_id = categories.id").where(exercise_categories: { id: nil })
+  end
 end
 
