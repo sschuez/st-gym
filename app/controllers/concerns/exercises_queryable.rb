@@ -4,19 +4,20 @@ module ExercisesQueryable
   private
   
   def determine_category_exercises(params)
-    main_category_query = params[:main_category].present? && (params[:main_category].to_i != 0 || params[:main_category] != "reset_main_category_list")
-    category_query = params[:category].present? && (params[:category].to_i != 0 || params[:category] != "reset_category_list")
+    main_category_is_not_set_to_all = params[:main_category].to_i != 0 || params[:main_category] != "reset_main_category_list"
+    category_is_not_set_to_all = params[:category].to_i != 0 || params[:category] != "reset_category_list"
+
+    main_category_query = params[:main_category].present? && main_category_is_not_set_to_all
+    category_query = params[:category].present? && category_is_not_set_to_all
       
     if main_category_query && category_query
-      main_category_exercises = Exercise.joins(:exercise_categories).where(exercise_categories: { category_id: params[:main_category].to_i }).ordered
-      category_exercises = Exercise.joins(:exercise_categories).where(exercise_categories: { category_id: params[:category].to_i }).ordered
-      exercises_array = main_category_exercises & category_exercises
+      exercises_array = Exercise.by_main_and_other_category(params[:main_category].to_i, params[:category].to_i)
       
-      return exercises = Exercise.where(id: exercises_array.map(&:id))
+      return exercises = Exercise.where(id: exercises_array.map(&:id)).ordered
     elsif main_category_query && !category_query
-      return exercises = Exercise.joins(:exercise_categories).where(exercise_categories: { category_id: params[:main_category].to_i }).ordered
+      return exercises = Exercise.by_main_category(params[:main_category].to_i).ordered
     elsif params[:main_category] == "reset_main_category_list" && category_query
-      return exercises = Exercise.joins(:exercise_categories).where(exercise_categories: { category_id: params[:category].to_i }).ordered  
+      return exercises = Exercise.by_category(params[:category].to_i).ordered
     else
       return exercises = Exercise.ordered
     end
