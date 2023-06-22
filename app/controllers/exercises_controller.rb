@@ -6,6 +6,7 @@ class ExercisesController < ApplicationController
   skip_after_action :verify_policy_scoped, :only => :index
 
   def index
+    @main_category_filter_changed = params[:main_category_filter_changed]
     @exercises = determine_category_exercises(params)
     query_and_respond(@exercises) 
   end

@@ -2,6 +2,11 @@
   <%= turbo_stream.replace "exercise_instances" do %>
     <%= render "exercise_instances/list", exercises: @exercises %>
   <% end %>
+  <% if @main_category_filter_changed == "true" %>
+    <%= turbo_stream.replace "subcategories" do %>
+      <%= render "exercises/sort_btns_subcategories", exercises: @exercises %>
+    <% end %>
+  <% end %>
 <% else %>
   <%= turbo_stream.replace "remote_modal" do %>
     <%= render partial: "exercise_instances/form_modal" %>

@@ -8,6 +8,7 @@ class ExerciseInstancesController < ApplicationController
     @exercise_instance = @block.exercise_instances.new
     authorize @exercise_instance
 
+    @main_category_filter_changed = params[:main_category_filter_changed]
     @exercises = determine_category_exercises(params)
     query_and_respond(@exercises)
   end

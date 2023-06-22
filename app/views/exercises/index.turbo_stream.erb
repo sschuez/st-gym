@@ -2,9 +2,11 @@
   <%= render "exercises/list", exercises: @exercises %>
 <% end %>
 
-<%#= turbo_stream.replace "categories" do %>
-  <%#= render "exercises/sort_btns", exercises: @exercises %>
-<%# end %>
+<% if @main_category_filter_changed == "true" %>
+  <%= turbo_stream.replace "subcategories" do %>
+    <%= render "exercises/sort_btns_subcategories", exercises: @exercises %>
+  <% end %>
+<% end %>
 
 <%= turbo_stream.replace "exercises_index_header" do %>
   <%= render "shared/index_header", name: "Exercises", count: @exercises.count %>

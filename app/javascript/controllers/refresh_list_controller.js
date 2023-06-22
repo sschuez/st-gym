@@ -13,6 +13,7 @@ export default class extends Controller {
   update() {
     if (event.currentTarget.classList.contains("main-category")) {
       this.mainCategory = event.currentTarget.value
+      this.category = "reset_category_list"
     } else if (event.currentTarget.classList.contains("category")) {
       this.category = event.currentTarget.value
     } else if (event.currentTarget.value === "reset_main_category_list") {
@@ -20,7 +21,10 @@ export default class extends Controller {
     } else if (event.currentTarget.value === "reset_category_list") {
       this.category = 0
     }
-    const url = `${this.formTarget.action}?query=${this.searchInputTarget.value}&main_category=${this.mainCategory}&category=${this.category}`
+
+    const mainCategoriesFilterChanged = event.currentTarget.dataset.previousMainCategory !== this.mainCategory
+    const url = `${this.formTarget.action}?main_category_filter_changed=${mainCategoriesFilterChanged}&query=${this.searchInputTarget.value}&main_category=${this.mainCategory}&category=${this.category}`
+
     fetch(url, { 
       headers: { 
         // Accept: 'text/plain'

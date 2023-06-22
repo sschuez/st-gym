@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "subcategories" do %>
+  <%= render "exercises/sort_btn", name: "category", checked: true, class_list: "category", btn_value: "reset_category_list", btn_id: "category_id_all", label: "All" %>
+
+  <% Category.other_categories.of_exercises(exercises.map(&:id)).each do |category| %>
+    <%= render "exercises/sort_btn", name: "category", checked: false, class_list: "category", btn_value: category.id, btn_id: "category_id_#{category.id}", label: "#{category.name.capitalize} (#{category.exercises.count})" %>
+  <% end %>
+<% end %>
