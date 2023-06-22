@@ -2,12 +2,12 @@
   
   <div class="sort-btns">
 
-    <% if user_signed_in? %>
-      <%= render "exercises/sort_btn", name: "user", checked: true, class_list: "user-category", btn_value: "reset_user_category_list", btn_id: "user_category_id_all", label: "All" %>
+    <%# if user_signed_in? %>
+      <%#= render "exercises/sort_btn", name: "user", checked: true, class_list: "user-category", btn_value: "reset_user_category_list", btn_id: "user_category_id_all", label: "All" %>
       
-      <%= render "exercises/sort_btn", name: "user", checked: false, class_list: "user-category", btn_value: current_user.id, btn_id: "user_id_#{current_user.id}", label: "Yours" %>
-      <br>
-    <% end %>
+      <%#= render "exercises/sort_btn", name: "user", checked: false, class_list: "user-category", btn_value: current_user.id, btn_id: "user_id_#{current_user.id}", label: "Yours" %>
+      <%# <br> %>
+    <%# end %>
 
     <%= render "exercises/sort_btn", name: "main_category", checked: true, class_list: "main-category", btn_value: "reset_main_category_list", btn_id: "main_category_id_all", label: "All" %>
 
