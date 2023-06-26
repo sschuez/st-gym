@@ -3,8 +3,9 @@
   <div class="sort-btns">
     <%= render "exercises/sort_btns_user_categories" %>
     <br>
-    <%= render "exercises/sort_btns_main_categories" %>
+    <%= render "exercises/sort_btns_main_categories", user_category: @user_category, exercises: exercises %>
     <br>
-    <%= render "exercises/sort_btns_subcategories", main_category: @main_category, exercises: exercises %>
+    <%= render "exercises/sort_btns_subcategories", user_category: @user_category, main_category: @main_category, exercises: exercises %>
   </div>
+
 <% end %>

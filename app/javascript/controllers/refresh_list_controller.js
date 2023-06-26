@@ -27,7 +27,7 @@ export default class extends Controller {
       this.category = 0
     }
 
-    const userCategoriesFilterChanged = (event.currentTarget.dataset.previousUserCategory !== this.userCategory)
+    const userCategoriesFilterChanged = (event.currentTarget.dataset.previousUserCategory !== this.userCategory) && (this.mainCategory === "reset_main_category_list") && (this.category === "reset_category_list")
     const mainCategoriesFilterChanged = (event.currentTarget.dataset.previousMainCategory !== this.mainCategory) && (this.category === "reset_category_list")
     const url = `${this.formTarget.action}?user_category_filter_changed=${userCategoriesFilterChanged}&main_category_filter_changed=${mainCategoriesFilterChanged}&query=${this.searchInputTarget.value}&user_category=${this.userCategory}&main_category=${this.mainCategory}&category=${this.category}`
 

@@ -2,9 +2,16 @@
   <%= render "exercises/list", exercises: @exercises %>
 <% end %>
 
-<% if @main_category_filter_changed == "true" %>
+<% if @user_category_filter_changed %>
+  <%= turbo_stream.replace "main_categories" do %>
+    <%= render "exercises/sort_btns_main_categories", user_category: @user_category, exercises: @exercises %>
+  <% end %>
   <%= turbo_stream.replace "subcategories" do %>
-    <%= render "exercises/sort_btns_subcategories", main_category: @main_category, exercises: @exercises %>
+    <%= render "exercises/sort_btns_subcategories", user_category: @user_category, main_category: @main_category, exercises: @exercises %>
+  <% end %>
+<% elsif @main_category_filter_changed && !@user_category_filter_changed %>
+  <%= turbo_stream.replace "subcategories" do %>
+    <%= render "exercises/sort_btns_subcategories", user_category: @user_category, main_category: @main_category, exercises: @exercises %>
   <% end %>
 <% end %>
 

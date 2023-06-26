@@ -13,9 +13,9 @@ module ExercisesQueryable
 
   def determine_main_and_user_categories(params)
     {
-      user_category_filter_changed: params[:user_category_filter_changed],
+      user_category_filter_changed: params[:user_category_filter_changed] == "true",
+      main_category_filter_changed: params[:main_category_filter_changed] == "true",
       user_category: params[:user_category],
-      main_category_filter_changed: params[:main_category_filter_changed],
       main_category: params[:main_category]
     }
   end

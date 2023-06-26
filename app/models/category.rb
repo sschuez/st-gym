@@ -3,6 +3,7 @@ class Category < ApplicationRecord
   has_many :exercises, through: :exercise_categories
 
   scope :ordered, -> { order(:name) }
+  scope :by_user, -> (user_id) { joins(:exercises).where(exercises: { user_id: user_id }).distinct }
   scope :main_categories, -> { where(main_category: true).order(:name) }
   scope :other_categories, -> { where(main_category: false).order(:name) }
   scope :main_categories_first, -> { main_categories + other_categories }

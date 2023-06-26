@@ -3,7 +3,7 @@
   <%= debug @user_category %> 
   <%= render "exercises/sort_btn", name: "category", checked: true, class_list: "category", btn_value: "reset_category_list", btn_id: "category_id_all", label: "All" %>
 
-  <% Category.other_categories.of_exercises(exercises.map(&:id)).each do |category| %>
-    <%= render "exercises/sort_btn", name: "category", checked: false, class_list: "category", btn_value: category.id, btn_id: "category_id_#{category.id}", label: "#{category.name.capitalize} (#{main_category && main_category != "reset_main_category_list" ? Exercise.by_main_and_other_category(main_category, category.id).count : category.exercises.count})" %>
+  <% other_categories_that_have_exercises(exercises).each do |category| %>
+    <%= render "exercises/sort_btn", name: "category", checked: false, class_list: "category", btn_value: category.id, btn_id: "category_id_#{category.id}", label: "#{category.name.capitalize} (#{other_category_exercises_count(user_category, main_category, category.id)})" %>
   <% end %>
 <% end %>
