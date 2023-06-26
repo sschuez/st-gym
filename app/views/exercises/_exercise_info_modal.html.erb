@@ -7,7 +7,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p class="lead"><%= @exercise.description %></p>
+          <p class="lead"><%= simple_format @exercise.description %></p>
           <div class="exercise-images">
             <% @exercise.files.each do |file| %>
               <%= cl_image_tag file.key, class: "exercise-image" %>

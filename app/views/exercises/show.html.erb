@@ -7,7 +7,7 @@
     <h1><%= @exercise.name %></h1>
   </div>
   <h5 class="my-3">Description</h5>
-  <p><%= @exercise.description %></p>
+  <p><%= simple_format @exercise.description %></p>
   <h5 class="mt-5">Categories</h5>
   <% @exercise.categories.main_categories_first.each do |category| %>
     <span class="pill <%= "main-category" if category.main_category %> my-3"><%= category.name %></span>
