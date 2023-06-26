@@ -3,7 +3,24 @@ module ExercisesQueryable
 
   private
   
-  def determine_category_exercises(params)
+  def get_user_exercises(params)
+    if params[:user_category].present? && params[:user_category] != "reset_user_category_list"
+      exercises = Exercise.by_user(params[:user_category].to_i)
+    else
+      exercises = Exercise.all
+    end
+  end
+
+  def determine_main_and_user_categories(params)
+    {
+      user_category_filter_changed: params[:user_category_filter_changed],
+      user_category: params[:user_category],
+      main_category_filter_changed: params[:main_category_filter_changed],
+      main_category: params[:main_category]
+    }
+  end
+
+  def determine_category_exercises(user_exercises, params)
     main_category_is_not_set_to_all = params[:main_category].to_i != 0 || params[:main_category] != "reset_main_category_list"
     category_is_not_set_to_all = params[:category].to_i != 0 || params[:category] != "reset_category_list"
 
@@ -11,15 +28,15 @@ module ExercisesQueryable
     category_query = params[:category].present? && category_is_not_set_to_all
       
     if main_category_query && category_query
-      exercises_array = Exercise.by_main_and_other_category(params[:main_category].to_i, params[:category].to_i)
+      exercises_array = user_exercises.by_main_and_other_category(params[:main_category].to_i, params[:category].to_i)
       
-      return exercises = Exercise.where(id: exercises_array.map(&:id)).ordered
+      return exercises = user_exercises.where(id: exercises_array.map(&:id)).ordered
     elsif main_category_query && !category_query
-      return exercises = Exercise.by_main_category(params[:main_category].to_i).ordered
+      return exercises = user_exercises.by_main_category(params[:main_category].to_i).ordered
     elsif params[:main_category] == "reset_main_category_list" && category_query
-      return exercises = Exercise.by_category(params[:category].to_i).ordered
+      return exercises = user_exercises.by_category(params[:category].to_i).ordered
     else
-      return exercises = Exercise.ordered
+      return exercises = user_exercises.ordered
     end
   end
   

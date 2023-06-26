@@ -1,13 +1,8 @@
 <%= turbo_frame_tag "categories" do %>
   
   <div class="sort-btns">
-
-    <%# if user_signed_in? %>
-      <%#= render "exercises/sort_btn", name: "user", checked: true, class_list: "user-category", btn_value: "reset_user_category_list", btn_id: "user_category_id_all", label: "All" %>
-      
-      <%#= render "exercises/sort_btn", name: "user", checked: false, class_list: "user-category", btn_value: current_user.id, btn_id: "user_id_#{current_user.id}", label: "Yours" %>
-      <%# <br> %>
-    <%# end %>
+    <%= render "exercises/sort_btns_user_categories" %>
+    <br>
     <%= render "exercises/sort_btns_main_categories" %>
     <br>
     <%= render "exercises/sort_btns_subcategories", main_category: @main_category, exercises: exercises %>

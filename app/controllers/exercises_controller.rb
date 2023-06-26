@@ -6,9 +6,14 @@ class ExercisesController < ApplicationController
   skip_after_action :verify_policy_scoped, :only => :index
 
   def index
-    @main_category_filter_changed = params[:main_category_filter_changed]
-    @main_category = params[:main_category]
-    @exercises = determine_category_exercises(params)
+    # @user_category_filter_changed = params[:user_category_filter_changed]
+    # @user_category = params[:user_category]
+    # @main_category_filter_changed = params[:main_category_filter_changed]
+    # @main_category = params[:main_category]
+    determine_main_and_user_categories(params).each { |key, value| instance_variable_set("@#{key}", value) }
+
+    user_exercises = get_user_exercises(params)
+    @exercises = determine_category_exercises(user_exercises, params)
     query_and_respond(@exercises) 
   end
 

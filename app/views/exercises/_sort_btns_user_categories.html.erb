@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+  <%= turbo_frame_tag "user_categories" do %>
+    <%= render "exercises/sort_btn", name: "user", checked: true, class_list: "user-category", btn_value: "reset_user_category_list", btn_id: "user_category_id_all", label: "All" %>
+        
+    <%= render "exercises/sort_btn", name: "user", checked: false, class_list: "user-category", btn_value: current_user.id, btn_id: "user_id_#{current_user.id}", label: "Yours" %>
+  <% end %>
+<% end %>

@@ -1,5 +1,5 @@
 <input type="hidden" name="category[<%= name %>_id]" value=""> 
 <div class="tag-item">
-  <input <%= "checked" if checked %> data-action="click->refresh-list#update" data-previous-main-category="<%= params[:main_category] %>" class="<%= class_list %> form-check-input check_boxes optional tag-selector sort-btn-selector" type="radio" value="<%= btn_value %>" name="category[<%= name %>_id]" id="<%= btn_id %>">
+  <input <%= "checked" if checked %> data-action="click->refresh-list#update" data-previous-user-category="<%= params[:user_category] %>" data-previous-main-category="<%= params[:main_category] %>" class="<%= class_list %> form-check-input check_boxes optional tag-selector sort-btn-selector" type="radio" value="<%= btn_value %>" name="category[<%= name %>_id]" id="<%= btn_id %>">
   <label class="sort-btn form-check-label collection_check_boxes" for="<%= btn_id %>"><%= label %></label>
 </div> 

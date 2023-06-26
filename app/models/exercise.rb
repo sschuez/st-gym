@@ -7,10 +7,11 @@ class Exercise < ApplicationRecord
 
   validates :name, presence: true
   
+  scope :ordered, -> { order(name: :asc) }
   scope :by_category, -> (category_id) { joins(:exercise_categories).where(exercise_categories: { category_id: category_id }) }
+  scope :by_user, -> (user_id) { where(user_id: user_id) }
   scope :by_main_category, -> (main_category_id) { joins(:exercise_categories).where(exercise_categories: { category_id: main_category_id }) }
   scope :by_main_and_other_category, -> (main_category_id, other_category_id) { by_main_category(main_category_id) & by_category(other_category_id) }
-  scope :ordered, -> { order(name: :asc) }
 
   def duration
     seconds_for_exercise = 2

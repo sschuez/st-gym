@@ -8,9 +8,12 @@ class ExerciseInstancesController < ApplicationController
     @exercise_instance = @block.exercise_instances.new
     authorize @exercise_instance
 
-    @main_category_filter_changed = params[:main_category_filter_changed]
-    @main_category = params[:main_category]
-    @exercises = determine_category_exercises(params)
+    # @main_category_filter_changed = params[:main_category_filter_changed]
+    # @main_category = params[:main_category]
+    determine_main_and_user_categories(params).each { |key, value| instance_variable_set("@#{key}", value) }
+
+    user_exercises = get_user_exercises(params)
+    @exercises = determine_category_exercises(user_exercises, params)
     query_and_respond(@exercises)
   end
   
