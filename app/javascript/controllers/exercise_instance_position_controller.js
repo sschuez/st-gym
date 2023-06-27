@@ -18,7 +18,7 @@ export default class extends Controller {
       responseKind: "turbo-stream",
       body: JSON.stringify({
         sgid: event.item.dataset.sgid,
-        position: event.newIndex + 1
+        position: event.newIndex // No adding 1 here because the first item is empty state
       })
     })
     if (response.ok) {
