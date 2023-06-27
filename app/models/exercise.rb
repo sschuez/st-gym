@@ -12,7 +12,6 @@ class Exercise < ApplicationRecord
   scope :by_main_category, -> (main_category_id) { joins(:exercise_categories).where(exercise_categories: { category_id: main_category_id }) }
   scope :by_user, -> (user_id) { where(user_id: user_id) }
   scope :by_main_and_other_category, -> (main_category_id, other_category_id) { by_main_category(main_category_id) & by_category(other_category_id) }
-  scope :main_categories, -> { joins(:categories).where(categories: { main_category: true }).distinct }
 
   def duration
     seconds_for_exercise = 2
