@@ -31,7 +31,6 @@ module ExercisesHelper
     elsif user_category_id == "reset_user_category_list" &&
       main_category_id != "reset_main_category_list"
 
-      # Category.find(category_id).exercises.by_other_category(category_id).count
       Exercise.by_main_and_other_category(main_category_id, category_id).count
     else
       Category.find(category_id).exercises.count
