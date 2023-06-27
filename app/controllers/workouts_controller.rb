@@ -4,7 +4,6 @@ class WorkoutsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :public_workouts, :new, :show, :edit, :update ]
   before_action :set_workout, only: %i[ show edit update destroy ]
 
-  # GET /workouts or /workouts.json
   def index
     @workouts = policy_scope(Workout).order(created_at: :desc)
   end
@@ -25,7 +24,6 @@ class WorkoutsController < ApplicationController
     @workouts = Workout.published.order(updated_at: :desc)
   end
 
-  # GET /workouts/1 or /workouts/1.json
   def show
     @block = @workout.blocks.new
     track "Viewed workout", name: @workout.name
@@ -43,7 +41,6 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  # GET /workouts/new
   def new
     @workout = Workout.new(
       name: "Workout ##{user_signed_in? ? current_user.workouts.count + 1 : Workout.count}",
@@ -56,9 +53,7 @@ class WorkoutsController < ApplicationController
     
     respond_to do |format|
       if @workout.save
-        # Create 1 block, with random exercise
         block = @workout.blocks.create(title: "Block #1")
-        block.exercise_instances.create(exercise: Exercise.find(Exercise.pluck(:id).sample))
 
         format.html { redirect_to workout_path(@workout), notice: "Workout was successfully created." }
         format.json { render :show, status: :created, location: @workout }
@@ -69,7 +64,6 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  # POST /workouts or /workouts.json
   def create
     @workout = Workout.new(workout_params)
     respond_to do |format|
@@ -84,7 +78,6 @@ class WorkoutsController < ApplicationController
     end
   end
   
-  # GET /workouts/1/edit
   def edit
     respond_to do |format|
       format.turbo_stream do 
@@ -96,7 +89,6 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /workouts/1 or /workouts/1.json
   def update
     respond_to do |format|
       if @workout.update(workout_params)
@@ -120,7 +112,6 @@ class WorkoutsController < ApplicationController
     end
   end
   
-  # DELETE /workouts/1 or /workouts/1.json
   def destroy
     @workout.destroy
 
@@ -169,14 +160,13 @@ class WorkoutsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_workout
-      @workout = Workout.find(params[:id])
-      authorize @workout
-    end
 
-    # Only allow a list of trusted parameters through.
-    def workout_params
-      params.require(:workout).permit(:name, :description, blocks_attributes: [:id])
-    end
+  def set_workout
+    @workout = Workout.find(params[:id])
+    authorize @workout
+  end
+
+  def workout_params
+    params.require(:workout).permit(:name, :description, blocks_attributes: [:id])
+  end
 end
