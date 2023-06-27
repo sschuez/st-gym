@@ -3,12 +3,8 @@ module ExercisesQueryable
 
   private
   
-  def get_user_exercises(params)
-    if params[:user_category].present? && params[:user_category] != "reset_user_category_list"
-      exercises = Exercise.by_user(params[:user_category].to_i)
-    else
-      exercises = Exercise.all
-    end
+  def return_main_and_user_categories_as_instance_variables(params)
+    determine_main_and_user_categories(params).each { |key, value| instance_variable_set("@#{key}", value) }
   end
 
   def determine_main_and_user_categories(params)
@@ -18,6 +14,14 @@ module ExercisesQueryable
       user_category: params[:user_category],
       main_category: params[:main_category]
     }
+  end
+
+  def determine_if_user_category_filter_present(params)
+    if params[:user_category].present? && params[:user_category] != "reset_user_category_list"
+      exercises = Exercise.by_user(params[:user_category].to_i).ordered
+    else
+      exercises = Exercise.ordered
+    end
   end
 
   def determine_category_exercises(user_exercises, params)

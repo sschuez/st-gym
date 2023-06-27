@@ -1,14 +1,26 @@
 <% if request.url.include?("new?") %>
+
+  <% if @user_category_filter_changed %>
+    <%= turbo_stream.replace "main_categories" do %>
+      <%= render "exercises/sort_btns_main_categories", user_category: @user_category, exercises: @exercises %>
+    <% end %>
+    <%= turbo_stream.replace "subcategories" do %>
+      <%= render "exercises/sort_btns_subcategories", user_category: @user_category, main_category: @main_category, exercises: @exercises %>
+    <% end %>
+  <% elsif @main_category_filter_changed && ! @user_category_filter_changed %>
+    <%= turbo_stream.replace "subcategories" do %>
+      <%= render "exercises/sort_btns_subcategories", user_category: @user_category, main_category: @main_category, exercises: @exercises %>
+    <% end %>
+  <% end %>
+
   <%= turbo_stream.replace "exercise_instances" do %>
     <%= render "exercise_instances/list", exercises: @exercises %>
   <% end %>
-  <% if @main_category_filter_changed == "true" %>
-    <%= turbo_stream.replace "subcategories" do %>
-      <%= render "exercises/sort_btns_subcategories", main_category: @main_category, exercises: @exercises %>
-    <% end %>
-  <% end %>
+
 <% else %>
+
   <%= turbo_stream.replace "remote_modal" do %>
     <%= render partial: "exercise_instances/form_modal" %>
   <% end %>
+
 <% end %>

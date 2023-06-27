@@ -27,7 +27,7 @@
                     } %>
   <% end %>
 
-  <%= render "exercises/sort_btns", exercises: @exercises %>
+  <%= render "exercises/sort_btns", user_category: @user_category, main_category: @main_category, exercises: @exercises %>
   <br>
   <%= render "exercises/list", exercises: @exercises %>
 </div>

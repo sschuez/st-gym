@@ -1,5 +1,5 @@
-<%= turbo_stream.replace "exercises" do %>
-  <%= render "exercises/list", exercises: @exercises %>
+<%= turbo_stream.replace "exercises_index_header" do %>
+  <%= render "shared/index_header", name: "Exercises", count: @exercises.count %>
 <% end %>
 
 <% if @user_category_filter_changed %>
@@ -15,6 +15,6 @@
   <% end %>
 <% end %>
 
-<%= turbo_stream.replace "exercises_index_header" do %>
-  <%= render "shared/index_header", name: "Exercises", count: @exercises.count %>
+<%= turbo_stream.replace "exercises" do %>
+  <%= render "exercises/list", exercises: @exercises %>
 <% end %>
