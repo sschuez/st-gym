@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show ]
+  before_action :set_post, only: [ :show, :edit, :update, :destroy ] 
 
   def index
     @posts = policy_scope(Post).ordered
@@ -25,24 +26,26 @@ class PostsController < ApplicationController
   end
   
   def show
-    @post = Post.find(params[:id])
-    authorize @post
   end
 
   def edit
-    @post = Post.find(params[:id])
-    authorize @post
   end
 
   def update
-    @post = Post.find(params[:id])
-    authorize @post
-
     if @post.update(post_params)
       redirect_to post_path(@post)
       flash[:notice] = "Post was successfully updated."
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @post.destroy
+
+    respond_to do |format|
+      format.turbo_stream { flash.now[:notice] = "Post #{@post.title} was successfully destroyed." }
+      format.html { redirect_to posts_path, notice: "Post was successfully destroyed." }
     end
   end
 
@@ -60,6 +63,11 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def set_post
+    @post = Post.find(params[:id])
+    authorize @post
+  end
 
   def post_params
     params.require(:post).permit(:title, :subtitle, :body, :image, :published)

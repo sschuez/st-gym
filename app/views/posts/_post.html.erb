@@ -17,6 +17,12 @@
         <%= link_to edit_post_path(post) do %>
           <%= Icon.call("edit") %>
         <% end %>
+        <%= button_to post_path(post), 
+            method: :delete, 
+            form: { data: { turbo_confirm: "Are you sure?" } }, 
+            class: "btn-styling" do %>
+          <%= Icon.call("delete") %>
+        <% end %>
         <%= render "posts/publish_btn", post: post %>
         <div class="handle-block">
           <%= Icon.call("handle") %>
