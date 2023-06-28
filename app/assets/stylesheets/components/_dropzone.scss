@@ -6,6 +6,7 @@
 }
 
 .dark-mode .dropzone {
-  background-color: inherit !important;
+  background-color: var(--color-tertiary-background-dark) !important;
+  border-color: var(--color-text-body-dark) !important;
 }
 

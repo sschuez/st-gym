@@ -111,6 +111,19 @@
             <div class="divider"></div>
           </li>
 
+          <li>
+            <%= link_to posts_path, class: "sidebar__item" do %>
+              <%= Icon.new("blog").call %>
+              <span>
+                Blog
+              </span>
+            <% end %>
+          </li>
+  
+          <li>
+            <div class="divider"></div>
+          </li>
+
           <li class="sidebar__item" data-action="click->sidebar#closeSidebar">
             <%= link_to new_contact_path, 
                 data: { controller: "turbo" } do %>

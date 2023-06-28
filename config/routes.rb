@@ -37,6 +37,13 @@ Rails.application.routes.draw do
   # CONTACTS
   resources :contacts, only: [:index, :new, :create, :show, :destroy]
 
+  # BLOG POSTS
+  resources :posts do
+    member do
+      patch :publish
+    end
+  end
+
   # WORKOUTS
   get 'my_workouts' => 'workouts#user_workouts', as: :user_workouts
   get 'public_workouts' => 'workouts#public_workouts', as: :public_workouts
@@ -62,7 +69,6 @@ Rails.application.routes.draw do
       resources :exercise_instances, except: [:index, :show] 
       resources :exercise_exercise_instances, only: [:new, :create]
     end
-  
   end
 
   # Drag to new position for block

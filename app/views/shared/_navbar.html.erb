@@ -6,7 +6,7 @@
   </div>
   <% if user_signed_in? %>
     <div class="navbar__name">
-      <%= link_to current_user.email, user_path(current_user) %>
+      <%= link_to current_user.email_username, user_path(current_user) %>
     </div>
   <% end %>
   <button data-action="click->sidebar#toggleOpen">
