@@ -32,7 +32,9 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
+    post_params_with_image = post_params[:image] == "" ? post_params.except(:image) : post_params
+    if @post.update(post_params_with_image)
+      # raise
       redirect_to post_path(@post)
       flash[:notice] = "Post was successfully updated."
     else
@@ -70,6 +72,12 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :subtitle, :body, :image, :published)
+    params.require(:post).permit(
+      :title, 
+      :subtitle, 
+      :body, 
+      :image, 
+      :published
+    )
   end
 end
