@@ -4,7 +4,7 @@
 
 <!-- Page Header-->
 <header class="post" style="background-image: url(<%= image_path @post.image_or_default %>)">
-  <div class="px-4 px-lg-5">
+  <div class="container position-relative px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="post-heading">
@@ -29,9 +29,8 @@
         <%= @post.body %>
         <br>
         <p>
-            Feeling motivated? <%= link_to "Start your own workout now", new_workout_path %>
-            
-            &middot; Or choose from a <%= link_to "public workout", public_workouts_path %> to get started
+          Feeling motivated? <%= link_to "Start your own workout now", new_workout_path %>
+          &middot; Or choose from a <%= link_to "public workout", public_workouts_path %> to get started
         </p>
       </div>
     </div>
