@@ -34,7 +34,6 @@ class PostsController < ApplicationController
   def update
     post_params_with_image = post_params[:image] == "" ? post_params.except(:image) : post_params
     if @post.update(post_params_with_image)
-      # raise
       redirect_to post_path(@post)
       flash[:notice] = "Post was successfully updated."
     else
