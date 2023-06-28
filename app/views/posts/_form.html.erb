@@ -1,0 +1,36 @@
+<%= simple_form_for(@post) do |f| %>
+  <%= form_error_notification(@post) %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    
+    <%= f.input :subtitle, as: :string %>
+    
+    <%= f.label "Body", class: "mb-2" %>
+    <%= f.rich_text_area :body %>
+    
+    <%= f.label :image, class: "mt-3" %>
+    <%= dropzone_controller_div do %>
+      <% if @post.image.present? %>
+        <% file_details = file_details_for(@post.image) %>
+        <%= f.hidden_field :image, multiple: false, value: @post.image.signed_id, data: { filename: file_details[:filename], size: file_details[:size], content_type: file_details[:content_type], url: file_details[:url], blob_id: file_details[:blob_id], "dropzone-target": "existingFile" } %>
+      <% end %>
+      <%= f.file_field :image, direct_upload: true, multiple: false, 'data-dropzone-target': 'input' %>
+      <div data-dropzone-target="dropzoneMsg" class="dropzone-msg dz-message needsclick">
+        <h5 class="dropzone-msg-title">
+          Drag to upload or click to browse
+        </h5> 
+        <span class="dropzone-msg-desc text-sm small">
+          10 MB max size. 
+          <%# Allowed file types png, jpg. %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+
+  <%= f.input :published %>
+
+  <div class="form-actions flex-end">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

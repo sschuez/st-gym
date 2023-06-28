@@ -37,6 +37,10 @@ module ApplicationHelper
     times.select { |str| str =~ /[1-9]/ }.join(" ")
   end
 
+  def formatted_date(date)
+    date.strftime("%e %b %Y")
+  end
+
   def dropzone_controller_div
     data = {
       controller: "dropzone",

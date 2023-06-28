@@ -7,7 +7,7 @@ class Icon
     @icon = icon
     @icons = {
       trash: '<i class="fas fa-trash-alt"></i>',
-      edit: '<i class="bi bi-pencil-fill"></i>',
+      edit: '<i class="fas fa-edit"></i>',
       delete: '<i class="bi bi-trash-fill"></i>',
       confirm: '<i class="bi bi-check-circle-fill"></i>',
       cancel: '<i class="bi bi-x-circle-fill"></i>',
@@ -28,7 +28,10 @@ class Icon
       mail: '<i class="far fa-envelope"></i>',
       eye: '<i class="fas fa-eye"></i>',
       plus: '<i class="fas fa-plus"></i>',
-      close: '<i class="fas fa-times"></i>'
+      close: '<i class="fas fa-times"></i>',
+      published: '<i class="bi bi-eye-fill" style="color: hsl(120, 45%, 56%)"></i>',
+      blog: '<i class="fas fa-newspaper"></i>',
+      unpublished: '<i class="bi bi-eye-slash-fill" style="color: hsl(10, 73%, 54%)"></i>'
     }
   end
 

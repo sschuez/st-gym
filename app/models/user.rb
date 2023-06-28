@@ -19,4 +19,8 @@ class User < ApplicationRecord
   def other_categories
     categories.other_categories
   end
+
+  def email_username
+    email.split('@').first
+  end
 end

@@ -10,3 +10,5 @@ import "@rails/request.js"
 
 import LocalTime from "local-time"
 LocalTime.start()
+import "trix"
+import "@rails/actiontext"
