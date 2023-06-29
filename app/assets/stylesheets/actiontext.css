@@ -41,6 +41,22 @@ trix-editor.trix-content {
   border-color: var(--bootstrap-dark);
 }
 
-.dark-mode trix-editor.trix-button {
-  background-color: var(--color-tertiary-background-dark);
+trix-toolbar {
+  position: sticky;
+  top: 4rem;
+  
+  .trix-button {
+    background-color: white !important;
+  }
 }
+
+.dark-mode trix-toolbar {
+  .trix-button {
+    background-color: var(--color-tertiary-background-dark) !important;
+  }
+}
+
+/* .edit_post trix-toolbar {
+  position: sticky;
+  top: 4rem;
+} */
