@@ -41,7 +41,7 @@ trix-editor.trix-content {
   border-color: var(--bootstrap-dark);
 }
 
-trix-toolbar {
+.rich-text-area trix-toolbar {
   position: sticky;
   top: 4rem;
   
