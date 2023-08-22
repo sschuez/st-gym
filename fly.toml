@@ -32,6 +32,9 @@ console_command = "/app/bin/rails console"
   protocol = "tcp"
   internal_port = 8080
   processes = ["web"]
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
 
   [[services.ports]]
     port = 80
