@@ -35,6 +35,7 @@ console_command = "/app/bin/rails console"
   auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 0
+  auto_stop = true
 
   [[services.ports]]
     port = 80
