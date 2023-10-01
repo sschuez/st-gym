@@ -2,8 +2,8 @@ name: BG Worker To Clear Lonely Workout
 
 on:
   schedule:
-    # Once per hour
-    - cron: '0 * * * *'
+    # Once per week
+    - cron: '0 0 * * 0'
 
 jobs:
   worker:
