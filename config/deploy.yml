@@ -64,7 +64,7 @@ accessories:
   #     - /var/lib/redis:/data
   redis:
     image: redis:7.0
-    host: 1.1.1.1
+    host: 128.140.40.185
     port: 6379:6379
     cmd: --maxmemory 200m --maxmemory-policy allkeys-lru
     volumes:
