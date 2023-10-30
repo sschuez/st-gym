@@ -29,13 +29,14 @@ registry:
 env:
   clear:
     DB_HOST: 128.140.40.185
-    REDIS_URL: redis://128.140.40.185:6379/0
+    # REDIS_URL: redis://128.140.40.185:6379/0
     # REDIS_URL: "redis://redis:6379/0"
     # DATABASE_URL: "postgres://postgres@host.docker.internal:5432/app"
   #   REDIS_URL: "redis://host.docker.internal:6379/0"
   secret:
     - RAILS_MASTER_KEY
     - POSTGRES_PASSWORD
+    - REDIS_URL
 
 accessories:
   db:
@@ -54,13 +55,22 @@ accessories:
       # - /var/postgres/data:/var/lib/postgresql/data
     directories:
       - data:/var/lib/postgresql/data
+  # redis:
+  #   image: redis:latest
+  #   roles:
+  #     - web
+  #   port: "36379:6379"
+  #   volumes:
+  #     - /var/lib/redis:/data
   redis:
-    image: redis:latest
-    roles:
-      - web
-    port: "36379:6379"
+    image: redis:7.0
+    host: 1.1.1.1
+    port: 6379:6379
+    cmd: --maxmemory 200m --maxmemory-policy allkeys-lru
     volumes:
-      - /var/lib/redis:/data
+      - /var/redis/data:/data
+    options:
+      memory: 250m
 
 # accessories:
 #   db:
