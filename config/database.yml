@@ -81,8 +81,16 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+# production:
+#   <<: *default
+#   host: localhost
+#   database: st_gym_db
+#   username: st_gym_db
+#   password: <%= ENV["POSTGRESS_PASSWORD"] %>
+
 production:
   <<: *default
-  database: st_gym_production
-  username: st_gym
-  password: <%= ENV["ST_GYM_DATABASE_PASSWORD"] %>
+  host: <%= ENV["DB_HOST"] %>
+  database: st_gym_db
+  username: st_gym_db
+  password: <%= ENV["POSTGRES_PASSWORD"] %>

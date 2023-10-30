@@ -25,8 +25,8 @@ console_command = "/app/bin/rails console"
   PORT = "8080"
 
 [processes]
-  web = "bin/rails fly:server"
-  worker = "bundle exec sidekiq"
+  app = "./bin/rails server"
+  sidekiq = "bundle exec sidekiq"
 
 [[services]]
   protocol = "tcp"

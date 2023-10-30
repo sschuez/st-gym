@@ -2,17 +2,23 @@
 service: st-gym
 
 # Name of the container image.
-image: user/st-gym
+image: pschuez/st-gym
 
 # Deploy to these servers.
 servers:
-  - 192.168.0.1
+  # - 128.140.40.185
+  web:
+    - 128.140.40.185
+  #   hosts:
+  # - hetzner_ip_v4
+    # options:
+    #   add-host: host.docker.internal:host-gateway
 
 # Credentials for your image host.
 registry:
   # Specify the registry server, if you're not using Docker Hub
   # server: registry.digitalocean.com / ghcr.io / ...
-  username: my-user
+  username: pschuez
 
   # Always use an access token rather than real password when possible.
   password:
@@ -20,11 +26,70 @@ registry:
 
 # Inject ENV variables into containers (secrets come from .env).
 # Remember to run `kamal env push` after making changes!
-# env:
-#   clear:
-#     DB_HOST: 192.168.0.2
-#   secret:
-#     - RAILS_MASTER_KEY
+env:
+  clear:
+    DB_HOST: 128.140.40.185
+    REDIS_URL: "redis://redis:6379/0"
+    # DATABASE_URL: "postgres://postgres@host.docker.internal:5432/app"
+  #   REDIS_URL: "redis://host.docker.internal:6379/0"
+  secret:
+    - RAILS_MASTER_KEY
+    - POSTGRES_PASSWORD
+
+accessories:
+  db:
+    image: postgres:15
+    host: 128.140.40.185
+    port: 5432
+    env:
+      clear:
+        POSTGRES_USER: "st_gym_db"
+        POSTGRES_DB: "st_gym_db"
+      secret:
+        # - POSTGRES_DB
+        # - POSTGRES_USER
+        - POSTGRES_PASSWORD
+    # volumes:
+      # - /var/postgres/data:/var/lib/postgresql/data
+    directories:
+      - data:/var/lib/postgresql/data
+  redis:
+    image: redis:latest
+    roles:
+      - web
+    port: "36379:6379"
+    volumes:
+      - /var/lib/redis:/data
+
+# accessories:
+#   db:
+#     image: postgres:13
+#     host: 128.140.40.185
+#     port: 5432
+#     env:
+#       clear:
+#         POSTGRES_USER: 'st-gym'
+#         POSTGRES_DB: 'st-gym'
+#       secret:
+#         - POSTGRES_PASSWORD
+#     directories:
+#       - data:/var/lib/postgresql/data
+
+# accessories:
+#   db:
+#     image: "postgres:13"
+#     hosts:
+#       - 128.140.40.185
+#     port: "5432:5432"
+#       # ...
+#     redis:
+#       image: redis:7.0
+#       hosts:
+#         - 128.140.40.185
+#       port: "6379:6379"
+  
+ssh:
+  user: root
 
 # Use a different ssh user than root
 # ssh:
@@ -42,26 +107,32 @@ registry:
 
 # Use accessory services (secrets come from .env).
 # accessories:
-#   db:
-#     image: mysql:8.0
-#     host: 192.168.0.2
-#     port: 3306
-#     env:
-#       clear:
-#         MYSQL_ROOT_HOST: '%'
-#       secret:
-#         - MYSQL_ROOT_PASSWORD
-#     files:
-#       - config/mysql/production.cnf:/etc/mysql/my.cnf
-#       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
-#     directories:
-#       - data:/var/lib/mysql
-#   redis:
-#     image: redis:7.0
-#     host: 192.168.0.2
-#     port: 6379
-#     directories:
-#       - data:/data
+  # db:
+    # image: postgres:15
+    # host: 128.140.40.185
+    # port: 3306
+    # env:
+      # clear:
+        # POSTGRES_USER: 'st-gym-app'
+        # POSTGRES_DB: 'st-gym-db'
+      # secret:
+        # - POSTGRES_PASSWORD
+    # files:
+      # - config/mysql/production.cnf:/etc/mysql/my.cnf
+      # - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
+    # directories:
+      # - data:/var/lib/mysql
+      # - data:/var/lib/postgresql/data
+  # redis:
+    # image: redis:latest
+    # host: 192.168.0.2
+    # roles: 
+      # - web
+    # port: 6379
+    # directories:
+    #   - data:/data
+    # volumes:
+      # - /var/lib/redis:/data
 
 # Configure custom arguments for Traefik
 # traefik:

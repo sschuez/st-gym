@@ -97,3 +97,5 @@ gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 gem "pagy", "~> 6.0"
 gem "marginalia", "~> 1.11"
 gem "cloudinary"
+
+gem "dockerfile-rails", ">= 1.5", :group => :development
