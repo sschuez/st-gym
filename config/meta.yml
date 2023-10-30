@@ -1,5 +1,5 @@
 meta_product_name: "StGym"
 meta_title: "Workout at your fingertips"
 meta_description: "StGym is an app to easliy create and share workouts. The active community provides trainings, feedbacks and new inspiration to work out."
-meta_image: "metaimg.jpg" # should exist in `app/assets/images/`
+# meta_image: "metaimg.jpg" # should exist in `app/assets/images/`
 # twitter_account: "@product_twitter_account"   # required for Twitter Cards
