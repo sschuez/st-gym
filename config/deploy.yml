@@ -4,10 +4,21 @@ service: st-gym
 # Name of the container image.
 image: pschuez/st-gym
 
+networks:
+  - name: private
+
 # Deploy to these servers.
 servers:
   web:
-    - 128.140.40.185
+    hosts:
+      - 128.140.40.185
+    options:
+      network: "private"
+  job:
+    hosts:
+      - 128.140.40.185
+    options:
+      network: "private"
 
 # Credentials for your image host.
 registry:
@@ -26,7 +37,7 @@ env:
     DB_HOST: 128.140.40.185
     # REDIS_URL: "redis://redis:6379/0"
     # REDIS_URL: "redis://127.0.0.1:6379/0"
-    REDIS_URL: redis://redis1:6379/1
+    REDIS_URL: redis://redis:6379/1
   secret:
     - RAILS_MASTER_KEY
     - POSTGRES_PASSWORD
@@ -43,8 +54,12 @@ accessories:
         POSTGRES_DB: "st_gym_db"
       secret:
         - POSTGRES_PASSWORD
+    files: 
+      - config/init.sql:/docker-entrypoint-initdb.d/setup.sql
     directories:
       - data:/var/lib/postgresql/data
+    options:
+      network: "private"
   # redis:
   #   image: redis:latest
   #   host: 128.140.40.185
@@ -59,45 +74,11 @@ accessories:
     image: redis:latest
     roles:
       - web
-    port: "36379:6379"
+      - job
     volumes:
       - /var/lib/redis:/data
-  # redis:
-  #   image: redis:7.0
-  #   host: 128.140.40.185
-  #   port: 6379:6379
-  #   cmd: --maxmemory 200m --maxmemory-policy allkeys-lru
-  #   volumes:
-  #     - /var/redis/data:/data
-  #   options:
-  #     memory: 250m
-
-# accessories:
-#   db:
-#     image: postgres:13
-#     host: 128.140.40.185
-#     port: 5432
-#     env:
-#       clear:
-#         POSTGRES_USER: 'st-gym'
-#         POSTGRES_DB: 'st-gym'
-#       secret:
-#         - POSTGRES_PASSWORD
-#     directories:
-#       - data:/var/lib/postgresql/data
-
-# accessories:
-#   db:
-#     image: "postgres:13"
-#     hosts:
-#       - 128.140.40.185
-#     port: "5432:5432"
-#       # ...
-#     redis:
-#       image: redis:7.0
-#       hosts:
-#         - 128.140.40.185
-#       port: "6379:6379"
+    options:
+      network: "private"
   
 ssh:
   user: root
