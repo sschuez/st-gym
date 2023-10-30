@@ -13,11 +13,11 @@ servers:
     hosts:
       - 128.140.40.185
     labels:
-      traefik.http.routers.kiqr_cloud.rule: Host(`stgym.club`)
-      traefik.http.routers.kiqr_cloud_secure.entrypoints: websecure
-      traefik.http.routers.kiqr_cloud_secure.rule: Host(`stgym.club`)
-      traefik.http.routers.kiqr_cloud_secure.tls: true
-      traefik.http.routers.kiqr_cloud_secure.tls.certresolver: letsencrypt
+      # traefik.http.routers.kiqr_cloud.rule: Host(`stgym.club`)
+      # traefik.http.routers.kiqr_cloud_secure.entrypoints: websecure
+      # traefik.http.routers.kiqr_cloud_secure.rule: Host(`stgym.club`)
+      # traefik.http.routers.kiqr_cloud_secure.tls: true
+      # traefik.http.routers.kiqr_cloud_secure.tls.certresolver: letsencrypt
     options:
       network: "private"
   job:
@@ -82,7 +82,6 @@ accessories:
     roles:
       - web
       - job
-    # cmd: "redis-server --requirepass <%= File.read('/path/to/redis/password') %>"
     volumes:
       - /var/lib/redis:/data
     options:
@@ -100,12 +99,12 @@ traefik:
       - "/letsencrypt/acme.json:/letsencrypt/acme.json"
     network: "private"
   args:
-    entryPoints.web.address: ":80"
-    entryPoints.websecure.address: ":443"
-    certificatesResolvers.letsencrypt.acme.email: "stephens@hey.com"
-    certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
-    certificatesResolvers.letsencrypt.acme.httpchallenge: true
-    certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
+    # entryPoints.web.address: ":80"
+    # entryPoints.websecure.address: ":443"
+    # certificatesResolvers.letsencrypt.acme.email: "stephens@hey.com"
+    # certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
+    # certificatesResolvers.letsencrypt.acme.httpchallenge: true
+    # certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
 # traefik:
 #   args:
 #     accesslog: true
