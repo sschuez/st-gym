@@ -1,150 +1,39 @@
-# Name of your application. Used to uniquely configure containers.
-service: st-gym
-
-# Name of the container image.
-image: pschuez/st-gym
-
-# networks:
-#   - name: private
-
-# Deploy to these servers.
+---
+service: st_gym
+image: pschuez/st_gym
 servers:
-  web:
-    hosts:
-      - 128.140.40.185
-    labels:
-      # traefik.http.routers.kiqr_cloud.rule: Host(`stgym.club`)
-      # traefik.http.routers.kiqr_cloud_secure.entrypoints: websecure
-      # traefik.http.routers.kiqr_cloud_secure.rule: Host(`stgym.club`)
-      # traefik.http.routers.kiqr_cloud_secure.tls: true
-      # traefik.http.routers.kiqr_cloud_secure.tls.certresolver: letsencrypt
-    # options:
-      # network: "private"
-  job:
-    hosts:
-      - 128.140.40.185
-    cmd: bundle exec sidekiq
-    # options:
-    #   network: "private"
-
-# Credentials for your image host.
+- 78.47.73.113
 registry:
-  # Specify the registry server, if you're not using Docker Hub
-  # server: registry.digitalocean.com / ghcr.io / ...
   username: pschuez
-
-  # Always use an access token rather than real password when possible.
   password:
-    - KAMAL_REGISTRY_PASSWORD
-
-# Inject ENV variables into containers (secrets come from .env).
-# Remember to run `kamal env push` after making changes!
+  - KAMAL_REGISTRY_PASSWORD
 env:
   clear:
-    DB_HOST: 128.140.40.185
-    # REDIS_URL: "redis://redis:6379/0"
-    # REDIS_URL: "redis://127.0.0.1:6379/0"
-    REDIS_URL: redis://redis:6379/1
+    DB_HOST: 78.47.73.113
+    POSTGRES_USER: st_gym_user
+    POSTGRES_DB: st_gym_production
+    redis: 78.47.73.113
   secret:
-    - RAILS_MASTER_KEY
-    - POSTGRES_PASSWORD
-    # - REDIS_URL
-
+  - RAILS_MASTER_KEY
+  - POSTGRES_PASSWORD
+ssh:
+  user: root
 accessories:
   db:
-    image: postgres:15
-    host: 128.140.40.185
+    image: postgres:16
+    host: 78.47.73.113
     port: 5432
     env:
       clear:
-        POSTGRES_USER: "st_gym_db"
-        POSTGRES_DB: "st_gym_db"
+        POSTGRES_USER: st_gym_user
+        POSTGRES_DB: st_gym_production
       secret:
-        - POSTGRES_PASSWORD
-    files: 
-      - config/init.sql:/docker-entrypoint-initdb.d/setup.sql
+      - POSTGRES_PASSWORD
     directories:
-      - data:/var/lib/postgresql/data
-    # options:
-      # network: "private"
-
+    - data:/var/lib/postgresql/data
   redis:
-    image: redis:latest
-    roles:
-      - web
-      - job
-    volumes:
-      - /var/lib/redis:/data
-    # options:
-      # network: "private"
-  
-ssh:
-  user: root
-
-# Configure custom arguments for Traefik
-traefik:
-  options:
-    publish:
-      - "443:443"
-    volume:
-      - "/letsencrypt/acme.json:/letsencrypt/acme.json"
-    # network: "private"
-  args:
-    # entryPoints.web.address: ":80"
-    # entryPoints.websecure.address: ":443"
-    # certificatesResolvers.letsencrypt.acme.email: "stephens@hey.com"
-    # certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
-    # certificatesResolvers.letsencrypt.acme.httpchallenge: true
-    # certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
-# traefik:
-#   args:
-#     accesslog: true
-#     accesslog.format: json
-
-# Use a different ssh user than root
-# ssh:
-#   user: app
-
-# Configure builder setup.
-# builder:
-#   args:
-#     RUBY_VERSION: 3.2.0
-#   secrets:
-#     - GITHUB_TOKEN
-#   remote:
-#     arch: amd64
-#     host: ssh://app@192.168.0.1
-
-# Use accessory services (secrets come from .env).
-# accessories:
-  # db:
-    # image: postgres:15
-    # host: 128.140.40.185
-    # port: 3306
-    # env:
-      # clear:
-        # POSTGRES_USER: 'st-gym-app'
-        # POSTGRES_DB: 'st-gym-db'
-      # secret:
-        # - POSTGRES_PASSWORD
-    # files:
-      # - config/mysql/production.cnf:/etc/mysql/my.cnf
-      # - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
-    # directories:
-      # - data:/var/lib/mysql
-      # - data:/var/lib/postgresql/data
-
-# Configure a custom healthcheck (default is /up on port 3000)
-# healthcheck:
-#   path: /healthz
-#   port: 4000
-
-# Bridge fingerprinted assets, like JS and CSS, between versions to avoid
-# hitting 404 on in-flight requests. Combines all files from new and old
-# version inside the asset_path.
-# asset_path: /rails/public/assets
-
-# Configure rolling deploys by setting a wait time between batches of restarts.
-# boot:
-#   limit: 10 # Can also specify as a percentage of total hosts, such as "25%"
-#   wait: 2
+    image: redis:7.0
+    host: 78.47.73.113
+    port: 6379
+    directories:
+    - data:/data
