@@ -1,1 +1,0 @@
-CREATE DATABASE st_gym_db;
