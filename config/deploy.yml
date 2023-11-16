@@ -46,3 +46,16 @@ accessories:
     port: 6379
     directories:
     - data:/data
+traefik:
+  options:
+    publish:
+      - 443:443
+    volume:
+      - /root/acme.json:/letsencrypt/acme.json
+  args:
+    entryPoints.web.address: ":80"
+    entryPoints.websecure.address: ":443"
+    certificatesResolvers.letsencrypt.acme.email: "stephens@hey.com"
+    certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
+    certificatesResolvers.letsencrypt.acme.httpchallenge: true
+    certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
