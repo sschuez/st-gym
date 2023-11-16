@@ -2,7 +2,15 @@
 service: st_gym
 image: pschuez/st_gym
 servers:
-- 49.13.123.144
+  web:
+    hosts: 
+    - 49.13.123.144
+    labels:
+      traefik.http.routers.example.rule: Host(`stgym.club`)
+      traefik.http.routers.example_secure.entrypoints: websecure
+      traefik.http.routers.example_secure.rule: Host(`stgym.club`)
+      traefik.http.routers.example_secure.tls: true
+      traefik.http.routers.example_secure.tls.certresolver: letsencrypt
 registry:
   username: pschuez
   password:
