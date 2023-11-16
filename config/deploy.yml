@@ -12,6 +12,7 @@ env:
     DB_HOST: 49.13.123.144
     POSTGRES_USER: st_gym_user
     POSTGRES_DB: st_gym_production
+    REDIS_URL: redis://49.13.123.144:6379/1
     redis: 49.13.123.144
   secret:
   - RAILS_MASTER_KEY
