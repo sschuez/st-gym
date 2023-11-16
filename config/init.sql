@@ -1,1 +1,1 @@
-CREATE DATABASE myapp_production;
+CREATE DATABASE st_gym_db;
