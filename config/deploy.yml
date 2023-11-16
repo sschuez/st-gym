@@ -2,17 +2,17 @@
 service: st_gym
 image: pschuez/st_gym
 servers:
-- 78.47.73.113
+- 49.13.123.144
 registry:
   username: pschuez
   password:
   - KAMAL_REGISTRY_PASSWORD
 env:
   clear:
-    DB_HOST: 78.47.73.113
+    DB_HOST: 49.13.123.144
     POSTGRES_USER: st_gym_user
     POSTGRES_DB: st_gym_production
-    redis: 78.47.73.113
+    redis: 49.13.123.144
   secret:
   - RAILS_MASTER_KEY
   - POSTGRES_PASSWORD
@@ -21,7 +21,7 @@ ssh:
 accessories:
   db:
     image: postgres:16
-    host: 78.47.73.113
+    host: 49.13.123.144
     port: 5432
     env:
       clear:
@@ -33,7 +33,7 @@ accessories:
     - data:/var/lib/postgresql/data
   redis:
     image: redis:7.0
-    host: 78.47.73.113
+    host: 49.13.123.144
     port: 6379
     directories:
     - data:/data
