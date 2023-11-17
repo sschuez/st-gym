@@ -19,7 +19,7 @@ FROM base as build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config curl nodejs redis-tools
+    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config curl nodejs redis-tools yarn
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -41,7 +41,7 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libvips postgresql-client curl nodejs && \
+    apt-get install --no-install-recommends -y curl libvips postgresql-client curl nodejs yarn && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application
