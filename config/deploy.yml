@@ -2,15 +2,16 @@
 service: st_gym
 image: pschuez/st_gym
 servers:
-  web:
-    hosts: 
-    - 49.13.123.144
-    labels:
-      traefik.http.routers.example.rule: Host(`stgym.club`)
-      traefik.http.routers.example_secure.entrypoints: websecure
-      traefik.http.routers.example_secure.rule: Host(`stgym.club`)
-      traefik.http.routers.example_secure.tls: true
-      traefik.http.routers.example_secure.tls.certresolver: letsencrypt
+- 49.13.123.144
+  # web:
+  #   hosts: 
+  #   - 49.13.123.144
+  #   labels:
+  #     traefik.http.routers.example.rule: Host(`stgym.club`)
+  #     traefik.http.routers.example_secure.entrypoints: websecure
+  #     traefik.http.routers.example_secure.rule: Host(`stgym.club`)
+  #     traefik.http.routers.example_secure.tls: true
+  #     traefik.http.routers.example_secure.tls.certresolver: letsencrypt
 registry:
   username: pschuez
   password:
@@ -20,7 +21,6 @@ env:
     DB_HOST: 49.13.123.144
     POSTGRES_USER: st_gym_user
     POSTGRES_DB: st_gym_production
-    # REDIS_URL: redis://49.13.123.144:6379/1
     redis: 49.13.123.144
   secret:
   - RAILS_MASTER_KEY
@@ -47,16 +47,16 @@ accessories:
     port: 6379
     directories:
     - data:/data
-traefik:
-  options:
-    publish:
-      - 443:443
-    volume:
-      - /root/acme.json:/letsencrypt/acme.json
-  args:
-    entryPoints.web.address: ":80"
-    entryPoints.websecure.address: ":443"
-    certificatesResolvers.letsencrypt.acme.email: "stephens@hey.com"
-    certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
-    certificatesResolvers.letsencrypt.acme.httpchallenge: true
-    certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
+# traefik:
+#   options:
+#     publish:
+#       - 443:443
+#     volume:
+#       - /root/acme.json:/letsencrypt/acme.json
+#   args:
+#     entryPoints.web.address: ":80"
+#     entryPoints.websecure.address: ":443"
+#     certificatesResolvers.letsencrypt.acme.email: "stephens@hey.com"
+#     certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
+#     certificatesResolvers.letsencrypt.acme.httpchallenge: true
+#     certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
