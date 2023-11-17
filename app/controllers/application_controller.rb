@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
   
   before_action :authenticate_user!
-  # skip_before_action :verify_authenticity_token
   # after_action :track_action
   
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
