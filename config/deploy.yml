@@ -37,7 +37,7 @@ accessories:
   db:
     image: postgres:16
     host: 168.119.127.165
-    port: 5431
+    port: 5432
     env:
       clear:
         POSTGRES_USER: st_gym_user
