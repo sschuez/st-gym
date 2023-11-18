@@ -37,7 +37,7 @@ accessories:
   db:
     image: postgres:16
     host: 168.119.127.165
-    port: 5432
+    port: 5431:5432
     env:
       clear:
         POSTGRES_USER: st_gym_user
@@ -51,6 +51,6 @@ accessories:
     roles:
       - web
       - worker
-    port: 6378
+    port: 6380:6379
     directories:
     - data:/data
