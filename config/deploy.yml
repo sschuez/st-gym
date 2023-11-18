@@ -43,7 +43,7 @@ accessories:
     roles:
       - web
       - worker
-    host: 49.13.123.144
+    # host: 49.13.123.144
     port: 6379
     directories:
     - data:/data
