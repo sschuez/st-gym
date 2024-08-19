@@ -3,7 +3,7 @@ name: BG Worker To Clear Lonely Workout
 on:
   schedule:
     # Once per week
-    - cron: '0 0 * * 0'
+    - cron: "0 0 * * 0"
 
 jobs:
   worker:
@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Call server
-        run: wget http://stgym.club/start_clearing_lonely_workouts
+        run: wget http://gym.margareti.com/start_clearing_lonely_workouts
