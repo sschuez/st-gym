@@ -9,7 +9,7 @@ servers:
       "add-host": host.docker.internal:host-gateway
     labels:
       traefik.http.routers.stgym.entrypoints: websecure
-      traefik.http.routers.stgym.rule: "Host(`gym.margareti`) || Host(`www.gym.margareti.com`)"
+      traefik.http.routers.stgym.rule: "Host(`gym.margareti.com`) || Host(`www.gym.margareti.com`)"
       traefik.http.routers.stgym.tls.certresolver: letsencrypt
       traefik.http.routers.stgym.tls.domains[0].main: gym.margareti.com
       traefik.http.routers.stgym.tls.domains[0].sans: www.gym.margareti.com
