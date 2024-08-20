@@ -2,35 +2,46 @@
 <html>
   <head>
     <title>StGym</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    >
     <script src="https://kit.fontawesome.com/649ff54fcc.js" crossorigin="anonymous"></script>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%#= render 'shared/custom_user_workout_styles' %>
-    <%= render 'shared/current_person' %>
-    <%= render 'shared/current_record' %>
-    <%= render 'shared/meta_tags' %>
+    <%= render "shared/current_person" %>
+    <%= render "shared/current_record" %>
+    <%= render "shared/meta_tags" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %> 
-    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css">
+    <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css"
+      type="text/css"
+    >
 
     <%= javascript_importmap_tags %>
 
-    <script defer data-domain="stgym.club" src="https://plausible.io/js/script.js"></script>
+    <script
+      defer
+      data-domain="gym.margareti.com"
+      src="https://plausible.io/js/script.js"
+    ></script>
   </head>
 
-  <body class="<%= cookies[:theme] %>">  
-    <%= render 'shared/navbar' %>
+  <body class="<%= cookies[:theme] %>">
+    <%= render "shared/navbar" %>
     <div id="flash" class="flash">
       <%= render "shared/flash" %>
     </div>
-    
+
     <div class="<%= application_container %> <%= narrow_application_container %>">
       <%= yield %>
       <%= turbo_frame_tag "remote_modal" %>
-    </div>    
-    <%= render 'shared/footer' %>
+    </div>
+    <%= render "shared/footer" %>
   </body>
 </html>
