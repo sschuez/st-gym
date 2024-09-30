@@ -1,4 +1,5 @@
-<% content_for :meta_title, "#{@exercise.name} on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_title,
+"#{@exercise.name} on #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, @exercise.description %>
 <%# content_for :meta_image, cl_image_path(@exercise.photo.path) %>
 
@@ -16,7 +17,6 @@
 
 <div class="container">
   <div class="actions my-3">
-    <%#= link_to "Edit this exercise", edit_exercise_path(@exercise) %>
     <%= link_to "Back to exercises", exercises_path, class: "btn btn-primary btn-sm" %>
 
     <%#= button_to "Destroy this exercise", @exercise, method: :delete %>
