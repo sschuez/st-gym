@@ -1,26 +1,32 @@
 ---
 service: st_gym
+
 image: pschuez/st_gym
+
 servers:
   web:
     hosts:
       - 168.119.127.165
-    options:
-      "add-host": host.docker.internal:host-gateway
-    labels:
-      traefik.http.routers.stgym.entrypoints: websecure
-      traefik.http.routers.stgym.rule: "Host(`gym.margareti.com`) || Host(`www.gym.margareti.com`)"
-      traefik.http.routers.stgym.tls.certresolver: letsencrypt
-      traefik.http.routers.stgym.tls.domains[0].main: gym.margareti.com
-      traefik.http.routers.stgym.tls.domains[0].sans: www.gym.margareti.com
   worker:
     hosts:
       - 168.119.127.165
     cmd: bundle exec sidekiq #-C config/sidekiq.yml
+
 registry:
   username: pschuez
   password:
     - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: aarch64
+
+proxy:
+  app_port: 3000
+  ssl: false
+  hosts:
+    - gym.margareti.com
+    - www.gym.margareti.com
+
 env:
   clear:
     DB_HOST: 168.119.127.165
@@ -31,8 +37,10 @@ env:
     - RAILS_MASTER_KEY
     - POSTGRES_PASSWORD
     - REDIS_URL
+
 ssh:
   user: root
+
 accessories:
   db:
     image: postgres:16
@@ -55,3 +63,8 @@ accessories:
     directories:
       - data:/data
 
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  shell: app exec --interactive --reuse "bash"
+  logs: app logs -f
+  dbc: app exec --interactive --reuse "bin/rails dbconsole"
