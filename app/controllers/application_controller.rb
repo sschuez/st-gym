@@ -26,10 +26,4 @@ class ApplicationController < ActionController::Base
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
-
-  protected
-
-  def track_action
-    ahoy.track "Ran action", request.path_parameters
-  end
 end

@@ -6,7 +6,6 @@ class User < ApplicationRecord
 
   has_many :workouts
   has_many :exercises, dependent: :nullify
-  has_many :visits, class_name: "Ahoy::Visit"
 
   def categories
     Category.by_user(id)
