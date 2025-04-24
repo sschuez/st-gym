@@ -1,0 +1,33 @@
+FROM ruby:3.4.1
+
+ENV RAILS_ENV=development
+ENV BUNDLE_PATH=/usr/local/bundle
+
+WORKDIR /app
+
+# System dependencies layer
+RUN apt-get update -qq && \
+  apt-get install -y --no-install-recommends \
+  build-essential \
+  libpq-dev \
+  curl \
+  nodejs \
+  libvips-dev \
+  libsqlite3-dev \
+  chromium \
+  chromium-driver \
+  watchman && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
+
+# Set Chrome environment variables
+ENV CHROME_BIN=/usr/bin/chromium
+ENV CHROMEDRIVER_PATH=/usr/bin/chromedriver
+
+# Gem installation layer
+COPY Gemfile Gemfile.lock ./
+RUN bundle config set --local without 'production' && \
+  bundle install -j $(nproc)
+
+EXPOSE 3000
+

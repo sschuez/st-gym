@@ -1,0 +1,35 @@
+x-base: &base
+  build:
+    context: .
+    dockerfile: .docker/Dockerfile.dev
+  stdin_open: true
+  tty: true
+  volumes:
+    - .:/app:cached
+    - bundle:/usr/local/bundle
+    - sqlite_data:/app/storage
+
+services:
+  app:
+    <<: *base
+    command: sh -c "bundle exec foreman start -f Procfile.dev"
+    restart: always
+    ports:
+      - "3000:3000"
+      - "1234:1234" # Debugging
+    environment:
+      RUBY_YJIT_ENABLE: 1
+
+  test:
+    <<: *base
+    profiles:
+      - test
+    environment:
+      RAILS_ENV: test
+      CHROME_BIN: /usr/bin/chromium
+      CHROMEDRIVER_PATH: /usr/bin/chromedriver
+    shm_size: "2gb"
+
+volumes:
+  sqlite_data:
+  bundle:
