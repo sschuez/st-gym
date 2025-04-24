@@ -1,6 +1,4 @@
 class WorkoutsController < ApplicationController
-  include Trackable
-
   skip_before_action :authenticate_user!, only: [ :public_workouts, :new, :show, :edit, :update ]
   before_action :set_workout, only: %i[ show edit update destroy ]
 
@@ -26,7 +24,6 @@ class WorkoutsController < ApplicationController
 
   def show
     @block = @workout.blocks.new
-    track "Viewed workout", name: @workout.name
 
     respond_to do |format|
       format.html {}
@@ -36,7 +33,6 @@ class WorkoutsController < ApplicationController
           filename: "#{Date.today.strftime("%Y_%m_%d")}_workout_#{@workout.id}.pdf",
           type: 'application/pdf',
           disposition: 'inline'
-        track "Generated PDF", name: @workout.name
       end
     end
   end
@@ -49,8 +45,6 @@ class WorkoutsController < ApplicationController
     @workout.user = current_user if user_signed_in? 
     authorize @workout
 
-    track "Created new workout", name: @workout.user ? "User workout" : "Anonym workout"
-    
     respond_to do |format|
       if @workout.save
         block = @workout.blocks.create(title: "Block #1")
@@ -153,8 +147,6 @@ class WorkoutsController < ApplicationController
     
     saved_workout = helpers.save_workout_for(current_user, @workout_to_save.id)
     flash[:notice] = "Workout (#{saved_workout.name}) was saved to your profile"
-    
-    track "Saved a workout", name: "Workout_#{@workout_to_save.id}"
     
     redirect_to workout_path(saved_workout)
   end
