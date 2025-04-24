@@ -20,21 +20,17 @@ Rails.application.configure do
   # Enable server timing
   config.server_timing = true
 
-  # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
-
-    config.cache_store = :memory_store
-    config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}"
-    }
+    config.public_file_server.headers = { "cache-control" => "public, max-age=#{2.days.to_i}" }
   else
     config.action_controller.perform_caching = false
-
-    config.cache_store = :null_store
   end
+
+  # Change to :null_store to avoid any caching.
+  config.cache_store = :memory_store
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :cloudinary
@@ -78,5 +74,8 @@ Rails.application.configure do
   # Bullet.rails_logger = true
 
   # Raise error when a before_action's only/except options reference missing actions.
-  config.action_controller.raise_on_missing_callback_actions = true
+  config.action_controller.raise_on_missing_callback_actions = false
+
+  config.active_job.queue_adapter = :solid_queue
+  config.solid_queue.connects_to = { database: { writing: :queue } }
 end

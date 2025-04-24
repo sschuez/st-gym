@@ -4,17 +4,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.4.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2"
-# gem "rails", "~> 7.0.5"
+gem "rails", "~> 8.0.2"
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+gem "propshaft"
 
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+# gem "pg", "~> 1.1"
+gem 'sqlite3'
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.0"
+gem "puma", "~> 6.6"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -26,7 +25,7 @@ gem "turbo-rails"
 gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
+gem 'jbuilder', '~> 2.7'
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
@@ -42,9 +41,6 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-
-# Use Sass to process CSS
-# gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
@@ -67,6 +63,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem "foreman"
 end
 
 group :test do
@@ -92,7 +89,7 @@ gem "prawn-table", "~> 0.2.2"
 gem 'prawn-emoji', '~> 5.3'
 gem "matrix" # Required explicitly for latest ruby version
 gem "sidekiq"
-gem "sidekiq-failures", "~> 1.0"
+# gem "sidekiq-failures", "~> 1.0"
 gem 'whenever', require: false
 gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 gem "pagy", "~> 6.0"
@@ -105,3 +102,8 @@ gem 'rack-session'
 gem 'nio4r', '~> 2.7', '>= 2.7.4'
 gem 'observer'
 
+
+# Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
+gem "solid_cache"
+gem "solid_queue"
+gem "solid_cable"
