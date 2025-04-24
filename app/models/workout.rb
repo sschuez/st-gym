@@ -9,7 +9,6 @@ class Workout < ApplicationRecord
   # == Relationships ========================================================
   has_many :blocks, dependent: :destroy
   belongs_to :user, optional: true
-  visitable :ahoy_visit
     
   # == Validations ==========================================================
   

@@ -401,7 +401,6 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_list (~> 1.0)
-  ahoy_matey (~> 4.1)
   bootsnap
   bootstrap
   byebug

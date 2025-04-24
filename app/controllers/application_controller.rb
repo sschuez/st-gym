@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
   
   before_action :authenticate_user!
-  # after_action :track_action
   
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -25,11 +24,5 @@ class ApplicationController < ActionController::Base
   
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
-  end
-
-  protected
-
-  def track_action
-    ahoy.track "Ran action", request.path_parameters
   end
 end
