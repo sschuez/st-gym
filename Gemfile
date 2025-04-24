@@ -83,7 +83,6 @@ gem "faraday"
 gem "requestjs-rails"
 gem "acts_as_list", "~> 1.0"
 gem 'ruby-progressbar'
-# gem "ahoy_matey", "~> 4.1"
 gem "prawn", "~> 2.4"
 gem "prawn-table", "~> 0.2.2"
 gem 'prawn-emoji', '~> 5.3'
