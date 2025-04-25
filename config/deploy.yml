@@ -35,6 +35,9 @@ env:
 ssh:
   user: root
 
+volumes:
+  - "storage:/rails/storage"
+
 asset_path: /rails/public/assets
 
 aliases:
