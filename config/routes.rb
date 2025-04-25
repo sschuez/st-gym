@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # SIDEKIQ
-  require "sidekiq/web"
-
-  # WORKER (Github Cronjob)
-  get "/start_clearing_lonely_workouts", to: "worker#start_clearing_lonely_workouts"
-
   # EXERCISES
   resources :exercises do
     resources :exercise_categories, only: %i[new create destroy]
@@ -18,14 +12,6 @@ Rails.application.routes.draw do
     sessions: "users/sessions"
   }
   resources :users, only: %i[index show]
-
-  # ADMIN
-  authenticate :user, ->(user) { user.admin? } do
-    mount Sidekiq::Web => "/sidekiq"
-    scope module: :admin do
-      resources :analytics, only: [:index]
-    end
-  end
 
   # PUBLIC PAGES
   root to: "pages#home"
