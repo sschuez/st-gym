@@ -103,6 +103,7 @@ gem 'observer'
 
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
+gem "thruster", require: false
 gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
