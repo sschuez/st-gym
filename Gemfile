@@ -10,7 +10,7 @@ gem "propshaft"
 
 # Use postgresql as the database for Active Record
 # gem "pg", "~> 1.1"
-gem 'sqlite3'
+gem "sqlite3"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 6.6"
@@ -25,7 +25,7 @@ gem "turbo-rails"
 gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem 'jbuilder', '~> 2.7'
+gem "jbuilder", "~> 2.7"
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
@@ -37,7 +37,7 @@ gem "redis", "~> 4.0"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -47,9 +47,16 @@ gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
-  gem "rspec-rails"  
-  gem "factory_bot_rails" 
+  gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "rubocop", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-capybara", require: false
+  gem "standard", require: false
+  gem "erb_lint", require: false
+  gem "htmlbeautifier", require: false
 end
 
 group :development do
@@ -64,13 +71,14 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem "foreman"
+  gem "ruby-lsp"
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'pundit-matchers', '~> 2.1'
+  gem "pundit-matchers", "~> 2.1"
   gem "capybara"
-  gem "database_cleaner" 
+  gem "database_cleaner"
 end
 
 # Added
@@ -82,25 +90,24 @@ gem "simple_form"
 gem "faraday"
 gem "requestjs-rails"
 gem "acts_as_list", "~> 1.0"
-gem 'ruby-progressbar'
+gem "ruby-progressbar"
 gem "prawn", "~> 2.4"
 gem "prawn-table", "~> 0.2.2"
-gem 'prawn-emoji', '~> 5.3'
+gem "prawn-emoji", "~> 5.3"
 gem "matrix" # Required explicitly for latest ruby version
 gem "sidekiq"
 # gem "sidekiq-failures", "~> 1.0"
-gem 'whenever', require: false
-gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+gem "whenever", require: false
+gem "byebug", platforms: %i[mri mingw x64_mingw]
 gem "pagy", "~> 6.0"
 gem "marginalia", "~> 1.11"
 gem "cloudinary"
 
-gem "dockerfile-rails", ">= 1.5", :group => :development
-gem 'rack-session'
+gem "dockerfile-rails", ">= 1.5", group: :development
+gem "rack-session"
 
-gem 'nio4r', '~> 2.7', '>= 2.7.4'
-gem 'observer'
-
+gem "nio4r", "~> 2.7", ">= 2.7.4"
+gem "observer"
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "thruster", require: false

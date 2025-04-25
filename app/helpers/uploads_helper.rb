@@ -6,7 +6,6 @@ module UploadsHelper
       size: blob.byte_size,
       # content_type: blob.content_type,
       url: url,
-      blob_id: blob.id
-    }
+      blob_id: blob.id }
   end
 end

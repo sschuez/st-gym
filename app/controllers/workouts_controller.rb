@@ -1,6 +1,6 @@
 class WorkoutsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :public_workouts, :new, :show, :edit, :update ]
-  before_action :set_workout, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_user!, only: %i[public_workouts new show edit update]
+  before_action :set_workout, only: %i[show edit update destroy]
 
   def index
     @workouts = policy_scope(Workout).order(created_at: :desc)
@@ -30,9 +30,9 @@ class WorkoutsController < ApplicationController
       format.pdf do
         pdf = WorkoutPdf.new(@workout)
         send_data pdf.render,
-          filename: "#{Date.today.strftime("%Y_%m_%d")}_workout_#{@workout.id}.pdf",
-          type: 'application/pdf',
-          disposition: 'inline'
+                  filename: "#{Time.zone.today.strftime("%Y_%m_%d")}_workout_#{@workout.id}.pdf",
+                  type: "application/pdf",
+                  disposition: "inline"
       end
     end
   end
@@ -40,14 +40,15 @@ class WorkoutsController < ApplicationController
   def new
     @workout = Workout.new(
       name: "Workout ##{user_signed_in? ? current_user.workouts.count + 1 : Workout.count}",
-      description: "Workout on #{Time.now.strftime("%A, %B %e, %Y")
-    }")
-    @workout.user = current_user if user_signed_in? 
+      description: "Workout on #{Time.zone.now.strftime("%A, %B %e, %Y")
+                               }"
+    )
+    @workout.user = current_user if user_signed_in?
     authorize @workout
 
     respond_to do |format|
       if @workout.save
-        block = @workout.blocks.create(title: "Block #1")
+        @workout.blocks.create(title: "Block #1")
 
         format.html { redirect_to workout_path(@workout), notice: "Workout was successfully created." }
         format.json { render :show, status: :created, location: @workout }
@@ -58,10 +59,21 @@ class WorkoutsController < ApplicationController
     end
   end
 
+  def edit
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(
+          "workout_#{@workout.id}_header",
+          partial: "workouts/form",
+          locals: { workout: @workout }
+        )
+      end
+    end
+  end
+
   def create
     @workout = Workout.new(workout_params)
     respond_to do |format|
-
       if @workout.save
         format.html { redirect_to workout_path(@workout), notice: "workout was successfully created." }
         format.json { render :show, status: :created, location: @workout }
@@ -71,41 +83,32 @@ class WorkoutsController < ApplicationController
       end
     end
   end
-  
-  def edit
-    respond_to do |format|
-      format.turbo_stream do 
-        render turbo_stream: turbo_stream.update(
-          "workout_#{@workout.id}_header",
-          partial: "workouts/form",
-          locals: {workout: @workout}) 
-      end
-    end
-  end
 
   def update
     respond_to do |format|
       if @workout.update(workout_params)
-        format.turbo_stream do 
+        format.turbo_stream do
           render turbo_stream: [
             turbo_stream.update(
               @workout,
               partial: "workouts/workout",
-              locals: {workout: @workout}),
-            turbo_stream.update('notice', "workout #{@workout.id} updated")
+              locals: { workout: @workout }
+            ),
+            turbo_stream.update("notice", "workout #{@workout.id} updated")
           ]
         end
       else
-        format.turbo_stream do 
+        format.turbo_stream do
           render turbo_stream: turbo_stream.update(
             @workout,
             partial: "workouts/form",
-            locals: {workout: @workout}) 
-        end   
+            locals: { workout: @workout }
+          )
+        end
       end
     end
   end
-  
+
   def destroy
     @workout.destroy
 
@@ -121,22 +124,24 @@ class WorkoutsController < ApplicationController
     authorize @workout
     respond_to do |format|
       if @workout.toggle! :public
-        format.turbo_stream do 
+        format.turbo_stream do
           render turbo_stream: [
             turbo_stream.update(
               @workout,
               partial: "workouts/workout",
-              locals: {workout: @workout}),
-            turbo_stream.update('notice', "workout #{@workout.id} updated")
+              locals: { workout: @workout }
+            ),
+            turbo_stream.update("notice", "workout #{@workout.id} updated")
           ]
         end
       else
-        format.turbo_stream do 
+        format.turbo_stream do
           render turbo_stream: turbo_stream.update(
             @workout,
             partial: "workouts/form",
-            locals: {workout: @workout}) 
-        end   
+            locals: { workout: @workout }
+          )
+        end
       end
     end
   end
@@ -144,10 +149,10 @@ class WorkoutsController < ApplicationController
   def save_workout
     @workout_to_save = Workout.find(params[:id])
     authorize @workout_to_save
-    
+
     saved_workout = helpers.save_workout_for(current_user, @workout_to_save.id)
     flash[:notice] = "Workout (#{saved_workout.name}) was saved to your profile"
-    
+
     redirect_to workout_path(saved_workout)
   end
 
@@ -159,6 +164,6 @@ class WorkoutsController < ApplicationController
   end
 
   def workout_params
-    params.require(:workout).permit(:name, :description, blocks_attributes: [:id])
+    params.expect(workout: [:name, :description, blocks_attributes: [:id]])
   end
 end

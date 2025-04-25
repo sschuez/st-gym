@@ -1,30 +1,28 @@
 class ExercisesController < ApplicationController
   include ExercisesControllable
   include ExercisesQueryable
-  before_action :set_exercise, only: %i[ show edit update destroy ]
-  skip_before_action :authenticate_user!, only: %i[ index show ]
-  skip_after_action :verify_policy_scoped, :only => :index
+  before_action :set_exercise, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_after_action :verify_policy_scoped, only: :index
 
   def index
     return_main_and_user_categories_as_instance_variables(params)
     user_exercises = determine_if_user_category_filter_present(params)
     @exercises = determine_category_exercises(user_exercises, params)
 
-    query_and_respond(@exercises) 
+    query_and_respond(@exercises)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @exercise = Exercise.new
     authorize @exercise
-    
+
     @url = exercises_path
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @exercise = Exercise.new(exercise_params)
@@ -40,7 +38,10 @@ class ExercisesController < ApplicationController
 
         respond_to do |format|
           format.turbo_stream { flash.now[:notice] = "Exercise was successfully created." }
-          format.html { redirect_to request.referrer, notice: "Exercise was successfully created. You can now choose and add it to a block." }
+          format.html do
+            redirect_to request.referer,
+                        notice: "Exercise was successfully created. You can now choose and add it to a block."
+          end
         end
       else
         render :new, status: :unprocessable_entity
@@ -61,7 +62,7 @@ class ExercisesController < ApplicationController
 
         respond_to do |format|
           format.turbo_stream { flash.now[:notice] = "Exercise was successfully updated." }
-          format.html { redirect_to request.referrer, notice: "Exercise was successfully updated." }
+          format.html { redirect_to request.referer, notice: "Exercise was successfully updated." }
         end
       else
         render :edit, status: :unprocessable_entity
@@ -83,7 +84,7 @@ class ExercisesController < ApplicationController
   end
 
   private
-  
+
   def set_exercise
     @exercise = Exercise.find(params[:id])
     authorize @exercise

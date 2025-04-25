@@ -4,6 +4,6 @@ class DestroySingleWorkoutJob < ApplicationJob
   def perform(workout_id)
     workout = Workout.find(workout_id)
     workout.destroy
-    puts "🔥 Destroyed lonely workout #{workout_id}"
+    Rails.logger.debug { "🔥 Destroyed lonely workout #{workout_id}" }
   end
 end

@@ -1,4 +1,5 @@
-class ExerciseInstancePolicy < BlockPolicy # <- Inheriting from BlockPolicy!!
+# <- Inheriting from BlockPolicy!!
+class ExerciseInstancePolicy < BlockPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     # def resolve
@@ -9,5 +10,4 @@ class ExerciseInstancePolicy < BlockPolicy # <- Inheriting from BlockPolicy!!
   def show?
     true
   end
-
 end

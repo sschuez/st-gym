@@ -1,5 +1,5 @@
 # config/initializers/pagy.rb
-require 'pagy/extras/bootstrap'
+require "pagy/extras/bootstrap"
 
 Pagy::DEFAULT[:items] = 10
-Pagy::DEFAULT[:size]  = [1,2,2,1]
+Pagy::DEFAULT[:size]  = [1, 2, 2, 1]

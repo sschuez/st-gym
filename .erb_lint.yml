@@ -1,0 +1,41 @@
+---
+EnableDefaultLinters: true
+exclude:
+  - "**/rails_admin/*"
+  - "vendor/**/*"
+linters:
+  HtmlBeautifier:
+    enabled: true
+    config:
+      indent: 2
+      keep_blank_lines: 1
+      print_width: 180
+  SpaceInHtmlTag:
+    enabled: false
+  NoJavascriptTagHelper:
+    enabled: true
+    correction_style: "plain"
+  Rubocop:
+    enabled: true
+    rubocop_config:
+      inherit_from:
+        - .rubocop.yml
+      Layout/InitialIndentation:
+        Enabled: false
+      Layout/LineLength:
+        Enabled: true
+        Max: 150
+      Layout/TrailingEmptyLines:
+        Enabled: false
+      Layout/TrailingWhitespace:
+        Enabled: false
+      Layout/BlockAlignment:
+        Enabled: false
+      Naming/FileName:
+        Enabled: false
+      Style/FrozenStringLiteralComment:
+        Enabled: false
+      Lint/UselessAssignment:
+        Enabled: false
+      Rails/OutputSafety:
+        Enabled: false

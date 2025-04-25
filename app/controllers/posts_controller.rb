@@ -1,16 +1,20 @@
 class PostsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index, :show ]
-  before_action :set_post, only: [ :show, :edit, :update, :destroy ] 
+  skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :set_post, only: %i[show edit update destroy]
 
   def index
     @posts = policy_scope(Post).ordered
   end
 
+  def show; end
+
   def new
     @post = Post.new
     authorize @post
   end
-   
+
+  def edit; end
+
   def create
     @post = Post.new(post_params)
     authorize @post
@@ -23,12 +27,6 @@ class PostsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-  
-  def show
-  end
-
-  def edit
   end
 
   def update
@@ -71,12 +69,12 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(
-      :title, 
-      :subtitle, 
-      :body, 
-      :image, 
-      :published
+    params.expect(
+      post: %i[title
+               subtitle
+               body
+               image
+               published]
     )
   end
 end

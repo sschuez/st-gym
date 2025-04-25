@@ -1,5 +1,5 @@
 progressbar = ProgressBar.create(
-  title: 'Creating workouts for each category',
+  title: "Creating workouts for each category",
   total: CATEGORIES.count
 )
 
@@ -13,7 +13,7 @@ CATEGORIES.each do |category|
   workout.save
 
   # Blocks
-  3.times do 
+  3.times do
     block = workout.blocks.new(workout: workout)
     block.save
   end
@@ -30,5 +30,3 @@ CATEGORIES.each do |category|
 
   progressbar.increment
 end
-
-

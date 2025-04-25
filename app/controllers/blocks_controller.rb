@@ -1,7 +1,7 @@
 class BlocksController < ApplicationController
-  skip_before_action :authenticate_user!#, only: [ :new, :show ]
-  before_action :set_workout, only: %i[ new create edit update destroy ]
-  before_action :set_block, only: %i[ edit update destroy ]
+  skip_before_action :authenticate_user! # , only: [ :new, :show ]
+  before_action :set_workout, only: %i[new create edit update destroy]
+  before_action :set_block, only: %i[edit update destroy]
 
   # GET /blocks/new
   def new
@@ -14,11 +14,12 @@ class BlocksController < ApplicationController
   # GET /blocks/1/edit
   def edit
     respond_to do |format|
-      format.turbo_stream do 
+      format.turbo_stream do
         render turbo_stream: turbo_stream.update(
           @block,
           partial: "blocks/title_form",
-          locals: {block: @block}) 
+          locals: { block: @block }
+        )
       end
     end
   end
@@ -27,11 +28,12 @@ class BlocksController < ApplicationController
     @block = Block.find(params[:id])
     authorize @block, :edit?
     respond_to do |format|
-      format.turbo_stream do 
+      format.turbo_stream do
         render turbo_stream: turbo_stream.update(
           "block_#{@block.id}_title",
           partial: "blocks/title_form",
-          locals: {block: @block}) 
+          locals: { block: @block }
+        )
       end
     end
   end
@@ -43,7 +45,7 @@ class BlocksController < ApplicationController
     @block.workout = @workout
     next_block_nr = @workout.blocks.count + 1
     @block.title = "Block ##{next_block_nr}"
-    
+
     respond_to do |format|
       if @block.save
         # @block.broadcast_prepend_later_to @block.workout
@@ -51,16 +53,18 @@ class BlocksController < ApplicationController
           render turbo_stream: turbo_stream.append(
             "blocks",
             partial: "blocks/block",
-            locals: { block: @block })
+            locals: { block: @block }
+          )
         end
         format.html { redirect_to @block, notice: "Block was successfully created." }
         format.json { render :show, status: :created, location: @block }
       else
         format.turbo_stream do
           render turbo_stream: turbo_stream.update(
-            'new_block',
+            "new_block",
             partial: "blocks/form",
-            locals: {block: @block})
+            locals: { block: @block }
+          )
         end
       end
       format.html { render :new, status: :unprocessable_entity }
@@ -73,23 +77,25 @@ class BlocksController < ApplicationController
     @block.workout = @block.workout
     respond_to do |format|
       if @block.update(block_params)
-        
-        format.turbo_stream do 
+
+        format.turbo_stream do
           render turbo_stream: [
             turbo_stream.update(
               "block_#{@block.id}_title",
               partial: "blocks/block_header_title",
-              locals: {block: @block})
+              locals: { block: @block }
+            )
           ]
         end
-        
+
       else
-        format.turbo_stream do 
+        format.turbo_stream do
           render turbo_stream: turbo_stream.update(
             "block_#{@block.id}_title",
             partial: "blocks/title_form",
-            locals: {block: @block}) 
-        end   
+            locals: { block: @block }
+          )
+        end
       end
     end
   end
@@ -104,18 +110,19 @@ class BlocksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_block
-      @block = Block.find(params[:id])
-      authorize @block
-    end
 
-    def set_workout
-      @workout = Workout.find(params[:workout_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_block
+    @block = Block.find(params[:id])
+    authorize @block
+  end
 
-    # Only allow a list of trusted parameters through.
-    def block_params
-      params.require(:block).permit(:workout_id, :title, :repetitions, :time)
-    end
+  def set_workout
+    @workout = Workout.find(params[:workout_id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def block_params
+    params.expect(block: %i[workout_id title repetitions time])
+  end
 end

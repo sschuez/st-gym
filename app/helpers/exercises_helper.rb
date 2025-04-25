@@ -18,18 +18,18 @@ module ExercisesHelper
   def other_category_exercises_count(user_category_id, main_category_id, category_id)
     user_and_main_category_present = user_category_id && main_category_id
 
-    if user_and_main_category_present && 
-      main_category_id != "reset_main_category_list" && 
-      user_category_id != "reset_user_category_list"
-      
+    if user_and_main_category_present &&
+       main_category_id != "reset_main_category_list" &&
+       user_category_id != "reset_user_category_list"
+
       User.find(user_category_id).exercises.by_main_and_other_category(main_category_id, category_id).count
-    elsif user_and_main_category_present && 
-      user_category_id != "reset_user_category_list" &&
-      main_category_id == "reset_main_category_list"
-      
+    elsif user_and_main_category_present &&
+          user_category_id != "reset_user_category_list" &&
+          main_category_id == "reset_main_category_list"
+
       User.find(user_category_id).exercises.by_category(category_id).count
     elsif user_category_id == "reset_user_category_list" &&
-      main_category_id != "reset_main_category_list"
+          main_category_id != "reset_main_category_list"
 
       Exercise.by_main_and_other_category(main_category_id, category_id).count
     else

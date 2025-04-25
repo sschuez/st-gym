@@ -11,29 +11,30 @@ class WorkoutIndexCardPresenter
   attr_accessor :workout, :view_context
 
   def initialize(workout, view_context)
-    @workout, @view_context = workout, view_context
+    @workout = workout
+    @view_context = view_context
   end
 
   def call
-    card  
+    card
   end
-  
+
   private
-  
+
   def card
     content_tag :div, id: "workout_#{workout.id}", class: "card workout-index-card" do
       link_to(view_context.workout_url(workout)) do
         card_content
       end +
-      card_controls   
+        card_controls
     end
   end
 
   def card_content
     content_tag :div, class: "card-header bg-transparent small" do
       card_title +
-      workout_description +
-      workout_status
+        workout_description +
+        workout_status
     end
   end
 
@@ -47,7 +48,8 @@ class WorkoutIndexCardPresenter
 
   def workout_status
     workout_st = workout.public ? "Public workout" : "Private workout"
-    content_tag :p, "⏱️ #{formatted_duration(workout.rounded_duration)} - #{workout_st}", class: "text-secondary small grey my-1"
+    content_tag :p, "⏱️ #{formatted_duration(workout.rounded_duration)} - #{workout_st}",
+                class: "text-secondary small grey my-1"
   end
 
   def card_controls
@@ -59,21 +61,20 @@ class WorkoutIndexCardPresenter
   end
 
   def current_user_admin_or_user?
-    view_context.current_user && 
+    view_context.current_user &&
       (view_context.current_user == workout.user || view_context.current_user&.admin?)
   end
 
   def delete_button
     button_to(view_context.workout_url(workout),
-      method: :delete,
-      form: { data: { turbo_confirm: "Are you sure you want to delete this workout?" } },
-      class: "btn-styling") do 
-        content_tag :span, "🗑️", class: "emoji"
-      end
+              method: :delete,
+              form: { data: { turbo_confirm: "Are you sure you want to delete this workout?" } },
+              class: "btn-styling") do
+      content_tag :span, "🗑️", class: "emoji"
+    end
   end
 
   def workout_blocks
-    ActionController::Base.helpers.pluralize(workout.blocks.count, 'block')
+    ActionController::Base.helpers.pluralize(workout.blocks.count, "block")
   end
-
 end

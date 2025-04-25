@@ -50,7 +50,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_24_210946) do
   end
 
   create_table "blocks", force: :cascade do |t|
-    t.bigint "workout_id", null: false
+    t.integer "workout_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
@@ -76,8 +76,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_24_210946) do
   end
 
   create_table "exercise_categories", force: :cascade do |t|
-    t.bigint "exercise_id", null: false
-    t.bigint "category_id", null: false
+    t.integer "exercise_id", null: false
+    t.integer "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_exercise_categories_on_category_id"
@@ -85,8 +85,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_24_210946) do
   end
 
   create_table "exercise_instances", force: :cascade do |t|
-    t.bigint "block_id", null: false
-    t.bigint "exercise_id", null: false
+    t.integer "block_id", null: false
+    t.integer "exercise_id", null: false
     t.integer "repetitions", default: 10
     t.integer "time", default: 30
     t.datetime "created_at", null: false
@@ -102,13 +102,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_24_210946) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["user_id"], name: "index_exercises_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.text "subtitle"
     t.boolean "published"
     t.integer "position"
@@ -135,7 +135,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_24_210946) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.boolean "public", default: true
     t.boolean "saved", default: false
     t.string "original_workout"

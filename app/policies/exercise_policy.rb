@@ -8,11 +8,11 @@ class ExercisePolicy < ApplicationPolicy
   def show?
     new?
   end
- 
+
   def new?
     true
   end
-  
+
   def create?
     new?
   end

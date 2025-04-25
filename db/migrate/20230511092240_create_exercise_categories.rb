@@ -7,26 +7,27 @@ class CreateExerciseCategories < ActiveRecord::Migration[7.0]
       t.timestamps
     end
     # populate join table with existing data
-    puts "populating books_authors"
-    Exercise.all.each do |exercise|
-      puts "#{exercise.name} is being added to the exercise_category table"
+    Rails.logger.debug "populating books_authors"
+    Exercise.find_each do |exercise|
+      Rails.logger.debug { "#{exercise.name} is being added to the exercise_category table" }
       ExerciseCategory.create(exercise_id: exercise.id, category_id: exercise.category_id)
-      puts "There are #{ExerciseCategory.count} exercise_category records"
+      Rails.logger.debug { "There are #{ExerciseCategory.count} exercise_category records" }
     end
     # remove obsolete column
-    puts "removing old association"
+    Rails.logger.debug "removing old association"
     remove_reference :exercises, :category, foreign_key: true
   end
-  
-  def down # add reference column back
+
+  # add reference column back
+  def down
     add_reference :exercises, :category, foreign_key: true # Using a model after changing its table # https://api.rubyonrails.org/classes/ActiveRecord/Migration.html#class-ActiveRecord::Migration-label-Using+a+model+after+changing+its+table
     Exercise.reset_column_information # associate exercise with category, even though it will just be one.
-    ExerciseCategory.all.each do |exercise_category|
+    ExerciseCategory.find_each do |exercise_category|
       Exercise.find(exercise_category.exercise_id).update_attribute(
         :category_id,
-        exercise_category.category_id,
+        exercise_category.category_id
       )
-    end # remove join table
+    end
     drop_table :exercise_categories
   end
 end

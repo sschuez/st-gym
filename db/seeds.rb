@@ -4,6 +4,6 @@ return unless Rails.env.development?
 # EXERCISES_TO_CREATE = 10
 # etc
 
-Dir[Rails.root.join('db', 'seeds', '*.rb')].sort.each do |file|
+Rails.root.glob("db/seeds/*.rb").each do |file|
   require file
 end

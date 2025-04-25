@@ -12,7 +12,7 @@ class ContactPolicy < ApplicationPolicy
   def create?
     new?
   end
-  
+
   def show?
     user&.admin?
   end

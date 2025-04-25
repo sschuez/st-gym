@@ -30,7 +30,6 @@ module WorkoutsHelper
         new_exercise_instance.save
       end
     end
-    return new_workout
+    new_workout
   end
-  
 end

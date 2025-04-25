@@ -1,7 +1,7 @@
 class NewslettersController < ApplicationController
-  require 'digest'
-  skip_before_action :authenticate_user!#, only: [ :new, :show ]
-  
+  require "digest"
+  skip_before_action :authenticate_user! # , only: [ :new, :show ]
+
   # require 'MailchimpMarketing'
   def addUser
     skip_authorization
@@ -13,22 +13,22 @@ class NewslettersController < ApplicationController
     # Pass status:subscribed field to ensure the user is subscribed
     user_details = {
       email_address: params[:email_address],
-      status: "subscribed",
+      status: "subscribed"
       # merge_fields: {
-        # FNAME: params[:fname],
-        # LNAME: params[:company],
-        # PHONE: params[:phone],
-        # COMPANY: params[:company],
+      # FNAME: params[:fname],
+      # LNAME: params[:company],
+      # PHONE: params[:phone],
+      # COMPANY: params[:company],
       # },
-    };
+    }
 
     # Create a new connection using Faraday
     conn = Faraday.new(
-    url: url,
-    headers: {'Content-Type' => 'application/json', 'Authorization': "Bearer #{api_key}"}
+      url: url,
+      headers: { "Content-Type" => "application/json", Authorization: "Bearer #{api_key}" }
     )
 
-    response = conn.post() do |req|
+    response = conn.post do |req|
       req.body = user_details.to_json
     end
 
@@ -38,17 +38,23 @@ class NewslettersController < ApplicationController
     # Check if the subscription is successful
     respond_to do |format|
       if response.status == 200
-        
-        format.json { render json: { status: response.status, message: "#{user_details[:email_address]} has been added to the mailing list" } }
-        format.turbo_stream { flash.now[:notice] = "#{user_details[:email_address]} has been added to the mailing list" }
-        format.html { redirect_to request.referrer, notice: "#{user_details[:email_address]} has been added to the mailing list" }
+
+        format.json do
+          render json: { status: response.status,
+                         message: "#{user_details[:email_address]} has been added to the mailing list" }
+        end
+        format.turbo_stream do
+          flash.now[:notice] = "#{user_details[:email_address]} has been added to the mailing list"
+        end
+        format.html do
+          redirect_to request.referer, notice: "#{user_details[:email_address]} has been added to the mailing list"
+        end
       else
         format.json { render json: { status: response.status, message: response_body["detail"] } }
         format.turbo_stream { flash.now[:alert] = response_body["detail"] }
-        format.html { redirect_to request.referrer, alert: response_body["detail"] }
+        format.html { redirect_to request.referer, alert: response_body["detail"] }
       end
     end
-    
   end
 
   # Currently inactive
@@ -68,18 +74,18 @@ class NewslettersController < ApplicationController
     api_key = Rails.application.credentials.dig(:mailchimp, :api_key)
 
     # Create a new connection using Faraday
-      conn = Faraday.new(
+    conn = Faraday.new(
       url: url,
-      headers: {'Content-Type' => 'application/json', 'Authorization': "Bearer #{api_key}"}
+      headers: { "Content-Type" => "application/json", Authorization: "Bearer #{api_key}" }
     )
 
     # Make a PUT request to the mailchimp endpoint and pass in the unsubscribed status
-    response = conn.put() do |req|
-      req.body = {status: "unsubscribed"}.to_json
+    response = conn.put do |req|
+      req.body = { status: "unsubscribed" }.to_json
     end
 
     # Parse the JSON response sent back from the Mailchimp servers
-    response_body = JSON.parse(response.body)
+    JSON.parse(response.body)
 
     # Check if the unsubscription is successful
     if response.status == 200
@@ -94,9 +100,9 @@ class NewslettersController < ApplicationController
       }
     end
   end
-  
+
   private
-  
+
   # Accept parameters into your API
   def mailing_list_params
     params.permit(:fname, :lname, :phone, :company, :email_address)

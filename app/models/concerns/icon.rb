@@ -2,7 +2,7 @@ class Icon
   def self.call(icon)
     new(icon).call
   end
-  
+
   def initialize(icon)
     @icon = icon
     @icons = {

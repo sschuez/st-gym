@@ -5,7 +5,7 @@ class FileUploadsController < ApplicationController
     blob = ActiveStorage::Blob.find(params[:id])
     blob.attachments.each(&:purge_later) if blob.attachments.any?
     blob.purge_later
-    
+
     head :ok
   end
 end

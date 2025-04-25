@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home, :about, :home_modal ]
+  skip_before_action :authenticate_user!, only: %i[home about home_modal]
 
   def home
     @workouts = Workout.where(user_id: 1).order(created_at: :desc)
@@ -9,6 +9,5 @@ class PagesController < ApplicationController
     skip_authorization
   end
 
-  def about
-  end
+  def about; end
 end

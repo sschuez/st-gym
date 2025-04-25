@@ -23,7 +23,7 @@ class WorkoutPolicy < ApplicationPolicy
   end
 
   def edit?
-    create?  
+    create?
   end
 
   def update?
@@ -45,9 +45,9 @@ class WorkoutPolicy < ApplicationPolicy
   def save_workout?
     true
   end
-  
+
   private
-  
+
   def user_is_owner_of_record?
     user == record.user || user.admin?
   end

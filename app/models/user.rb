@@ -11,15 +11,11 @@ class User < ApplicationRecord
     Category.by_user(id)
   end
 
-  def main_categories
-    categories.main_categories
-  end
+  delegate :main_categories, to: :categories
 
-  def other_categories
-    categories.other_categories
-  end
+  delegate :other_categories, to: :categories
 
   def email_username
-    email.split('@').first
+    email.split("@").first
   end
 end

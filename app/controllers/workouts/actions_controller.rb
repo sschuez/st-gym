@@ -7,5 +7,4 @@ module Workouts
       skip_authorization
     end
   end
-
 end

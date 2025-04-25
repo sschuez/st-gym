@@ -1,10 +1,12 @@
 class ContactsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :new, :create ]
-  before_action :set_contact, only: [:show, :destroy]
+  skip_before_action :authenticate_user!, only: %i[new create]
+  before_action :set_contact, only: %i[show destroy]
 
   def index
     @pagy, @contacts = pagy(policy_scope(Contact))
   end
+
+  def show; end
 
   def new
     @contact = Contact.new
@@ -24,9 +26,6 @@ class ContactsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def destroy
     @contact.destroy
     redirect_to contacts_path, status: :see_other, allow_other_host: true
@@ -35,7 +34,7 @@ class ContactsController < ApplicationController
   private
 
   def contact_params
-    params.require(:contact).permit(:email, :content)
+    params.expect(contact: %i[email content])
   end
 
   def set_contact

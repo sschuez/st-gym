@@ -3,7 +3,7 @@ class ClearLonelyWorkoutsJob < ApplicationJob
 
   def perform
     Workout.lonely_and_due.each do |workout|
-      puts "🔥 Destroying lonely workout #{workout.id}"
+      Rails.logger.debug { "🔥 Destroying lonely workout #{workout.id}" }
       DestroySingleWorkoutJob.perform_later(workout.id)
     end
   end

@@ -1,6 +1,3 @@
 class Admin::AnalyticsController < ApplicationController
-
-  def index
-  end
-
+  def index; end
 end

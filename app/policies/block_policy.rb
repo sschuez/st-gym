@@ -1,4 +1,5 @@
-class BlockPolicy < WorkoutPolicy # <- Inheriting from WorkoutPolicy!!
+# <- Inheriting from WorkoutPolicy!!
+class BlockPolicy < WorkoutPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     # def resolve
@@ -9,7 +10,7 @@ class BlockPolicy < WorkoutPolicy # <- Inheriting from WorkoutPolicy!!
   def new?
     true
   end
-  
+
   def create?
     user_is_owner_of_record? || record.workout.public
   end
@@ -30,6 +31,7 @@ class BlockPolicy < WorkoutPolicy # <- Inheriting from WorkoutPolicy!!
 
   def user_is_owner_of_record?
     return false unless user
+
     user == record.workout.user || user.admin?
   end
 end

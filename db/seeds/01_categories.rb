@@ -1,18 +1,18 @@
-CATEGORIES = ["functional", "gym", "pull", "push", "cardio", "back", "legs", "chest", "belly", "arms", "shoulders"]
+CATEGORIES = %w[functional gym pull push cardio back legs chest belly arms shoulders].freeze
 
 progressbar = ProgressBar.create(
-  title: 'Creating Categories',
+  title: "Creating Categories",
   total: CATEGORIES.count
 )
 
 CATEGORIES.each do |category|
-  unless Category.find_by(name: category)
-    new_category = Category.create(name: category)
-    
-    if category == "functional" || category == "gym"
-      new_category.update(main_category: true)
-    end
+  next if Category.find_by(name: category)
 
-    progressbar.increment
+  new_category = Category.create(name: category)
+
+  if %w[functional gym].include?(category)
+    new_category.update(main_category: true)
   end
+
+  progressbar.increment
 end

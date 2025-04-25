@@ -16,16 +16,16 @@ class ExerciseExerciseInstancesController < ApplicationController
     @exercise.user = current_user
     @workout = Workout.find(params[:workout_id])
     @block = Block.find(params[:block_id])
-    
+
     exercise_categories = get_exercise_categories(params)
     has_one_main_category = check_if_has_at_least_one_main_category(exercise_categories, @exercise)
-    
+
     if has_one_main_category
       if @exercise.save
         exercise_categories.each { |exercise_category| exercise_category.update(exercise: @exercise) }
         @exercise_instance = ExerciseInstance.create(block: @block, exercise: @exercise)
 
-        respond_to do |format| 
+        respond_to do |format|
           format.turbo_stream { flash.now[:notice] = "Exercise created and added to block" }
         end
       else
