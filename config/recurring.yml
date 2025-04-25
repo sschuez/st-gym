@@ -2,5 +2,5 @@ production:
   periodic_workouts_cleanup:
     class: ClearLonelyWorkoutsJob
     queue: default
-    schedule: 0 0 * * 0 # Once a week
+    schedule: at 12am every day
     priority: 2
