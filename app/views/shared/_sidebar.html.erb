@@ -1,20 +1,19 @@
-<div class="sidebar" 
-      data-sidebar-target="toggle" data-action="click->sidebar#toggleClose">
+<div class="sidebar" data-sidebar-target="toggle" data-action="click->sidebar#toggleClose">
   <div class="sidebar__container">
     <div class="sidebar__inner">
       <div class="sidebar__context">
-      
+
         <button id="close-button" data-action="click->sidebar#toggleClose">
           <%= Icon.new("close_lg").call %>
         </button>
-      
+
         <ul>
-        
+
           <% if user_signed_in? %>
             <li>
               <%= button_to destroy_user_session_path,
-                  method: :delete,
-                  class: "sidebar__item" do %>
+                            method: :delete,
+                            class: "sidebar__item" do %>
                 <%= Icon.new("sign_out").call %>
                 <span class="session">Sign out</span>
               <% end %>
@@ -29,7 +28,7 @@
           <% end %>
 
           <% if current_user&.admin? %>
-    
+
             <li>
               <div class="divider"></div>
             </li>
@@ -50,19 +49,13 @@
                       <%= link_to "All users", users_path %>
                     </li>
                     <li>
-                      <%= link_to "Analytics", analytics_path %>
-                    </li>
-                    <li>
                       <%= link_to "Contacts", contacts_path %>
-                    </li>
-                    <li>
-                      <%= link_to "Sidekiq", sidekiq_web_path %>
                     </li>
                   </ul>
                 </div>
               </button>
             </li>
-            
+
           <% end %>
 
           <li>
@@ -87,8 +80,8 @@
                 </span>
               <% end %>
             </li>
-          <% end %>    
-          
+          <% end %>
+
           <li>
             <%= link_to public_workouts_path, class: "sidebar__item" do %>
               <%= Icon.new("fist").call %>
@@ -106,7 +99,7 @@
               </span>
             <% end %>
           </li>
-  
+
           <li>
             <div class="divider"></div>
           </li>
@@ -119,14 +112,14 @@
               </span>
             <% end %>
           </li>
-  
+
           <li>
             <div class="divider"></div>
           </li>
 
           <li class="sidebar__item" data-action="click->sidebar#closeSidebar">
-            <%= link_to new_contact_path, 
-                data: { controller: "turbo" } do %>
+            <%= link_to new_contact_path,
+                        data: { controller: "turbo" } do %>
               <%= Icon.call("mail") %> Feedback
             <% end %>
           </li>
@@ -146,4 +139,3 @@
     </div>
   </div>
 </div>
-
