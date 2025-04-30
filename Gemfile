@@ -72,6 +72,7 @@ group :development do
   # gem "spring"
   gem "foreman"
   gem "ruby-lsp"
+  gem "hotwire-spark"
 end
 
 group :test do
