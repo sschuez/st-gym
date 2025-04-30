@@ -5,20 +5,21 @@
 <%# Popup to warn of deletion of lonely_and_due workouts %>
 <% unless @workout.user %>
   <div class="alert alert-top alert-warning alert-dismissible fade show" role="alert">
-    This is a lost workout looking for its owner 🦮 Unless saved, it will be deleted within 24h 😭 Only you have the power to <%= link_to "rescue & save", new_user_session_path(:workout => @workout), class: "alert-link" %> it to your account 🛟
+    This is a lost workout looking for its owner 🦮 Unless saved, it will be deleted within 24h 😭 Only you have the power to <%= link_to "rescue & save",
+                                                                                                                                        new_user_session_path(workout: @workout), class: "alert-link" %> it to your account 🛟
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
     </button>
   </div>
 <% end %>
 
-  <div class="flex-end">
-    <% if user_signed_in? %>
-      <%= link_to "Create your own exercise", new_exercise_path, "data-controller": "turbo", class: "btn btn-primary" %>
-    <% else %>
-      <%= link_to "Create your own exercise", new_exercise_path, class: "btn btn-primary" %>
-    <% end %>
-  </div>
-  <br>
+<div class="flex-end">
+  <% if user_signed_in? %>
+    <%= link_to "Create your own exercise", new_exercise_path, "data-controller": "turbo", class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to "Create your own exercise", new_exercise_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
+<br>
 
 <div id="<%= dom_id @workout %>">
   <%= render @workout %>
@@ -27,13 +28,14 @@
 <br>
 <p class="text-secondary small grey d-flex flex-row-reverse">Want to keep or edit this workout?</p>
 <div class="d-flex flex-row-reverse">
-  <%= link_to '🛟 Save workout', user_signed_in? ? save_workout_workout_path(@workout) : new_user_session_path(:workout => @workout), method: :post, class: "btn btn-outline-danger" %>
+  <%= link_to "🛟 Save workout", user_signed_in? ? save_workout_workout_path(@workout) : new_user_session_path(workout: @workout), method: :post,
+                                                                                                                                  class: "btn btn-outline-danger" %>
 </div>
 <%# <br> %>
 <br>
 <p class="text-secondary small grey d-flex flex-row-reverse">Print this workout?</p>
 <div class="d-flex flex-row-reverse">
-  <%= link_to "📄 Get PDF", workout_path(@workout, format: :pdf), class: "btn btn-outline-secondary"  %>
+  <%= link_to "📄 Get PDF", workout_path(@workout, format: :pdf), class: "btn btn-outline-secondary" %>
 </div>
 <%# <br> %>
 <br>
@@ -41,5 +43,3 @@
 <div class="d-flex flex-row-reverse">
   <%= link_to "✉️ Feedback", new_contact_path, data: { controller: "turbo" }, class: "btn btn-outline-info" %>
 </div>
-
-

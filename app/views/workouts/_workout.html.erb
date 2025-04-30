@@ -1,22 +1,22 @@
 <%= turbo_stream_from workout %>
 
 <div class="card workout-card">
-  
+
   <%= render "workouts/workout_header", workout: workout %>
 
   <div class="workout-tools">
-    <%= render 'shared/workout_mode' %>
-    <%= render 'shared/stopwatch' %>
+    <%= render "shared/workout_mode" %>
+    <%= render "shared/stopwatch" %>
   </div>
 
   <div class="card-body workout-body">
     <div id="blocks" data-controller="block-position">
       <%= render workout.blocks.order(position: :asc) %>
     </div>
-    <%= turbo_frame_tag "new_block", src: new_workout_block_path(workout), target: "_top", class: "visible-if-public-admin-user meta", data: { controller: "meta", "meta-target": "published" } %>
-    
+    <%= turbo_frame_tag "new_block", src: new_workout_block_path(workout), target: "_top", class: "visible-if-public-admin-user meta",
+                                     data: { controller: "meta", "meta-target": "published" } %>
+
     <%#= link_to "Add exercise", "#", class: "btn btn-primary", data: { controller: "tooltip", value: "Add directly some exercises outside of a block" } %>
   </div>
 
 </div>
-
