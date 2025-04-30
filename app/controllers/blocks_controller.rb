@@ -3,15 +3,11 @@ class BlocksController < ApplicationController
   before_action :set_workout, only: %i[new create edit update destroy]
   before_action :set_block, only: %i[edit update destroy]
 
-  # GET /blocks/new
   def new
     @block = @workout.blocks.new
-    # @block.workout = @workout
-    # authorize(@block, policy_class: WorkoutPolicy)
     authorize @block
   end
 
-  # GET /blocks/1/edit
   def edit
     respond_to do |format|
       format.turbo_stream do
@@ -38,11 +34,10 @@ class BlocksController < ApplicationController
     end
   end
 
-  # POST /blocks or /blocks.json
   def create
     @block = @workout.blocks.new(block_params)
     authorize @block
-    @block.workout = @workout
+
     next_block_nr = @workout.blocks.count + 1
     @block.title = "Block ##{next_block_nr}"
 
@@ -72,7 +67,6 @@ class BlocksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /blocks/1 or /blocks/1.json
   def update
     @block.workout = @block.workout
     respond_to do |format|
@@ -100,7 +94,6 @@ class BlocksController < ApplicationController
     end
   end
 
-  # DELETE /blocks/1 or /blocks/1.json
   def destroy
     @block.destroy
 
