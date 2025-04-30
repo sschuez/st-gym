@@ -1,5 +1,6 @@
 class ExerciseInstancesController < ApplicationController
   include ExercisesQueryable
+
   skip_before_action :authenticate_user! # , only: [ :new, :show ]
   before_action :set_workout, only: %i[new create]
   before_action :set_block, only: %i[new create]

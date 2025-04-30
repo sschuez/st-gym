@@ -46,14 +46,11 @@ module ExercisesQueryable
 
   def query_and_respond(exercises)
     if params[:query].present? && params[:query].to_i.zero?
-      # sql_query = "name ILIKE :query OR description ILIKE :query"
-      sql_query = "name ILIKE :query"
-      @exercises = exercises.where(sql_query, query: "%#{params[:query]}%")
+      @exercises = exercises.where("LOWER(name) LIKE ?", "%#{params[:query].downcase}%")
     end
 
     respond_to do |format|
       format.html
-      # format.text { render partial: "list", locals: { exercises: exercises }, formats: :html }
       format.turbo_stream
     end
   end
